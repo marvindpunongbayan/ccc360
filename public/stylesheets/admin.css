@@ -49,6 +49,7 @@ h3.critical {
   margin-top: 25px;
   padding: 10px 0;
 }
+h2.border { border-bottom: 3px solid #0b486b; }
 #global { background: #ffffff; }
 #global #menu {
   height: 60px;
@@ -334,6 +335,7 @@ div.module h3 {
   padding: 6px 10px;
   margin-bottom: 0.5em;
   min-height: 20px;
+  margin-top: 0;
 }
 div.module table {
   width: 100%;
@@ -350,7 +352,11 @@ div.module table div.buttons {
   float: right;
   margin-right: 7px;
 }
-div.module table div.buttons a.delete { margin-left: 10px; }
+div.module table td.date { font-size: 11px; }
+div.module table td.goal {
+  text-align: right;
+  padding-right: 9px;
+}
 div.module table.stafflist { margin-bottom: 0.75em; }
 a span.fillit {
   color: silver;
@@ -452,6 +458,7 @@ a.inline {
   *display: inline;
   line-height: auto;
   vertical-align: bottom;
+  height: 15px;
 }
 a.edit { background-image: url('/images/icons/pencil-smaller.png'); }
 a.delete { background-image: url('/images/icons/slash.png'); }
@@ -559,6 +566,8 @@ a.close {
   position: relative;
   z-index: 100;
 }
+#contextmenu ul.right li a.my { background-image: url('/images/icons/blog--pencil.png'); }
+#contextmenu ul.right li a.start { background-image: url('/images/icons/360.png'); }
 #contextmenu ul.left {
   float: right;
   margin: 0;
@@ -595,6 +604,8 @@ a.close {
   position: relative;
   z-index: 100;
 }
+#contextmenu ul.left li a.my { background-image: url('/images/icons/blog--pencil.png'); }
+#contextmenu ul.left li a.start { background-image: url('/images/icons/360.png'); }
 #contextmenu .poptions {
   width: 560px;
   min-height: 200px;
@@ -789,8 +800,23 @@ table.people td {
 }
 table.people td { border-bottom: 1px solid #efefef; }
 table.people td a { color: #0b486b; }
+table.people .gender { width: 5%; }
 table.people .name { width: 23%; }
 table.people .evaluate img { vertical-align: bottom; }
+table.people .reviewname { width: 23%; }
+table.people .duedate .alert {
+  background: #d10000;
+  color: #ffffff;
+  padding: 1px 2px;
+}
+table.people .status .red { color: #d10000; }
+table.people .status .yellow { color: #f7931e; }
+table.people .status .green { color: #006837; }
+table.people .open {
+  text-align: right;
+  padding-right: 5px;
+}
+table.people .email { width: 5%; }
 table.manageusers tr:hover { background: #eeeeee; }
 table.manageusers thead tr:hover { background: none; }
 .ui-dialog {

@@ -1,1 +1,208 @@
-dashboard here
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li><a href="">Dashboard</a></li>
+      <li class="last">Blah</li>
+    </ul>
+  </div>  
+  
+  <h1>Dashboard</h1>
+  <div id="contextmenu">
+    <ul class="left">
+      <li><%= link_to('Start a Review', '', :class => 'start withicon') %></li>
+      <li><%= link_to('My Reviews', '', :class => 'my withicon') %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+  
+  <div class="projectedit">
+    <div class="left">
+      <div id="tabs">
+        <ul class="tabs">
+          <li><%= link_to("Participants COUNT", '#toreview') %></li>
+          <li><%= link_to("Participants COUNT", '#pastreview') %></li>
+        </ul>
+    
+        <div class="tabcontent" id="toreview">
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="type">Type</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-male.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Carl Weathers', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate">12/12/2012</th>
+                <td class="type">Full</th>
+                <td class="status">0%</th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate"><span class="alert">12/12/2012</span></th>
+                <td class="type">Full</th>
+                <td class="status"><span class="red">0%</span></th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Mrs. Fields</th>
+                <td class="duedate"><span class="alert">12/12/2012</span></th>
+                <td class="type">Full</th>
+                <td class="status"><span class="green">100%</span></th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate">12/12/2012</th>
+                <td class="type">Full</th>
+                <td class="status"><span class="yellow">75%</span></th>
+              </tr>
+          </table>
+        </div>
+        
+        <div class="tabcontent" id="pastreview">
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="type">Type</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-male.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Carl Weathers', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate">12/12/2012</th>
+                <td class="type">Full</th>
+                <td class="status">0%</th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate"><span class="alert">12/12/2012</span></th>
+                <td class="type">Full</th>
+                <td class="status"><span class="red">0%</span></th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Mrs. Fields</th>
+                <td class="duedate"><span class="alert">12/12/2012</span></th>
+                <td class="type">Full</th>
+                <td class="status"><span class="green">100%</span></th>
+              </tr>
+              <tr>
+                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+                <td class="name"><%= link_to('Betty White', '') %></th>
+                <td class="reviewname">Dance Review</th>
+                <td class="duedate">12/12/2012</th>
+                <td class="type">Full</th>
+                <td class="status"><span class="yellow">75%</span></th>
+              </tr>
+          </table>
+        </div>
+      </div>
+        
+      
+      
+      
+      
+      <h2 class="border">My Team</h2>
+      <table class="people">
+        <thead>
+          <tr>
+            <th class="gender"></th>
+            <th class="name">Name</th>
+            <th class="email"></th>
+            <th class="accdate">Telephone</th>
+            <th class="open">Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
+            <td class="name">George Michael</th>
+            <td class="email"><%= mail_to('', image_tag('icons/mail.png', :title => 'Send email to PERSONS NAME')) %></th>
+            <td class="accdate">Telephone</th>
+            <td class="open">Open</th>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+    <div class="right sidebar">
+      <div class="module">
+        <h3><span>My Stuff</span></h3>
+        <ul>
+          <li><%= link_to('Personal Development Plan (PDP)', '') %></li>
+          <li><%= link_to('Position Focus', '') %></li>
+        </ul>
+      </div>
+      
+      <div class="module">
+        <h3>
+          <span>MPD</span>
+          <span class="controls"><a href="show/hide">Show / Hide</a></span>
+        </h3>
+        <table class="stafflist">
+          <tbody id="_list">
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$4000.00</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Account Balance') %></td>
+              <td class="goal">$500.26</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$8512.11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="module">
+        <h3>
+          <span>Reminders</span>
+          <span class="controls"><%= link_to('Add', '#', :class => 'add edit-leader', 'data-name' => "Add a reminder", 'data-id' => "1", 'data-leader' => "2") %></span>
+        </h3>
+        <table class="stafflist">
+          <tbody id="_list">
+            <tr>
+              <td class="icon"><%= image_tag('icons/sticky-note-pin.png') %></td>
+              <td class="name"><%= link_to('Create a review for David') %></td>
+              <td class="date">12/20/2010</td>
+              <td class="delete"><div class="buttons"><a href="" class="inline delete delete-leader"></a></div></td>           
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+  
+  
+</div>

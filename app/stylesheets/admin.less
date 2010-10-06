@@ -36,6 +36,10 @@ h3.critical {
   padding:10px 0;
 }
 
+h2.border {
+  border-bottom: 3px solid @dark-blue;
+}
+
 /* Global */
 #global {
   background: @white;
@@ -420,32 +424,39 @@ div.module {
     padding: 6px 10px;
     margin-bottom:0.5em;
     min-height: 20px;
-    }
+    margin-top: 0;
+  }
   table {
     width: 100%;
     margin: 0 6px;
     th {
       text-align: left;
-      }
+    }
     td.rightalign {
       text-align: right;
-      }
+    }
     td.name {
-      }
+    }
     td.icon {
       width: 25px;
       text-align: center;
-      }
+    }
     td.titlefield {
       width: 90px;
-      }
+    }
     div.buttons {
       float: right;
       margin-right: 7px;
-      a.delete {margin-left: 10px;}
-      }
-      
     }
+    td.date {
+      font-size: 11px;  
+    }
+    td.goal {
+      text-align: right;
+      padding-right: 9px;
+    }
+      
+  }
   table.stafflist {
     margin-bottom: .75em;
     }
@@ -553,6 +564,7 @@ a.inline {
   *display: inline;
   line-height: auto;
   vertical-align: bottom;
+  height: 15px;
 }
 
 a.edit {background-image: url('/images/icons/pencil-smaller.png');}
@@ -648,6 +660,8 @@ a.close {text-indent: 0px; width: auto;}
       a.email { background-image:  url('/images/icons/mail-open-document.png');}
       a.excel { background-image:  url('/images/icons/document-excel.png');}
       a.down {background-image: url('/images/icons/down.png'); background-position: 0 50%; border: 1px solid silver; position: relative; z-index: 100;}
+      a.my { background-image:  url('/images/icons/blog--pencil.png');}
+      a.start { background-image:  url('/images/icons/360.png');}
     }
   }
   
@@ -852,21 +866,34 @@ table.people {
     text-align: left;
     font-weight: bold;
     font-size: 14px;
-    }
+  }
   th, td {
     padding: 4px;
     overflow: hidden;
-    }
+  }
 /*  th.sort_up {background: url("/images/sort_up.png") no-repeat 0 50%; padding-left: 12px;}
   th.sort_down {background: url("/images/sort_down.png") no-repeat 0 50%; padding-left: 12px;}  */
   td {
     a {color: @dark-blue;}
     border-bottom: 1px solid @global-bg;
-    }
-  .gender {}
+  }
+  .gender {width: 5%;}
   .name {width: 23%;}
   .evaluate img {vertical-align: bottom;}
+  .reviewname {width: 23%;}
+  .duedate .alert {
+    background: #D10000;
+    color: @white;
+    padding: 1px 2px;
   }
+  .status {
+    .red {color: #D10000;}
+    .yellow {color: #F7931E;}
+    .green {color: #006837;}
+  }
+  .open {text-align: right; padding-right: 5px;}
+  .email {width: 5%;}
+}
   
 /* Users Tables - based on People Table */
 
