@@ -7,12 +7,9 @@
 [submodule "vendor/plugins/questionnaire_engine"]
 	path = vendor/plugins/questionnaire_engine
 	url = git://github.com/twinge/questionnaire_engine.git
-[submodule "common_engine"]
-	path = common_engine
+[submodule "vendor/plugins/common_engine"]
+	path = vendor/plugins/common_engine
 	url = git@git.uscm.org:common_engine.git
-[submodule "questionnaire_engine"]
-	path = questionnaire_engine
+[submodule "vendor/plugins/questionnaire_engine"]
+	path = vendor/plugins/questionnaire_engine
 	url = git://github.com/twinge/questionnaire_engine.git
-[submodule "ccc_rubycas_client"]
-	path = ccc_rubycas_client
-	url = git://github.com/twinge/ccc_rubycas_client
