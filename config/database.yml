@@ -1,5 +1,5 @@
 development:
   adapter: mysql
-  database: ccc360
+  database: uscm
   user: root
   password: 

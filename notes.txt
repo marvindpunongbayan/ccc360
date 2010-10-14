@@ -1,0 +1,6 @@
+=== notes ===
+"personal forms" as label for forms that are filled out for each person
+
+=== questions ===
+How come sp2 doesn't have an error on file_column?
+vendor/plugins/common_engine/app/models/person.rb

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  review_id: 1
+  person_id: 1
+  invitation_sent_at: 2010-10-14 13:33:08
+
+two:
+  review_id: 1
+  person_id: 1
+  invitation_sent_at: 2010-10-14 13:33:08
