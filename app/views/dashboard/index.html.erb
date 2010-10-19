@@ -19,8 +19,8 @@
     <div class="left">
       <div id="tabs">
         <ul class="tabs">
-          <li><%= link_to("Participants COUNT", '#toreview') %></li>
-          <li><%= link_to("Participants COUNT", '#pastreview') %></li>
+          <li><%= link_to("Current Reviews", '#toreview') %></li>
+          <li><%= link_to("Past Reviews", '#pastreview') %></li>
         </ul>
     
         <div class="tabcontent" id="toreview">
@@ -36,14 +36,21 @@
               </tr>
             </thead>
             <tbody>
+              <%- for review in @reviews -%>
               <tr>
-                <td class="gender"><%= image_tag('icons/user-male.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Carl Weathers', '') %></th>
-                <td class="reviewname">Dance Review</th>
+                <td class="gender">
+                  <%- if review.subject.is_male? -%>
+                  <%= image_tag('icons/user-male.png', :alt => (alt = "#{review.subject.name} is a male"), :title => alt) %>
+                  <%- else -%>
+                  <%= image_tag('icons/user-female.png', :alt => (alt = "#{review.subject.name} is a female"), :title => alt) %>
+                  <%- end -%></th>
+                <td class="name"><%= link_to(review.subject.name, '') %></th>
+                <td class="reviewname"><%= link_to(review.form.name) %></th>
                 <td class="duedate">12/12/2012</th>
                 <td class="type">Full</th>
                 <td class="status">0%</th>
               </tr>
+              <%- end -%>
               <tr>
                 <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
                 <td class="name"><%= link_to('Betty White', '') %></th>

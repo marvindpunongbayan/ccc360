@@ -5,6 +5,7 @@ gem 'mysql', '2.8.1'
 gem 'ruby-debug'
 gem 'acts_as_list'
 gem 'less'
+gem 'factory_girl'
 
 # required for common_engine
 gem 'acts_as_state_machine'

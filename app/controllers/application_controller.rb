@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
     def check_valid_user
       if CASClient::Frameworks::Rails::Filter.filter(self) && AuthenticationFilter.filter(self)
-        unless pr_user && pr_user.can_edit_questionnaire?
+        unless pr_user# && pr_user.can_edit_questionnaire?
           redirect_to '/'
           return false
         end
@@ -53,6 +53,9 @@ class ApplicationController < ActionController::Base
     def pr_user
       return nil unless current_user
       @pr_user ||= PrUser.find_by_ssm_id(current_user.id)
+      unless @pr_user
+        @pr_user = PrUser.create! :ssm_id => current_user.id
+      end
       unless session[:login_stamped] || @pr_user.nil?
         @pr_user.update_attribute(:last_login, Time.now)
         session[:login_stamped] = true
