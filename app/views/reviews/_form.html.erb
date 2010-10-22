@@ -1,0 +1,27 @@
+<p class="legend">
+Fields with the <%= image_tag('required.png') %> are required.
+</p>
+
+<%= hidden_field :review, :subject_id %>
+<%= hidden_field :review, :initiator_id %>
+
+<div class="field required">
+  <%= f.label(:name) do
+   'Name: '
+  end %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="field required">
+  <%= f.label(:due) do
+   'Due Date: '
+  end %>
+  <%= f.date_select :due %>
+</div>
+
+<div class="field required">
+  <%= f.label(:purpose) do
+   'Purpose: '
+  end %>
+  <%= f.text_area :purpose, :rows => 5 %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021175843) do
+ActiveRecord::Schema.define(:version => 20101022194704) do
 
   create_table "answer_sheet_question_sheets", :force => true do |t|
     t.integer  "answer_sheet_id"
@@ -899,6 +899,8 @@ ActiveRecord::Schema.define(:version => 20101021175843) do
     t.date     "due"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "purpose"
   end
 
   create_table "pr_users", :force => true do |t|
