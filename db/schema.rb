@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101014173441) do
+ActiveRecord::Schema.define(:version => 20101021175843) do
 
   create_table "answer_sheet_question_sheets", :force => true do |t|
     t.integer  "answer_sheet_id"
@@ -842,14 +842,6 @@ ActiveRecord::Schema.define(:version => 20101014173441) do
   add_index "pr_elements", ["position"], :name => "index_pr_elements_on_question_sheet_id_and_position_and_page_id"
   add_index "pr_elements", ["slug"], :name => "index_pr_elements_on_slug"
 
-  create_table "pr_forms", :force => true do |t|
-    t.string   "name"
-    t.boolean  "archived"
-    t.boolean  "personal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pr_page_elements", :force => true do |t|
     t.integer  "page_id"
     t.integer  "element_id"
@@ -929,6 +921,13 @@ ActiveRecord::Schema.define(:version => 20101014173441) do
   end
 
   add_index "profile_pictures", ["person_id"], :name => "index_profile_pictures_on_person_id"
+
+  create_table "question_sheet_pr_infos", :force => true do |t|
+    t.integer  "question_sheet_id"
+    t.boolean  "personal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "school_years", :force => true do |t|
     t.string   "name"

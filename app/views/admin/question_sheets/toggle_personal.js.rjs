@@ -1,0 +1,1 @@
+page["#personal_#{@question_sheet.id}"].parent.html render "toggle_personal_link", :question_sheet => @question_sheet

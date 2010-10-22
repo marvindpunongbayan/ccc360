@@ -1,0 +1,33 @@
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li><%= link_to "Dashboard", dashboard_url %></li>
+      <li class="">Start a Review</li>
+      <li class="last">Choose Person</li>
+    </ul>
+  </div>
+
+  <h1>Dashboard</h1>
+  <%= render "dashboard/context_menu" %>
+
+  <div class="projectedit">
+    <div class="left">
+      <div id="tabs">
+        <ul class="tabs">
+          <li><%= link_to("From Your Team", '#team') %></li>
+          <li><%= link_to("Search Person", '#search') %></li>
+        </ul>
+
+        <div class="tablcontent" id="team">
+          <%- for person in current_person.team_members(true) -%>
+          <div><%= gender_icon(person) %> <%= person.full_name %></div>
+          <%- end -%>
+        </div>
+        <div class="tablcontent" id="search">
+          list search here
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

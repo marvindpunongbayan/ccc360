@@ -72,7 +72,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
   font-size: 14px;
   font-weight: bold;
 }
-#global #menu li a.selected {
+#global #menu li a.selected, a.selected {
   color: #efefef;
   background: #0b486b;
 }

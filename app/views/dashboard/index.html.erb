@@ -2,18 +2,11 @@
   <div id="breadcrumb">
     <ul>
       <li><a href="">Dashboard</a></li>
-      <li class="last">Blah</li>
     </ul>
   </div>  
   
   <h1>Dashboard</h1>
-  <div id="contextmenu">
-    <ul class="left">
-      <li><%= link_to('Start a Review', '', :class => 'start withicon') %></li>
-      <li><%= link_to('My Reviews', '', :class => 'my withicon') %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>
+  <%= render "context_menu" %>
   
   <div class="projectedit">
     <div class="left">
@@ -38,12 +31,7 @@
             <tbody>
               <%- for review in @reviews -%>
               <tr>
-                <td class="gender">
-                  <%- if review.subject.is_male? -%>
-                  <%= image_tag('icons/user-male.png', :alt => (alt = "#{review.subject.name} is a male"), :title => alt) %>
-                  <%- else -%>
-                  <%= image_tag('icons/user-female.png', :alt => (alt = "#{review.subject.name} is a female"), :title => alt) %>
-                  <%- end -%></th>
+                <td class="gender"><%= gender_icon(review.subject) %>
                 <td class="name"><%= link_to(review.subject.name, '') %></th>
                 <td class="reviewname"><%= link_to(review.form.name) %></th>
                 <td class="duedate">12/12/2012</th>
