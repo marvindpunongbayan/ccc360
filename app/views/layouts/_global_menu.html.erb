@@ -2,9 +2,8 @@
   <div class="pagewidth">
     <ul id="menu">
       <li><%= link_to_menu "Dashboard", dashboard_url %></li>
-      <li><%= link_to_menu "People", people_url %></li>
-      <li><%= link_to_menu "Admin", admin_question_sheets_url %></li>
-      <li><%= link_to_menu "My Reviews", reviews_url %></li>
+      <li><%= link_to_menu "Start a Review", new_review_url, :class => "start withicon #{'selected' if starting_review}" %></li>
+      <li><%= link_to_menu "My Reviews", reviews_url, :class => "my withicon" %></li>
     </ul>
   </div>
 </div>

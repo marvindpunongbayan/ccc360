@@ -1,18 +1,16 @@
 <div class="pagepad">
   <div id="breadcrumb">
     <ul>
-      <li><%= link_to "Dashboard", dashboard_url %></li>
       <li class=""><%= link_to "Start a Review", new_review_url %></li>
       <li class="last">Choose Requester</li>
     </ul>
   </div>
 
-  <h1>Dashboard</h1>
-  <%= render "dashboard/context_menu" %>
-
+  <h1>Start a Review</h1>
   <div class="projectedit">
     <div class="left">
       <%= link_to "Back to Choose Person", new_review_url %>
+      <div>Choose the person who requested the review.</div>
       <div id="tabs">
         <ul class="tabs">
           <li><%= link_to("Yourself", '#self') %></li>

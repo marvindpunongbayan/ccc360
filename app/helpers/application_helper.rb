@@ -1,15 +1,14 @@
 module ApplicationHelper
-  def link_to_menu(name, url)
-    selected = (name == "Dashboard" && (controller_name == "dashboard" || 
-                                        (controller_name == "reviews" && action_name == "new"))) ||
+  def link_to_menu(name, url, params = {})
+    selected = (name == "Dashboard" && controller_name == "dashboard") || 
       (name == "People" && controller_name == "people") ||
       (name == "Admin" && controller_name == "question_sheets") ||
       (name == "My Reviews" && controller_name == "reviews" && action_name != "new")
-    link_to name, url, :class => (selected ? "selected" : "")
+    link_to name, url, params.merge(:class => params[:class].to_s + (" selected" if selected).to_s)
   end
 
   def starting_review
-    controller_name = "reviews" && action_name == "new"
+    controller_name = "reviews" && action_name =~ /new/
   end
 
   def gender_icon(person)

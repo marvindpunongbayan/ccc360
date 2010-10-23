@@ -1,17 +1,15 @@
 <div class="pagepad">
   <div id="breadcrumb">
     <ul>
-      <li><%= link_to "Dashboard", dashboard_url %></li>
       <li class=""><%= link_to "Start a Review", new_review_url %></li>
       <li class="last">Choose Person</li>
     </ul>
   </div>
 
-  <h1>Dashboard</h1>
-  <%= render "dashboard/context_menu" %>
-
+  <h1>Start a Review</h1>
   <div class="projectedit">
     <div class="left">
+      <div>Choose the person who will be reviewed.</div>
       <div id="tabs">
         <ul class="tabs">
           <li><%= link_to("From Your Team", '#team') %></li>

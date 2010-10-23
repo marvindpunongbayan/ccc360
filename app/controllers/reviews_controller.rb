@@ -1,4 +1,8 @@
 class ReviewsController < ApplicationController
+  def index
+    @reviews = current_person.initiated_reviews
+  end
+
   def new_submit_person
     session[:new_review] ||= {}
     session[:new_review][:subject_id] = params[:person_id]
@@ -20,7 +24,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new params[:new_review]
+    # map the person_id and subject_id from person_ids to pr_users
+    @review = Review.new params[:review]
     if @review.save
       redirect_to dashboard_url
     else
