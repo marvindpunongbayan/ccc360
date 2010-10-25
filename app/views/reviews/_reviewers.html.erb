@@ -1,5 +1,11 @@
+<table class="list_of_reviewers">
 <%- for reviewer in @review.reviewers -%>
   <tr class="review_<%=@review.id%> reviewer">
-    REVIEWER
+    <td class="checkbox"><input type="checkbox" name="checkbox"/></td>
+    <td class="name">George Wachowski</td>
+    <td class="reviewname">Super Review</td>
+    <td class="duedate">10/10/2010</td>
+    <td class="status">75%</td>
   </tr>
 <%- end -%>
+</table>
