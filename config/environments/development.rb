@@ -22,5 +22,7 @@ Ccc360::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  config.session_store :active_record_store
 end
 
