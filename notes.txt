@@ -1,7 +1,9 @@
 === notes ===
 "personal forms" as label for forms that are filled out for each person
 
-Add myself to the Great Lakes team:
+Add Andrew Roth to the Great Lakes team:
    MinistryMissionalTeamMember.create! :personID => 778531, :teamID => 1016
+Add Josh Starcher to the Great Lakes team:
+   MinistryMissionalTeamMember.create! :personID => 102546, :teamID => 1016
 
 === questions ===
