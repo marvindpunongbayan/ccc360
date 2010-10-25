@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  def self.application_name
+    'pr'
+  end
+
+  def application_name
+    ApplicationController.application_name
+  end
+
   protected
 
     def check_valid_user
