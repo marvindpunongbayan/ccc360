@@ -7,6 +7,7 @@ Ccc360::Application.routes.draw do
       post :new_submit_requester
       get :new_customize
     end
+    resources :reviewers
   end
   match "dashboard", :to => "dashboard#index"
   match "dashboard#new", :to => "reviews#new"

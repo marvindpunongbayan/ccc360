@@ -154,3 +154,25 @@ jQuery(function ($) {
         });
     });
 });
+
+function reviewers_dialog() {
+        $("#new_reviewer_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:400,
+                modal: true,
+                buttons: {
+                        Cancel: function() {
+                                $(this).dialog('close');
+                        },
+                        Add: function() {
+                                $(this).dialog('close');
+                                confirm = el.attr('data-confirm')
+                                el.removeAttr('data-confirm');
+                                el.click();
+                                el.attr('data-confirm', confirm);
+                        }
+                }
+        });     
+}
+

@@ -1,0 +1,2 @@
+page["#review_#{@review.id}"].addClass("expanded")
+page["#review_#{@review.id}"].parent().append(render("reviewers") + render("reviewer_buttons_row"))
