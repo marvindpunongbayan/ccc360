@@ -29,7 +29,14 @@
             <tbody>
               <%- for review in @reviews -%>
               <tr class="review_<%=review.id%>">
-                <td class="expand"><%= link_to "+", review_url(review), :remote => true %></td>
+                <td class="expand">
+                  <%= link_to "+", review_url(review), :remote => true, :class => "expand_button" %>
+                  <%= link_to_function "-", %|
+                  $("tr.review_#{review.id}.reviewer_content").addClass("reviewer_content_hide");
+                  $("tr.review_#{review.id} .collapse_button").hide();
+                  $("tr.review_#{review.id} .expand_button").show();
+                  |, :class => "collapse_button", :style => "display:none" %>
+                </td>
                 <td class="gender"><%= gender_icon(review.subject) %></td>
                 <td class="name"><%= link_to(review.subject.full_name, '') %></td>
                 <td class="reviewname"><%= link_to(review.name) %></td>
