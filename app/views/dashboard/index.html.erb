@@ -15,6 +15,7 @@
         </ul>
     
         <div class="tabcontent" id="toreview">
+          <%- unless @nonteam_reviews.empty? %>
           <table class="people">
             <thead>
               <tr>
@@ -27,44 +28,22 @@
               </tr>
             </thead>
             <tbody>
-              <%- for review in @reviews -%>
+              <%- for review in @nonteam_reviews -%>
               <tr>
                 <td class="gender"><%= gender_icon(review.subject) %>
-                <td class="name"><%= link_to(review.subject.name, '') %></th>
-                <td class="reviewname"><%= link_to(review.form.name) %></th>
+                <td class="name"><%= link_to(review.subject.full_name, '') %></th>
+                <td class="reviewname"><%= link_to(review.name) %></th>
                 <td class="duedate">12/12/2012</th>
                 <td class="type">Full</th>
                 <td class="status">0%</th>
               </tr>
               <%- end -%>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Dance Review</th>
-                <td class="duedate"><span class="alert">12/12/2012</span></th>
-                <td class="type">Full</th>
-                <td class="status"><span class="red">0%</span></th>
-              </tr>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Mrs. Fields</th>
-                <td class="duedate"><span class="alert">12/12/2012</span></th>
-                <td class="type">Full</th>
-                <td class="status"><span class="green">100%</span></th>
-              </tr>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Dance Review</th>
-                <td class="duedate">12/12/2012</th>
-                <td class="type">Full</th>
-                <td class="status"><span class="yellow">75%</span></th>
-              </tr>
+            </tbody>
           </table>
-        </div>
-        
-        <div class="tabcontent" id="pastreview">
+          <%- end -%>
+
+          <%- unless @team_reviews.empty? %>
+          <h2 class="border">My Team</h2>
           <table class="people">
             <thead>
               <tr>
@@ -77,67 +56,79 @@
               </tr>
             </thead>
             <tbody>
+              <%- for review in @team_reviews -%>
               <tr>
-                <td class="gender"><%= image_tag('icons/user-male.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Carl Smithers', '') %></th>
-                <td class="reviewname">Dance Review</th>
+                <td class="gender"><%= gender_icon(review.subject) %>
+                  <td class="name"><%= link_to(review.subject.full_name, '') %></th>
+                  <td class="reviewname"><%= link_to(review.name) %></th>
+                  <td class="duedate">12/12/2012</th>
+                  <td class="type">Full</th>
+                  <td class="status">0%</th>
+                </tr>
+                <%- end -%>
+              </tbody>
+          </table>
+          <%- end -%>
+        </div>
+        
+        <div class="tabcontent" id="pastreview">
+          <%- unless @past_nonteam_reviews.empty? %>
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="type">Type</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%- for review in @past_nonteam_reviews -%>
+              <tr>
+                <td class="gender"><%= gender_icon(review.subject) %>
+                <td class="name"><%= link_to(review.subject.full_name, '') %></th>
+                <td class="reviewname"><%= link_to(review.name) %></th>
                 <td class="duedate">12/12/2012</th>
                 <td class="type">Full</th>
                 <td class="status">0%</th>
               </tr>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Dance Review</th>
-                <td class="duedate"><span class="alert">12/12/2012</span></th>
-                <td class="type">Full</th>
-                <td class="status"><span class="red">0%</span></th>
-              </tr>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Mrs. Fields</th>
-                <td class="duedate"><span class="alert">12/12/2012</span></th>
-                <td class="type">Full</th>
-                <td class="status"><span class="green">100%</span></th>
-              </tr>
-              <tr>
-                <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-                <td class="name"><%= link_to('Betty White', '') %></th>
-                <td class="reviewname">Dance Review</th>
-                <td class="duedate">12/12/2012</th>
-                <td class="type">Full</th>
-                <td class="status"><span class="yellow">75%</span></th>
-              </tr>
+              <%- end -%>
+            </tbody>
           </table>
+          <%- end -%>
+
+          <%- unless @past_team_reviews.empty? %>
+          <h2 class="border">My Team</h2>
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="type">Type</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%- for review in @past_team_reviews -%>
+              <tr>
+                <td class="gender"><%= gender_icon(review.subject) %>
+                  <td class="name"><%= link_to(review.subject.full_name, '') %></th>
+                  <td class="reviewname"><%= link_to(review.name) %></th>
+                  <td class="duedate">12/12/2012</th>
+                  <td class="type">Full</th>
+                  <td class="status">0%</th>
+                </tr>
+                <%- end -%>
+              </tbody>
+          </table>
+          <%- end -%>
         </div>
       </div>
         
-      
-      
-      
-      
-      <h2 class="border">My Team</h2>
-      <table class="people">
-        <thead>
-          <tr>
-            <th class="gender"></th>
-            <th class="name">Name</th>
-            <th class="email"></th>
-            <th class="accdate">Telephone</th>
-            <th class="open">Open</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="gender"><%= image_tag('icons/user-female.png', :alt => 'Name is a Gender', :title => 'Name is a Gender') %></th>
-            <td class="name">George Michael</th>
-            <td class="email"><%= mail_to('', image_tag('icons/mail.png', :title => 'Send email to PERSONS NAME')) %></th>
-            <td class="accdate">Telephone</th>
-            <td class="open">Open</th>
-          </tr>
-        </tbody>
-      </table>
       
     </div>
     
