@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
   def index
     @reviews = current_person.initiated_reviews
-    @reviewer = Reviewer.new
+    @add_dialog = session[:add_dialog]
+    if session[:add_dialog]
+      @review = Review.find session[:add_dialog]
+      session.delete :add_dialog
+    end
   end
 
   def new_submit_person
@@ -29,9 +33,10 @@ class ReviewsController < ApplicationController
     # map the person_id and subject_id from person_ids to pr_users
     @review = Review.new params[:review]
     if @review.save
-      redirect_to dashboard_url
+      session[:add_dialog] = @review.id
+      redirect_to reviews_url
     else
-      rener :action => :new_customize
+      render :action => :new_customize
     end
   end
 end

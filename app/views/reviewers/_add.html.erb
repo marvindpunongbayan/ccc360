@@ -5,7 +5,7 @@
   </ul>
 
   <div class="tablcontent" id="team">
-    <%- for person in current_person.team_members(true) -%>
+    <%- for person in current_person.team_members -%>
     <div id="new_reviewer_<%=person.id%>"><%= link_to "#{gender_icon(person)} #{person.full_name}".html_safe, review_reviewers_url(@review.id, "reviewer[person_id]" => person.id), :method => :post, :remote => true %></div>
     <%- end -%>
   </div>

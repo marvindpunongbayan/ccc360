@@ -66,5 +66,14 @@
     <div class="clear"></div>
     <div id="new_reviewer_dialog" style="display:none" title="Add reviewers"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message">
     </span></p></div>
+    <%- if @add_dialog -%>
+    <script>
+    $(document).ready(function() {
+      <%= render :file => "reviews/show.js.rjs" %>
+      <%= render :file => "reviewers/new.js.rjs" %>
+      $("#new_reviewer_prompt").html("The review for <%=@review.subject.full_name%> has been created.  You can now add reviewers.  When finished, hit the Done button.");
+    });
+    </script>
+    <%- end -%>
   </div>
 </div>
