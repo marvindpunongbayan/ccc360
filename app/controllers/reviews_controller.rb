@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   def index
     @reviews = current_person.initiated_reviews
+    @reviewer = Reviewer.new
   end
 
   def new_submit_person

@@ -1,0 +1,2 @@
+page["#dialog-message"].html(render("new"))
+page << "show_reviewers_dialog();"
