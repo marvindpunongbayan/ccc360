@@ -1,4 +1,4 @@
 page[".review_#{@review.id}.reviewer"].remove();
 page[".review_#{@review.id}.reviewer_buttons"].remove();
 page["#review_#{@review.id}"].addClass("expanded")
-page["#review_#{@review.id}"].parent().append(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))
+page["#review_#{@review.id}"].after(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))

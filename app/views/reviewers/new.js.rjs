@@ -1,2 +1,2 @@
-page["#dialog-message"].html(render("new"))
+page["#dialog-message"].html(render("reviewers/new"))
 page << "show_reviewers_dialog();"
