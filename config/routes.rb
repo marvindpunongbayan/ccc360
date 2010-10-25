@@ -11,7 +11,7 @@ Ccc360::Application.routes.draw do
   end
   match "dashboard", :to => "dashboard#index"
   match "dashboard#new", :to => "reviews#new"
-  match "admin", :to => "admin#index"
+  match "admin", :to => "admin/question_sheets#index"
 
   root :to => "dashboard#index"
 
