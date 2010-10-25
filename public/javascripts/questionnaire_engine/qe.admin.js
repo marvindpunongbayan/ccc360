@@ -77,7 +77,7 @@ function scrollToElement(id) {
 }
 
 function addError(id) {
-    $(id).addClassName('fieldWithErrors');
+    $('#' + id).addClassName('fieldWithErrors');
 }
 
 // convert label to slug
@@ -110,7 +110,7 @@ function setUpSortables() {
 																		$.ajax({data:$(this).sortable('serialize',{key:sortable.id + '[]'}),
 																						complete: function(request) {$(sortable).effect('highlight')}, 
 																						success:function(request){$('#errors').html(request)}, 
-																						type:'put', 
+																						type:'POST', 
 																						url: $(sortable).attr('data-sortable-url')
 																					 })
 																		}
@@ -118,6 +118,12 @@ function setUpSortables() {
 	$('[data-sortable][data-sortable-handle]').each(function() {
 		handle = $(this).attr('data-sortable-handle');
 		$(this).sortable("option", "handle", handle);
+	});
+	
+	$('.droppable').droppable({
+		drop: function( event, ui ) {
+			$.post($(this).attr('data-url'), {draggable_element: ui.draggable.attr('id')}, function() {}, 'script')
+		}
 	});
 }
 
@@ -138,3 +144,7 @@ function setUpJsHelpers() {
 		setUpCalendars();
   	// ==================
 }
+
+$(function() {
+	setUpSortables();
+});

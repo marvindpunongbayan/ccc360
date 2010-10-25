@@ -1,0 +1,31 @@
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li class=""><%= link_to "Start a Review", new_review_url %></li>
+      <li class="last">Choose Person</li>
+    </ul>
+  </div>
+
+  <h1>Start a Review</h1>
+  <div class="projectedit">
+    <div class="left">
+      <div>Choose the person who will be reviewed.</div>
+      <div id="tabs">
+        <ul class="tabs">
+          <li><%= link_to("From Your Team", '#team') %></li>
+          <li><%= link_to("Search Person", '#search') %></li>
+        </ul>
+
+        <div class="tablcontent" id="team">
+          <%- for person in current_person.team_members(true) -%>
+          <div><%= link_to "#{gender_icon(person)} #{person.full_name}".html_safe, new_submit_person_reviews_url(:person_id => person.id), :method => :post %></div>
+          <%- end -%>
+        </div>
+        <div class="tablcontent" id="search">
+          list search here
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

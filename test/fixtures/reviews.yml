@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subject_id: 1
+  initiator_id: 1
+  status: MyString
+  percent: 1
+  due: 2010-10-14
+
+two:
+  subject_id: 1
+  initiator_id: 1
+  status: MyString
+  percent: 1
+  due: 2010-10-14

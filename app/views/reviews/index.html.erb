@@ -1,1 +1,63 @@
-My Reviews Here
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li><a href="" class="last">My Reviews</a></li>
+    </ul>
+  </div>  
+  
+  <h1>My Reviews</h1>
+  <div class="projectedit">
+    <div class="left">
+      <div id="tabs">
+        <ul class="tabs">
+          <li><%= link_to("Current Reviews", '#toreview') %></li>
+          <li><%= link_to("Past Reviews", '#pastreview') %></li>
+        </ul>
+    
+        <div class="tabcontent" id="toreview">
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="expand"></th>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%- for review in @reviews -%>
+              <tr>
+                <td class="expand"><%= link_to "+", review_url(review), :remote => true %></td>
+                <td class="gender"><%= gender_icon(review.subject) %></td>
+                <td class="name"><%= link_to(review.subject.full_name, '') %></td>
+                <td class="reviewname"><%= link_to(review.name) %></td>
+                <td class="duedate">12/12/2012</td>
+                <td class="status">0%</td>
+              </tr>
+              <%- end -%>
+          </table>
+        </div>
+        
+        <div class="tabcontent" id="pastreview">
+          <table class="people">
+            <thead>
+              <tr>
+                <th class="gender"></th>
+                <th class="name">Name</th>
+                <th class="reviewname">Review Name</th>
+                <th class="accdate">Due Date</th>
+                <th class="status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- TODO -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

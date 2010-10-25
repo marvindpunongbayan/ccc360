@@ -1,0 +1,23 @@
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li class=""><%= link_to "Start a Review", new_review_url %></li>
+      <li class="last">Customize</li>
+    </ul>
+  </div>
+
+  <h1>Start a Review</h1>
+  <div class="projectedit">
+    <div class="left">
+      <%= link_to "Back to Choose Requester", new_requester_reviews_url %><br/>
+      <br/>
+      Review requested for <%= gender_icon(@review.subject) %> <%= @review.subject.full_name %> by <%= gender_icon(@review.initiator) %> <%= @review.initiator.full_name %>.<br/>
+      <br/>
+      <%= form_for @review do |f| %>
+        <%= render 'form', :f => f %>
+        <%= submit_tag "Create Review" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

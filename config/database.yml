@@ -1,8 +1,4 @@
 development:
   adapter: mysql
-  reconnect: false
-  encoding: utf8
-  database: ccc360
-  username: root
   password: 
   host: localhost

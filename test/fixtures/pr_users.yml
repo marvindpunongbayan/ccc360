@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ssm_id: 1
+  last_login: 2010-10-14 13:34:41
+
+two:
+  ssm_id: 1
+  last_login: 2010-10-14 13:34:41
