@@ -1,4 +1,3 @@
-page[".review_#{@review.id}.reviewer"].remove();
-page[".review_#{@review.id}.reviewer_buttons"].remove();
 page["#review_#{@review.id}"].addClass("expanded")
-page["#review_#{@review.id}"].after(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))
+page["tr.review_#{@review.id}.reviewer_content td"].html(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))
+page["tr.review_#{@review.id}.reviewer_content"].removeClass("reviewer_content_hide")

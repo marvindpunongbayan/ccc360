@@ -28,7 +28,7 @@
             </thead>
             <tbody>
               <%- for review in @reviews -%>
-              <tr id="review_<%= review.id %>">
+              <tr class="review_<%=review.id%>">
                 <td class="expand"><%= link_to "+", review_url(review), :remote => true %></td>
                 <td class="gender"><%= gender_icon(review.subject) %></td>
                 <td class="name"><%= link_to(review.subject.full_name, '') %></td>
@@ -36,9 +36,8 @@
                 <td class="duedate">12/12/2012</td>
                 <td class="status">0%</td>
               </tr>
-              <tr class="reviewer_content">
+              <tr class="review_<%=review.id%> reviewer_content reviewer_content_hide">
                 <td colspan="6">
-                  PUT REVIEWERS list in here in a new table
                 </td>
               </tr>
               <%- end -%>
