@@ -40,3 +40,5 @@ module Ccc360
     config.filter_parameters += [:password]
   end
 end
+
+ActiveRecord::SessionStore::Session.table_name = 'pr_sessions'
