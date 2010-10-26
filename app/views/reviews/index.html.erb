@@ -28,10 +28,10 @@
             </thead>
             <tbody>
               <%- for review in @reviews -%>
-              <tr class="review_<%=review.id%>">
+              <tr class="review_<%=review.id%> review_title">
                 <td class="expand">
-                  <%= link_to "+", review_url(review), :remote => true, :class => "expand_button" %>
-                  <%= link_to_function "-", %|
+                  <%= link_to image_tag("expand.png"), review_url(review), :remote => true, :class => "expand_button" %>
+                  <%= link_to_function image_tag("expanded.png"), %|
                   $("tr.review_#{review.id}.reviewer_content").addClass("reviewer_content_hide");
                   $("tr.review_#{review.id} .collapse_button").hide();
                   $("tr.review_#{review.id} .expand_button").show();

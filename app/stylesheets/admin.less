@@ -767,64 +767,6 @@ a.close {text-indent: 0px; width: auto;}
 /* Header Drop Down */
 
 
-.hybriddrop {
-  a {
-    padding: 9px 12px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: @global-bg;
-  }
-  a.withicon {
-    padding-left: 32px;
-    background-repeat: no-repeat;
-    background-position: 10px 50%;
-  }
-  a.person { background-image:  url('/images/icons/user.png');}
-  a.add { background-image:  url('/images/icons/plus-button.png');}
-  a.email { background-image:  url('/images/icons/mail-open-document.png');}
-  a.excel { background-image:  url('/images/icons/document-excel.png');}
-  a.down {background-image: url('/images/icons/down.png'); background-position: 0 50%; border: 1px solid silver; position: relative; z-index: 100;}
-  
-  .poptions {
-    min-width: 300px;
-    min-height: 200px;
-    background: @global-bg;
-    position: absolute;
-    margin-top: 42px;
-    padding: 10px;
-    -moz-box-shadow: 0 0 12px #555555;
-    -webkit-box-shadow: 0 0 12px #555555;
-    box-shadow: 0 0 12px #555555;
-    ul {
-      .strip-list;
-      float: left;
-    }
-    ul li { 
-      float: none;
-      line-height: 2.75em;
-      a {
-        padding: 6px 6px 6px 20px;
-        color: @black;
-      }
-      a.selected, a.hover {
-        color: @white;
-        background: url(/images/icons/check.png) no-repeat 5px 50% @dark-blue;
-      }
-    }
-  }
-}
-
-.hybriddropinline {
-  a {
-    float: left;
-    margin: 0 8px 0 0;
-    }
-  }
-
 .dropdowncontents {
   ul {
     -moz-border-radius:0 0 5px 5px;
@@ -875,8 +817,9 @@ table.people {
   th.sort_down {background: url("/images/sort_down.png") no-repeat 0 50%; padding-left: 12px;}  */
   td {
     a {color: @dark-blue;}
-    border-bottom: 1px solid @global-bg;
+    border-bottom: 1px solid #ccc;
   }
+  .expand {width: 1%; padding-left: 8px;}
   .gender {width: 5%;}
   .name {width: 23%;}
   .evaluate img {vertical-align: bottom;}
@@ -896,14 +839,105 @@ table.people {
   tr.reviewer_content_hide {
     display: none;
   }
+  tr.reviewer_content {
+    td {
+      padding: 0;
+    }
+    td.name {
+      padding-right: 5px;
+      width: 30%;
+    }
+    table.list_of_reviewers {
+      width: 100%;
+      background: @white; 
+      border-top: none;
+      border-collapse: collapse;
+      td {
+        padding: 3px 0;
+      }
+      td.review_buttons {
+        padding: 8px 5px;
+        a.tablebutt {
+          -moz-border-radius:4px 4px 4px 4px;
+          background:url("/images/buttonbg.png") repeat scroll 0 0 transparent;
+          border:1px solid silver;
+          float:left;
+          font-size:11px;
+          font-weight:bold;
+          padding:4px 8px 4px 4px;
+          margin-right: 4px;
+        }
+        a.tablebutt span {
+          background: no-repeat 0 50%;
+          padding-left: 20px;
+        }
+        a.invite_r span {
+          background-image: url("/images/icons/mail.png");
+        }
+        a.remind_r span {
+          background-image: url("/images/icons/mail.png");
+        }
+        a.add_r span {
+          background-image: url("/images/icons/plus-button.png");
+        }
+        
+      }
+    }
+  }
+  td.last_row {
+    border-bottom: none;
+  }
 }
 
 /* Reviewers List Table */
-table.list_of_reviewers {
-  width: 100%;
-  background: @white;
+div.list_of_reviewerswrap {
+  padding: 0 4px;
 }
-   
+
+td.expand_wrap {
+  border: 2px solid #CCCCCC;
+  border-top: none;
+}
+
+tr.review_1.review_title {
+  background: @global-bg;
+  td {
+    border-top: 2px solid #ccc;
+    border-bottom: none;
+  }
+  td.expand {
+    border-left: 2px solid #ccc;
+  }
+  td.status {
+    border-right: 2px solid #ccc;
+  }
+}
+  
+a.inlinemail {
+  background:url("/images/icons/mail.png") no-repeat scroll 0 50% transparent;
+  display:inline-block;
+  height:16px;
+  line-height:16px;
+  text-indent:-10000px;
+  width:16px;
+}
+
+a.viewreviewlink {
+  background:url("/images/icons/magnifier.png") no-repeat scroll 0 50% transparent;
+  padding-left: 20px;
+}
+
+a.deletereviewlink {
+  background:url("/images/icons/minus-small-circle.png") no-repeat scroll 0 50% transparent;
+  padding-left: 20px;
+  width: 16px;
+  height: 16px;
+  float: right;
+}
+
+
+  
+
 /* Users Tables - based on People Table */
 
 table.manageusers {
@@ -1010,9 +1044,58 @@ a.AddNewPerson {
   a {
     background: url("/images/icons/arrow-curve-180.png") no-repeat 0 50%;
     padding-left: 20px;
+  }
+}
+
+/* Modal */
+#new_reviewer_dialog span.ui-icon-alert {
+  display: none;
+}
+
+#new_reviewer_dialog #team {
+  border:1px solid silver;
+  height:211px;
+  overflow:auto;
+}
+
+#team {
+  div.r_row a {
+    padding: 3px;
+    display: block;
+  }
+  div.r_row a:hover {
+    background: @dark-blue;
+    color: @white;
+    text-decoration: none;
+  }
+}
+
+#dialog-message #search {
+  margin-bottom: 8px;
+}
+
+#new_reviewer_dialog p {
+  margin: 0;
+}
+
+.action_title {
+  font-weight: bold; font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* QE */
+#qe_wrapper {
+  .pagewidth {
+    padding: 10px 15px;
+  }
+  #global {
+    .pagewidth {
+      padding: 0;
     }
   }
-  
+}
+
+
   
 /* Feedback */
 
@@ -1059,4 +1142,4 @@ a.AddNewPerson {
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
-  }
+}

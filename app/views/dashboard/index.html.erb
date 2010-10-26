@@ -40,6 +40,11 @@
               <%- end -%>
             </tbody>
           </table>
+          <%- else -%>
+            <div class="action_title">
+              You have no people to review. 
+              You might want to <%= link_to "start a review", new_review_url %> 
+              or look at some of <%= link_to "your reviews", reviews_url %>.</div>
           <%- end -%>
 
           <%- unless @team_reviews.empty? %>
@@ -97,6 +102,12 @@
               <%- end -%>
             </tbody>
           </table>
+          <%- else -%>
+            <div class="action_title">
+              You haven't reviewed anyone.
+              You might want to <%= link_to "start a review", new_review_url %> 
+              or look at some of <%= link_to "your reviews", reviews_url %>.
+            </div>
           <%- end -%>
 
           <%- unless @past_team_reviews.empty? %>
