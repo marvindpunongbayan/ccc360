@@ -8,6 +8,9 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def new_form
+  end
+
   def new_submit_person
     session[:new_review] ||= {}
     session[:new_review][:subject_id] = params[:person_id]
@@ -21,7 +24,7 @@ class ReviewsController < ApplicationController
     redirect_to new_customize_reviews_url
   end
 
-  def new_customize
+  def new_details
     @review = Review.new session[:new_review]
   end
 

@@ -12,6 +12,7 @@ module ApplicationHelper
   end
 
   def gender_icon(person)
+    return "" if person.nil?
     if person.is_male?
       image_tag('icons/user-male.png', :alt => (alt = "#{person.full_name} is a male"), :title => alt)
     else

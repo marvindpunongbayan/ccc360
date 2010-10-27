@@ -1,0 +1,2 @@
+page["#new_review_dialog"].html(render("choose_form"))
+page << "new_review_dialog()"

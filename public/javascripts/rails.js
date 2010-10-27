@@ -176,3 +176,33 @@ function show_reviewers_dialog() {
         });     
 }
 
+function new_review_dialog() {
+        $("#new_review_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:400,
+                modal: true,
+                buttons: {
+		/*
+                        Cancel: function() {
+                                $(this).dialog('close');
+                        },
+			*/
+                        Next: function() {
+				if ($("#step")[0].value == "form") {
+					$.ajax({ url: "/reviews/new_person", context: document.body, success: function() {
+					}});
+				} else if ($("#step")[0].value == "person") {
+					$.ajax({ url: "/reviews/new_requester", context: document.body, success: function() {
+					}});
+				} else if ($("#step")[0].value == "requester") {
+					$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
+					}});
+				} else if ($("#step")[0].value == "details") {
+                                	$(this).dialog('close');
+				}
+                        }
+                }
+        });     
+}
+
