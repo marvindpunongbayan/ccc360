@@ -77,6 +77,61 @@
         </div>
       </div>
     </div>
+<div class="right sidebar">
+      <div class="module">
+        <h3><span>My Stuff</span></h3>
+        <ul>
+          <li><%= link_to('Personal Development Plan (PDP)', '') %></li>
+          <li><%= link_to('Position Focus', '') %></li>
+        </ul>
+      </div>
+      
+      <div class="module">
+        <h3>
+          <span>MPD</span>
+          <span class="controls"><a href="show/hide">Show / Hide</a></span>
+        </h3>
+        <table class="stafflist">
+          <tbody id="_list">
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$4000.00</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Account Balance') %></td>
+              <td class="goal">$500.26</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$8512.11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="module">
+        <h3>
+          <span>Reminders</span>
+          <span class="controls"><%= link_to('Add', '#', :class => 'add edit-leader', 'data-name' => "Add a reminder", 'data-id' => "1", 'data-leader' => "2") %></span>
+        </h3>
+        <table class="stafflist">
+          <tbody id="_list">
+            <tr>
+              <td class="icon"><%= image_tag('icons/sticky-note-pin.png') %></td>
+              <td class="name"><%= link_to('Create a review for David') %></td>
+              <td class="date">12/20/2010</td>
+              <td class="delete"><div class="buttons"><a href="" class="inline delete delete-leader"></a></div></td>           
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    <div class="clear"></div>
+
     <div class="clear"></div>
     <div id="new_reviewer_dialog" style="display:none" title="Add reviewers"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message">
     </span></p></div>
