@@ -821,6 +821,11 @@ a.deletereviewlink {
   height: 16px;
   float: right;
 }
+p.describe {
+  margin-top: 0;
+  border-bottom: 1px solid #999999;
+  padding-bottom: 0.75em;
+}
 table.manageusers tr:hover { background: #eeeeee; }
 table.manageusers thead tr:hover { background: none; }
 .ui-dialog {
@@ -932,9 +937,9 @@ a.AddNewPerson {
   padding-left: 20px;
 }
 #new_reviewer_dialog span.ui-icon-alert { display: none; }
-#new_reviewer_dialog #team {
+#team, #selectform {
   border: 1px solid silver;
-  height: 211px;
+  height: 164px;
   overflow: auto;
 }
 #team div.r_row a {
@@ -946,8 +951,26 @@ a.AddNewPerson {
   color: #ffffff;
   text-decoration: none;
 }
+#selectform div.r_row a {
+  padding: 3px;
+  display: block;
+}
+#selectform div.r_row a:hover {
+  background: #0b486b;
+  color: #ffffff;
+  text-decoration: none;
+}
+#selectform { height: 220px; }
+span.reviewername {
+  padding-left: 20px;
+  background: no-repeat 0% 50%;
+  margin-left: 5px;
+  color: #0b486b;
+  font-weight: bold;
+}
+span.reviewername.male { background-image: url("/images/icons/user-male.png"); }
+span.reviewername.female { background-image: url("/images/icons/user-female.png"); }
 #dialog-message #search { margin-bottom: 8px; }
-#new_reviewer_dialog p { margin: 0; }
 .action_title {
   font-weight: bold;
   font-size: 14px;
