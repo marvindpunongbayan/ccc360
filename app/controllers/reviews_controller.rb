@@ -8,13 +8,20 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def new_form
+  def new
+    @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
+                                                          :conditions => [ "personal = false" ])
+    session[:new_review] = {}
+  end
+
+  def new_submit_form
+    session[:new_review][:form_id] = params[:question_sheet_id]
+    redirect_to new_person_reviews_url(:format => "js")
   end
 
   def new_submit_person
-    session[:new_review] ||= {}
     session[:new_review][:subject_id] = params[:person_id]
-    redirect_to new_requester_reviews_url
+    redirect_to new_requester_reviews_url(:format => "js")
   end
 
   def new_submit_requester

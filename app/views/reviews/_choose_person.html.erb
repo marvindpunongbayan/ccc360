@@ -8,16 +8,9 @@
 
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team"> 
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
+  <%- for person in current_person.team_members -%>
+    <div class="r_row" id="person_<%= person.id %>_row"><%= link_to_function image_tag("icons/user-male.png") + " " + person.full_name, "new_review_select_choice('person_', #{person.id})" %></div>
+  <%- end -%>
 </div>
   
 

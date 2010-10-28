@@ -3,17 +3,8 @@
 
 <div class="action_title">Select your form:</div>
 <div class="tablcontent" id="selectform"> 
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Personality Type", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Discovering Weaknesses", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Why I fail and why I'm a failure face", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Personality Type", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Discovering Weaknesses", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Why I fail and why I'm a failure face", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Personality Type", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Discovering Weaknesses", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Why I fail and why I'm a failure face", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Personality Type", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Discovering Weaknesses", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/clipboard-list.png") + " " + "Why I fail and why I'm a failure face", "" %></div>
+  <%- for qs in @question_sheets -%>
+    <div class="r_row" id="qs_<%=qs.id%>_row"><%= link_to_function image_tag("icons/clipboard-list.png") + " " + qs.label, "new_review_select_choice('qs_', #{qs.id})" %></div>
+  <%- end -%>
 </div>
   

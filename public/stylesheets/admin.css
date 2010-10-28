@@ -946,7 +946,7 @@ a.AddNewPerson {
   padding: 3px;
   display: block;
 }
-#team div.r_row a:hover {
+#team div.r_row a:hover, #team div.r_row .selected {
   background: #0b486b;
   color: #ffffff;
   text-decoration: none;
@@ -955,7 +955,7 @@ a.AddNewPerson {
   padding: 3px;
   display: block;
 }
-#selectform div.r_row a:hover {
+#selectform div.r_row a:hover, #selectform div.r_row .selected {
   background: #0b486b;
   color: #ffffff;
   text-decoration: none;

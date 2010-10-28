@@ -2,6 +2,7 @@ Ccc360::Application.routes.draw do
   resources :people
   resources :reviews do
     collection do
+      post :new_submit_form
       get :new_person
       post :new_submit_person
       get :new_requester
