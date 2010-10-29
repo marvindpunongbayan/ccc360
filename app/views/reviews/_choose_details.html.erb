@@ -1,5 +1,5 @@
 <%= hidden_field_tag "step", "details" %>
-<p class="describe">You are reviewing <span class="reviewername male">George Benson</span>. As requested by <span class="reviewername female">Tina Fey</span>. Select reviewers.</p>
+<p class="describe">You are reviewing <span class="reviewername male"><%= @subject.full_name %></span>. As requested by <span class="reviewername female"><%= @initiator.full_name %></span>. Select reviewers.</p>
 <%= form_for @review do |f| %>
   <%= render 'form', :f => f %>
 <% end %>

@@ -3,9 +3,9 @@ Ccc360::Application.routes.draw do
   resources :reviews do
     collection do
       post :new_submit_form
-      get :new_person
+      get :new_subject
       post :new_submit_subject
-      get :new_requester
+      get :new_initiator
       post :new_submit_initiator
       get :new_details
     end

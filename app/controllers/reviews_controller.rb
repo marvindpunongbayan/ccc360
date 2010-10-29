@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     session[:new_review] = {}
   end
 
-  def new_requester
+  def new_initiator
     @subject = Person.find session[:new_review][:subject_id]
   end
 
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
 
   def new_submit_form
     session[:new_review][:question_sheet_id] = params[:question_sheet_id]
-    redirect_to new_person_reviews_url(:format => "js")
+    redirect_to new_subject_reviews_url(:format => "js")
   end
 
   def new_submit_subject
@@ -52,7 +52,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new params[:new_review]
+    new_review_params = session[:new_review].merge(params[:review])
+    @review = Review.new new_review_params
     if @review.save
       session[:add_dialog] = @review.id
       redirect_to reviews_url
