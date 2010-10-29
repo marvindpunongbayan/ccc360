@@ -38,7 +38,6 @@ class ReviewsController < ApplicationController
   end
 
   def new_submit_initiator
-    redirect_to(new_reviews_url) unless session[:new_review] && session[:new_review][:initiator_id]
     session[:new_review] ||= {}
     session[:new_review][:initiator_id] = params[:initiator_id]
     redirect_to new_details_reviews_url(:format => "js")
