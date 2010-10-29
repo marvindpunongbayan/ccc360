@@ -1,2 +1,2 @@
-page["#new_review_dialog"].html(render("choose_requester"))
+page["#new_review_dialog"].html(render("choose_initiator"))
 page << "new_review_dialog()"
