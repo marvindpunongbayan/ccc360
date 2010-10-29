@@ -1,5 +1,5 @@
-<%= hidden_field_tag "step", "requester" %>
-<p class="describe">You are reviewing <span class="reviewername male">George Benson</span>. Please select who is requesting this review:</p>
+<%= hidden_field_tag "step", "subject" %>
+<p class="describe">You are reviewing <span class="reviewername male"><%= @subject.full_name %></span>. Please select who is requesting this review:</p>
 <div class="action_title">Search for a requester:</div>
 <div class="tablcontent" id="search">
   <input type="text"><button type="submit"><span>Search</span></button>
@@ -7,16 +7,9 @@
 
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team"> 
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
+  <%- for person in current_person.team_members -%>
+      <div class="r_row" id="subject_<%= person.id %>_row"><%= link_to_function image_tag("icons/user-male.png") + " " + person.full_name, "new_review_select_choice('subject_', #{person.id})" %></div>
+  <%- end -%>
 </div>
   
 

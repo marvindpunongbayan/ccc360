@@ -38,8 +38,9 @@ function new_review_dialog() {
 				} else if ($("#step")[0].value == "person") {
 					$.ajax({ url: "/reviews/new_submit_person", context: document.body, type: 'POST', data: 'person_id='+selected['person_id'], success: function() {
 					}});
-				} else if ($("#step")[0].value == "requester") {
-					$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
+				} else if ($("#step")[0].value == "subject") {
+					$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() {
+					//$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
 					}});
 				} else if ($("#step")[0].value == "details") {
                                 	$(this).dialog('close');
@@ -50,13 +51,14 @@ function new_review_dialog() {
 }
 
 var selected = [];
-selected['qs_id'] = null;
-selected['person_id'] = null;
-selected['initiator_id'] = null;
+//selected['qs_id'] = null;
+//selected['person_id'] = null;
+//selected['subject_id'] = null;
 function new_review_select_choice(prefix, qs_id) {
-	if (selected[prefix] != null) {
-		$("#" + prefix + selected[prefix] + "_row a").removeClass('selected');
+	if (selected[prefix + "id"] != null) {
+		$("#" + prefix + selected[prefix + "id"] + "_row a").removeClass('selected');
 	}
-	selected[prefix] = qs_id;
-	$("#" + prefix + selected[prefix] + "_row a").addClass('selected');
+	console.log("set selected['"+prefix+"id'] = " + qs_id);
+	selected[prefix + "id"] = qs_id;
+	$("#" + prefix + selected[prefix + "id"] + "_row a").addClass('selected');
 }

@@ -1,24 +1,5 @@
 <%= hidden_field_tag "step", "details" %>
 <p class="describe">You are reviewing <span class="reviewername male">George Benson</span>. As requested by <span class="reviewername female">Tina Fey</span>. Select reviewers.</p>
-<div class="action_title">Search for a reviewer:</div>
-<div class="tablcontent" id="search">
-  <input type="text"><button type="submit"><span>Search</span></button>
-</div>
-
-<div class="action_title">Or, select someone from your team:</div>
-<div class="tablcontent" id="team"> 
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-  <div class="r_row" id="new_reviewer_00"><%= link_to image_tag("icons/user-male.png") + " " + "George Benson", "" %></div>
-</div>
-  
-
-
-
+<%= form_for @review do |f| %>
+  <%= render 'form', :f => f %>
+<% end %>
