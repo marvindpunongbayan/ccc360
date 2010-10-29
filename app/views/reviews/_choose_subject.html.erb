@@ -8,7 +8,7 @@
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team"> 
   <%- for person in current_person.team_members -%>
-    <div class="r_row" id="person_<%= person.id %>_row"><%= link_to_function image_tag("icons/user-male.png") + " " + person.full_name, "new_review_select_choice('subject_', #{person.id})" %></div>
+    <div class="r_row" id="subject_<%= person.id %>_row"><%= link_to_function image_tag("icons/user-male.png") + " " + person.full_name, "new_review_select_choice('subject_', #{person.id})" %></div>
   <%- end -%>
 </div>
   
