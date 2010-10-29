@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
 
   def new_details
     @subject = Person.find session[:new_review][:subject_id]
-    @subject = Person.find session[:new_review][:subject_id]
+    @initiator = Person.find session[:new_review][:initiator_id]
   end
 
   def new_submit_form
@@ -32,15 +32,15 @@ class ReviewsController < ApplicationController
     redirect_to new_person_reviews_url(:format => "js")
   end
 
-  def new_submit_person
-    session[:new_review][:subject_id] = params[:person_id]
-    redirect_to new_requester_reviews_url(:format => "js")
+  def new_submit_subject
+    session[:new_review][:subject_id] = params[:subject_id]
+    redirect_to new_initiator_reviews_url(:format => "js")
   end
 
   def new_submit_initiator
     redirect_to(new_reviews_url) unless session[:new_review] && session[:new_review][:initiator_id]
     session[:new_review] ||= {}
-    session[:new_review][:initiator_id] = params[:person_id]
+    session[:new_review][:initiator_id] = params[:initiator_id]
     redirect_to new_details_reviews_url(:format => "js")
   end
 
@@ -53,8 +53,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # map the person_id and subject_id from person_ids to pr_users
-    @review = Review.new params[:review]
+    @review = Review.new params[:new_review]
     if @review.save
       session[:add_dialog] = @review.id
       redirect_to reviews_url

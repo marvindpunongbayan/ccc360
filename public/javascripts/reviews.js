@@ -36,10 +36,10 @@ function new_review_dialog() {
 					$.ajax({ url: "/reviews/new_submit_form", context: document.body, type: 'POST', data: 'question_sheet_id='+selected['qs_id'], success: function() {
 					}});
 				} else if ($("#step")[0].value == "person") {
-					$.ajax({ url: "/reviews/new_submit_person", context: document.body, type: 'POST', data: 'person_id='+selected['person_id'], success: function() {
+					$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() {
 					}});
 				} else if ($("#step")[0].value == "subject") {
-					$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() {
+					$.ajax({ url: "/reviews/new_submit_initiator", context: document.body, type: 'POST', data: 'initiator_id='+selected['initiator_id'], success: function() {
 					//$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
 					}});
 				} else if ($("#step")[0].value == "details") {
