@@ -43,10 +43,6 @@ class ReviewsController < ApplicationController
     redirect_to new_details_reviews_url(:format => "js")
   end
 
-  def new_details
-    @review = Review.new session[:new_review]
-  end
-
   def show
     @review = Review.find params[:id]
   end
