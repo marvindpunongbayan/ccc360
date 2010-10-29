@@ -1,5 +1,5 @@
 page["#review_#{@review.id}"].addClass("expanded")
-page["tr.review_#{@review.id}.reviewer_content td"].html(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))
-page["tr.review_#{@review.id}.reviewer_content"].removeClass("reviewer_content_hide")
-page["tr.review_#{@review.id} .expand_button"].hide();
-page["tr.review_#{@review.id} .collapse_button"].show();
+page["tr#review_#{@review.id}.reviewer_content td"].html(render("reviews/reviewers") + render("reviews/reviewer_buttons_row"))
+page["tr#review_#{@review.id}.reviewer_content"].removeClass("reviewer_content_hide")
+page["tr#review_#{@review.id} .expand_button"].hide();
+page["tr#review_#{@review.id} .collapse_button"].show();

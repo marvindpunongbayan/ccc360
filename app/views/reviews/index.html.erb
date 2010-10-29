@@ -42,9 +42,9 @@
                 <td class="expand">
                   <%= link_to image_tag("expand.png"), review_url(review), :remote => true, :class => "expand_button" %>
                   <%= link_to_function image_tag("expanded.png"), %|
-                  $("tr.review_#{review.id}.reviewer_content").addClass("reviewer_content_hide");
-                  $("tr.review_#{review.id} .collapse_button").hide();
-                  $("tr.review_#{review.id} .expand_button").show();
+                  $("tr#review_#{review.id}.reviewer_content").addClass("reviewer_content_hide");
+                  $("tr#review_#{review.id} .collapse_button").hide();
+                  $("tr#review_#{review.id} .expand_button").show();
                   |, :class => "collapse_button", :style => "display:none" %>
                 </td>
                 <td class="gender"><%= gender_icon(review.subject) %></td>
@@ -53,7 +53,7 @@
                 <td class="duedate">12/12/2012</td>
                 <td class="status">0%</td>
               </tr>
-              <tr class="review_<%=review.id%> reviewer_content reviewer_content_hide">
+              <tr id="review_<%=review.id%>" class="reviewer_content reviewer_content_hide">
                 <td colspan="6">
                 </td>
               </tr>
