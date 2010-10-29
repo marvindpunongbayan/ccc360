@@ -25,6 +25,7 @@ class ReviewsController < ApplicationController
   def new_details
     @subject = Person.find session[:new_review][:subject_id]
     @initiator = Person.find session[:new_review][:initiator_id]
+    @review = Review.new
   end
 
   def new_submit_form
