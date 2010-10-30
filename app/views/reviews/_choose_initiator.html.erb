@@ -2,14 +2,12 @@
 <p class="describe">You are reviewing <span class="reviewername male"><%= @subject.full_name %></span>. Please select who is requesting this review:</p>
 <div class="action_title">Search for a requester:</div>
 <div class="tablcontent" id="search">
-  <input type="text"><button type="submit"><span>Search</span></button>
+  <input type="text", id="initiator_search_name">
 </div>
 
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team"> 
-  <%- for person in current_person.team_members -%>
-      <div class="r_row" id="initiator_<%= person.id %>_row"><%= link_to_function image_tag("icons/user-male.png") + " " + person.full_name, "new_review_select_choice('initiator_', #{person.id})" %></div>
-  <%- end -%>
+  <%= render "choose_list_people", :prefix => "initiator_", :people => current_person.team_members %>
 </div>
   
 

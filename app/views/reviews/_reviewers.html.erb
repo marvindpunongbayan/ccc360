@@ -8,11 +8,11 @@
   <%- for reviewer in @review.reviewers -%>
     <tr class="review_<%=@review.id%> reviewer">
       <td class="checkbox"><input type="checkbox" name="checkbox"/></td>
-      <td class="name">George Wachowski <%= link_to("", "mailto:test@example.com", :class => "inlinemail") %></td>
-      <td class="stafflevel">National</td>
-      <td class="stafftitle">President</td>
-      <td class="relationship">Friend</td>
-      <td class="duedate">10/10/2010</td>
+      <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
+      <td class="stafflevel"></td>
+      <td class="stafftitle"></td>
+      <td class="relationship"></td>
+      <td class="duedate"></td>
       <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
       <td class="deletereview"><%= link_to("", "", :class => "deletereviewlink") %></td>
     </tr>

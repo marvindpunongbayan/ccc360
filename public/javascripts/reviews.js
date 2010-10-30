@@ -63,3 +63,17 @@ function new_review_select_choice(prefix, qs_id) {
 	selected[prefix + "id"] = qs_id;
 	$("#" + prefix + selected[prefix + "id"] + "_row a").addClass('selected');
 }
+
+function setup_search_autocomplete(prefix, review_id) {
+	$("#" + prefix + "_search_name").autocomplete({
+		source: function(request, response) {
+			// var term = request.term;
+			$.ajax({url: "/reviews" + (prefix == "reviewer" ? "/" + review_id + "/reviewers": '') + "/search",
+				data: { source: prefix, name: $("#" + prefix + "_search_name")[0].value },
+				dataType: "script",
+				type: "GET",
+				complete: function() { $("#" + prefix + "_search_name").removeClass("ui-autocomplete-loading") }
+			});
+		}
+        });
+};

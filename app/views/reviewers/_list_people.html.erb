@@ -1,0 +1,3 @@
+<%- for person in people -%>
+  <div class="r_row" id="new_reviewer_<%=person.id%>"><%= link_to person_gender_email(person), review_reviewers_url(@review.id, "reviewer[person_id]" => person.id), :method => :post, :remote => true %></div>
+<%- end -%>

@@ -1,2 +1,3 @@
 page["#dialog-message"].html(render("reviewers/new"))
-page << "show_reviewers_dialog();"
+page << "show_reviewers_dialog()"
+page << "setup_search_autocomplete('reviewer', #{@review.id})"

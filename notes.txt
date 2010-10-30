@@ -6,4 +6,12 @@ Add Andrew Roth to the Great Lakes team:
 Add Josh Starcher to the Great Lakes team:
    MinistryMissionalTeamMember.create! :personID => 102546, :teamID => 1016
 
+-> add emails every time we list people
+-> gender icon, need to handle case where there is no gender
+-> add message in new reviews that you don't have any reviews
+
+-> move administrate forms to the right
+
+-> superuser search would make sense
+
 === questions ===

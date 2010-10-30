@@ -8,8 +8,13 @@ Ccc360::Application.routes.draw do
       get :new_initiator
       post :new_submit_initiator
       get :new_details
+      get :search
     end
-    resources :reviewers
+    resources :reviewers do
+      collection do
+        get :search
+      end
+    end
   end
   match "dashboard", :to => "dashboard#index"
   match "dashboard#new", :to => "reviews#new"

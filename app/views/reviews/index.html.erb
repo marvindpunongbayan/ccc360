@@ -48,7 +48,7 @@
                   |, :class => "collapse_button", :style => "display:none" %>
                 </td>
                 <td class="gender"><%= gender_icon(review.subject) %></td>
-                <td class="name"><%= link_to(review.subject.full_name, '') %></td>
+                <td class="name"><%= link_to(review.subject.full_name, person_url(review.subject.id)) %></td>
                 <td class="reviewname"><%= link_to(review.name) %></td>
                 <td class="duedate">12/12/2012</td>
                 <td class="status">0%</td>

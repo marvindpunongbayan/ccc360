@@ -2,8 +2,8 @@ module ApplicationHelper
   def link_to_menu(name, url, params = {})
     selected = (name == "Dashboard" && controller_name == "dashboard") || 
       (name == "People" && controller_name == "people") ||
-      (name == "Admin" && controller_name == "question_sheets") ||
-      (name == "My Reviews" && controller_name == "reviews" && action_name != "new")
+      (name == "Administrate Questionnaires" && controller_name == "question_sheets") ||
+      (name == "Administrate Reviews" && controller_name == "reviews" && action_name != "new")
     link_to name, url, params.merge(:class => params[:class].to_s + (" selected" if selected).to_s)
   end
 
@@ -18,5 +18,9 @@ module ApplicationHelper
     else
       image_tag('icons/user-female.png', :alt => (alt = "#{person.full_name} is a female"), :title => alt)
     end
+  end
+
+  def person_gender_email(person)
+    "#{gender_icon(person)} #{person.full_name} (#{person.email})".html_safe
   end
 end

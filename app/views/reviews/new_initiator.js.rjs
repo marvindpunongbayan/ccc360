@@ -1,2 +1,3 @@
 page["#new_review_dialog"].html(render("choose_initiator"))
 page << "new_review_dialog()"
+page << "setup_search_autocomplete('initiator')"

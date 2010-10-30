@@ -1,0 +1,3 @@
+<%- for person in people -%>
+  <div class="r_row" id="<%= prefix %><%= person.id %>_row"><%= link_to_function person_gender_email(person), "new_review_select_choice('#{prefix}', #{person.id})" %></div>
+<%- end -%>

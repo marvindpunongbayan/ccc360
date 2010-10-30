@@ -1,0 +1,1 @@
+page["#team"].html(render("choose_list_people", :prefix => "#{params[:source]}_", :people => @people))

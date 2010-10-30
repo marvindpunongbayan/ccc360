@@ -1,1 +1,5 @@
-<%= link_to 'Personal', toggle_personal_admin_question_sheet_path(question_sheet), :confirm => "This will make the form appear for every person, in the 'My Stuff' dashboard section.", :method => :post, :remote => true, :class => (question_sheet.personal ? 'selected' : ''), :id => "personal_#{question_sheet.id}" %>
+<%- if question_sheet.question_sheet_pr_info.personal -%>
+  <%= link_to 'Personal Form', toggle_personal_admin_question_sheet_path(question_sheet), :confirm => "This will make the form usable for a review.", :method => :post, :remote => true, :class => 'personal_form', :id => "personal_#{question_sheet.id}" %>
+<%- else -%>
+  <%= link_to 'Review Form', toggle_personal_admin_question_sheet_path(question_sheet), :confirm => "This will make the form appear for every person, in the 'My Stuff' dashboard section.", :method => :post, :remote => true, :class => 'review_form', :id => "personal_#{question_sheet.id}" %>
+<%- end -%>

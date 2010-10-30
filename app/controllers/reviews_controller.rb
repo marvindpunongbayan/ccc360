@@ -12,6 +12,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def search
+    @limit = 7
+    super
+  end
+
   def new
     @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
                                                           :conditions => [ "personal = false" ])
