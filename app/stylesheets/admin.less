@@ -762,7 +762,7 @@ a.close {text-indent: 0px; width: auto;}
 
 .multitext .field_with_errors {
 	display: inline;
-	}
+}
 
 /* Header Drop Down */
 
@@ -843,6 +843,10 @@ table.people {
     td {
       padding: 0;
     }
+    td.rowwrap {
+      border: 2px solid silver;
+      border-top: none;
+    }
     td.name {
       padding-right: 5px;
       width: 30%;
@@ -854,6 +858,9 @@ table.people {
       border-collapse: collapse;
       td {
         padding: 3px 0;
+      }
+      td.checkbox {
+        width: 27px;
       }
       td.review_buttons {
         padding: 8px 5px;
@@ -899,7 +906,7 @@ td.expand_wrap {
   border-top: none;
 }
 
-tr.review_1.review_title {
+tr.expanded.review_title {
   background: @global-bg;
   td {
     border-top: 2px solid #ccc;
@@ -912,6 +919,7 @@ tr.review_1.review_title {
     border-right: 2px solid #ccc;
   }
 }
+
   
 a.inlinemail {
   background:url("/images/icons/mail.png") no-repeat scroll 0 50% transparent;
@@ -953,6 +961,18 @@ table.manageusers {
     background: none;
     }
   }
+
+/* */
+
+table.list {
+  font-size: 12px;
+  td.type {
+    width: 200px;
+  }
+  td.title {
+    width: auto;
+  }
+}
 
 
 
@@ -1070,6 +1090,11 @@ a.AddNewPerson {
     display: block;
   }
   div.r_row a:hover {
+    background: @lime;
+    color: @white;
+    text-decoration: none;
+  }
+  div.r_row a.selected {
     background: @dark-blue;
     color: @white;
     text-decoration: none;

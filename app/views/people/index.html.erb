@@ -1,1 +1,97 @@
-People
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li><%= link_to("People", "") %></li>
+    </ul>
+  </div>
+  <div id="content">
+    <h1>People</h1>
+      
+  	<% if flash[:error] -%>
+  		<div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
+  	<% end -%>
+  
+    <h3>Search for people</h3>
+  
+    <div id="searchform">
+      <form>
+        <input type="text" name="person_name" id="person_name" />
+      </form>
+    </div>
+    
+    <hr />
+  	
+  	<h3>Your Team Mates</h3>
+    <h3>Search results for "INSERT SEARCH CRTIERIA HERE"</h3>
+
+
+
+    <table cellspacing="0" class="list" id="searchresults"> 
+      <tr>
+        <th></th>
+        <th>Gender</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Reviews</th>
+        <th></th>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+      <tr class="searchrow">
+        <td class="checkbox"><input type="checkbox" /></td>
+        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
+        <td class="title">David Sudarma</td>
+        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
+        <td class="reviewcount">30</td>
+        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      </tr>
+    </table>
+  </div>
+</div>  
+  
