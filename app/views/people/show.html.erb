@@ -1,1 +1,101 @@
-show details on <%= @person.full_name %> here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="pagepad">
+  <div id="breadcrumb">
+    <ul>
+      <li><a href=""><%= link_to("People", "") %></li>
+      <li><a href=""><%= @person.full_name %></a></li>
+    </ul>
+  </div>  
+  
+  <h1><%= @person.full_name %></h1>
+  <div class="projectedit">
+    <div class="left">
+
+      <div id="reviewlist">
+        <table class="people">
+          <thead>
+            <tr>
+              <th class="gender"></th>
+              <th class="name">Name</th>
+              <th class="reviewname">Review Name</th>
+              <th class="accdate">Due Date</th>
+              <th class="type">Type</th>
+              <th class="status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="gender"></td>
+              <td class="name">Name</td>
+              <td class="reviewname">Review Name</td>
+              <td class="duedate">12/12/2012</td>
+              <td class="type">Full</td>
+              <td class="status">0</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        
+      </div>
+      
+        
+      
+    </div>
+    
+    <div class="right sidebar">
+      <div class="module">
+        <h3><span>Nancy's Details</span></h3>
+        <ul>
+          <li><%= link_to('Personal Development Plan (PDP)', '') %></li>
+          <li><%= link_to('Position Focus', '') %></li>
+        </ul>
+      </div>
+      
+      <div class="module">
+        <h3>
+          <span>MPD</span>
+          <span class="controls"><a href="show/hide">Show / Hide</a></span>
+        </h3>
+        <table class="stafflist">
+          <tbody id="_list">
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$4000.00</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Account Balance') %></td>
+              <td class="goal">$500.26</td>
+            </tr>
+            <tr>
+              <td class="icon"><%= image_tag('icons/chart.png') %></td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$8512.11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+  
+  
+</div>
+

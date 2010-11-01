@@ -843,9 +843,18 @@ p.describe {
 }
 table.manageusers tr:hover { background: #eeeeee; }
 table.manageusers thead tr:hover { background: none; }
-table.list { font-size: 12px; }
+table.list {
+  font-size: 12px;
+  width: 100%;
+}
 table.list td.type { width: 200px; }
 table.list td.title { width: auto; }
+#searchresults th { text-align: left; }
+#searchresults td.gender { width: 50px; }
+#searchresults td.checkbox { width: 25px; }
+#searchresults td.title { width: 150px; }
+#searchresults td.reviewcount { width: 100px; }
+#searchresults td.viewreview { width: 60px; }
 .ui-dialog {
   font-family: Arial;
   -moz-box-shadow: 0px 0px 10px #555555;
