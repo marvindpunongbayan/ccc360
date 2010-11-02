@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101025192733) do
+ActiveRecord::Schema.define(:version => 20101031193907) do
 
   create_table "answer_sheet_question_sheets", :force => true do |t|
     t.integer  "answer_sheet_id"
@@ -789,17 +789,14 @@ ActiveRecord::Schema.define(:version => 20101025192733) do
   end
 
   create_table "pr_answers", :force => true do |t|
-    t.integer "answer_sheet_id", :null => false
-    t.integer "question_id",     :null => false
-    t.text    "value"
-    t.string  "short_value"
-    t.integer "size"
-    t.string  "content_type"
-    t.string  "filename"
-    t.integer "height"
-    t.integer "width"
-    t.integer "parent_id"
-    t.string  "thumbnail"
+    t.integer  "answer_sheet_id",         :null => false
+    t.integer  "question_id",             :null => false
+    t.text     "value"
+    t.string   "short_value"
+    t.integer  "attachment_file_size"
+    t.string   "attachment_content_type"
+    t.string   "attachment_file_name"
+    t.datetime "attachment_updated_at"
   end
 
   add_index "pr_answers", ["answer_sheet_id"], :name => "index_pr_answers_on_answer_sheet_id"
@@ -837,6 +834,7 @@ ActiveRecord::Schema.define(:version => 20101025192733) do
     t.datetime "updated_at"
     t.integer  "related_question_sheet_id"
     t.integer  "conditional_id"
+    t.integer  "max_length"
   end
 
   add_index "pr_elements", ["position"], :name => "index_pr_elements_on_question_sheet_id_and_position_and_page_id"

@@ -17,7 +17,10 @@
   <%#= render :partial => 'layouts/ga' %>
 
   <%- if @questionnaire -%>
-  <%= questionnaire_engine_includes %>
+    <script type="text/javascript" charset="utf-8">
+      var answer_sheet_type = 'Reviewer';
+    </script>
+    <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
   <%- end -%>
 
 </head>

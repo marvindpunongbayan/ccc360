@@ -25,4 +25,3 @@ Ccc360::Application.configure do
 
   config.session_store :active_record_store
 end
-

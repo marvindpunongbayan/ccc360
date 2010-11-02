@@ -5,7 +5,7 @@
         Reviewers
       </th>
     </tr>
-  <%- for reviewer in @review.reviewers -%>
+  <%- for wrapper in @review.reviewer_wrappers; review = wrapper.review; reviewer = wrapper.person -%>
     <tr class="review_<%=@review.id%> reviewer">
       <td class="checkbox"><input type="checkbox" name="checkbox"/></td>
       <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
@@ -13,7 +13,7 @@
       <td class="stafftitle"></td>
       <td class="relationship"></td>
       <td class="duedate"></td>
-      <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
+      <td class="viewreview"><%= link_to("View", review_reviewer_url(@review, wrapper), :class => "viewreviewlink") %></td>
       <td class="deletereview"><%= link_to("", "", :class => "deletereviewlink") %></td>
     </tr>
   <%- end -%>

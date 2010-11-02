@@ -1,23 +1,25 @@
 class DashboardController < ApplicationController
   def index
-    reviews = current_person.participating_reviews
+    reviewings = current_person.reviewings
     team_members = current_person.team_members
-    @nonteam_reviews = []
-    @team_reviews = []
-    @past_nonteam_reviews = []
-    @past_team_reviews = []
-    for review in reviews
+    @nonteam_reviewings = []
+    @team_reviewings = []
+    @past_nonteam_reviewings = []
+    @past_team_reviewings = []
+    for reviewing in reviewings
+      review = reviewing.review
+      next if review.nil?
       if team_members.include?(review.subject)
         if review.past?
-          @past_team_reviews << review
+          @past_team_reviewings << reviewing
         else
-          @team_reviews << review
+          @team_reviewings << reviewing
         end
       else
         if review.past?
-          @past_nonteam_reviews << review
+          @past_nonteam_reviewings << reviewing
         else
-          @nonteam_reviews << review
+          @nonteam_reviewings << reviewing
         end
       end
     end

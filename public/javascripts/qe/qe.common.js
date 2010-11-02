@@ -1,7 +1,6 @@
 function setUpSortables() {
 	$('[data-sortable]').sortable({axis:'y', 
 																  dropOnEmpty:false, 
-																	activeClass: 'moving',
 																  update: function(event, ui) {
 																		sortable = this;
 																		$.ajax({data:$(this).sortable('serialize',{key:sortable.id + '[]'}),
@@ -19,16 +18,16 @@ function setUpSortables() {
 	
 		
 	$('.droppable').droppable({
-		activeClass: 'ui-state-highlight',
+		activeClass: 'droppable-active',
 		drop: function( event, ui ) {
 			$.post($(this).attr('data-url'), {draggable_element: ui.draggable.attr('id')}, function() {}, 'script')
-		},
+		}
 	});
 }
 
 function setUpCalendars() {
 	$('[data-calendar]').datepicker({changeYear:true,
-																	 yearRange: '1975:c+5'})
+																	 yearRange: '1950:c+5'})
 }
 
 function setUpJsHelpers() {
@@ -41,11 +40,11 @@ function setUpJsHelpers() {
 		// Calendar
 		setUpCalendars();
   	// ==================
-		$("[title]").tooltip({
+		$(".tip[title]").tooltip({
 		   // tweak the position
        offset: [0, 20],
     
        // use the "slide" effect
        effect: 'slide'
-		}).dynamic({ bottom: { direction: 'down', bounce: true } });;
+		}).dynamic({ bottom: { direction: 'down', bounce: true } });
 }

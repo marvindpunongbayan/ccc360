@@ -1,4 +1,6 @@
-class ReviewsController < ApplicationController
+class ReviewsController < AnswerSheetsController
+  prepend_before_filter :set_answer_sheet_type
+
   def index
     @reviews = current_person.initiated_reviews
     if session[:add_dialog]
@@ -63,4 +65,9 @@ class ReviewsController < ApplicationController
       render :action => :new_customize
     end
   end
+
+  protected
+    def set_answer_sheet_type
+      params[:answer_sheet_type] = 'Review'
+    end
 end
