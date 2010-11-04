@@ -90,6 +90,7 @@ jQuery(function ($) {
 								confirm = el.attr('data-confirm')
 								el.removeAttr('data-confirm');
 								el.click();
+								el.change();
 								el.attr('data-confirm', confirm);
 							}
 						}

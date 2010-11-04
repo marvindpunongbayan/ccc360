@@ -15,103 +15,40 @@
         </ul>
     
         <div class="tabcontent" id="toreview">
+          <%- unless @team_reviewings.empty? %>
+          <h2 class="border">My Team</h2>
+          <%= render "reviewings_table", :reviewings => @team_reviewings %>
+          <%- end -%>
+
           <%- unless @nonteam_reviewings.empty? %>
-          <table class="people">
-            <thead>
-              <tr>
-                <th class="gender"></th>
-                <th class="name">Name</th>
-                <th class="reviewname">Review Name</th>
-                <th class="accdate">Due Date</th>
-                <th class="type">Type</th>
-                <th class="status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%- for review in @nonteam_reviewings -%>
-              <%- end -%>
-            </tbody>
-          </table>
-          <%- else -%>
+          <h2 class="border">Other</h2>
+          <%= render "reviewings_table", :reviewings => @nonteam_reviewings %>
+          <%- end -%>
+
+          <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
             <div class="action_title">
               You have no people to review. 
               You might want to <%= link_to "start a review", new_review_url %> 
-              or look at some of <%= link_to "your reviews", reviews_url %>.</div>
-          <%- end -%>
-
-          <%- unless @team_reviewings.empty? %>
-          <h2 class="border">My Team</h2>
-          <table class="people">
-            <thead>
-              <tr>
-                <th class="gender"></th>
-                <th class="name">Name</th>
-                <th class="reviewname">Review Name</th>
-                <th class="accdate">Due Date</th>
-                <th class="type">Type</th>
-                <th class="status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%- for reviewing in @team_reviewings; review = reviewing.review -%>
-              <tr>
-                <td class="gender"><%= gender_icon(review.subject) %>
-                <td class="name"><%= link_to(review.subject.full_name, person_url(review.subject)) %></th>
-                <td class="reviewname"><%= link_to(review.name, edit_review_reviewer_url(review.id, reviewing.id)) %></th>
-                <td class="duedate">12/12/2012</th>
-                <td class="type">Full</th>
-                <td class="status">0%</th>
-              </tr>
-              <%- end -%>
-            </tbody>
-          </table>
+              or look at some of <%= link_to "your reviews", reviews_url %>.
+            </div>
           <%- end -%>
         </div>
         
         <div class="tabcontent" id="pastreview">
           <%- unless @past_nonteam_reviewings.empty? %>
-          <table class="people">
-            <thead>
-              <tr>
-                <th class="gender"></th>
-                <th class="name">Name</th>
-                <th class="reviewname">Review Name</th>
-                <th class="accdate">Due Date</th>
-                <th class="type">Type</th>
-                <th class="status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%- for review in @past_nonteam_reviewings -%>
-              <%- end -%>
-            </tbody>
-          </table>
-          <%- else -%>
-            <div class="action_title">
-              You haven't reviewed anyone.
-              You might want to <%= link_to "start a review", new_review_url %> 
-              or look at some of <%= link_to "your reviews", reviews_url %>.
-            </div>
+          <h2 class="border">Other</h2>
+          <%= render "reviewings_table", :reviewings => @past_nonteam_reviewings %>
           <%- end -%>
 
           <%- unless @past_team_reviewings.empty? %>
           <h2 class="border">My Team</h2>
-          <table class="people">
-            <thead>
-              <tr>
-                <th class="gender"></th>
-                <th class="name">Name</th>
-                <th class="reviewname">Review Name</th>
-                <th class="accdate">Due Date</th>
-                <th class="type">Type</th>
-                <th class="status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%- for review in @past_team_reviewings -%>
-              <%- end -%>
-              </tbody>
-          </table>
+          <%= render "reviewings_table", :reviewings => @past_team_reviewings %>
+          <%- end -%>
+
+          <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
+            <div class="action_title">
+              You don't have any past reviews.
+            </div>
           <%- end -%>
         </div>
       </div>

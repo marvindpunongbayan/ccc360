@@ -1,3 +1,5 @@
+<%= javascript_include_tag "people" %>
+
 <div class="pagepad">
   <div id="breadcrumb">
     <ul>
@@ -21,76 +23,25 @@
     
     <hr />
   	
-  	<h3>Your Team Mates</h3>
-    <h3>Search results for "INSERT SEARCH CRTIERIA HERE"</h3>
-
-
+    <%- if team_leader? -%>
+    <h3 id="team_header">Your Team Mates (<%= @leading_ministries_names.join(", ") %>)</h3>
+    <%- end -%>
+    <h3 id="search_header" style="display:none">Search results for "INSERT SEARCH CRTIERIA HERE"</h3>
 
     <table cellspacing="0" class="list" id="searchresults"> 
-      <tr>
-        <th></th>
-        <th>Gender</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Reviews</th>
-        <th></th>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
-      <tr class="searchrow">
-        <td class="checkbox"><input type="checkbox" /></td>
-        <td class="gender"><%= image_tag("icons/user-silhouette.png") %></td>
-        <td class="title">David Sudarma</td>
-        <td class="actions email"><%= link_to("david@26am.com","mailto:") %></td>
-        <td class="reviewcount">30</td>
-        <td class="viewreview"><%= link_to("View", "", :class=> "viewreviewlink") %></td>
-      </tr>
+      <thead>
+        <tr>
+          <!--<th></th>-->
+          <th>Gender</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Reviews</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @team_members -%>
+      </tbody>
     </table>
   </div>
 </div>  

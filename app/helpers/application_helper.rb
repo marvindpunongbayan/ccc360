@@ -15,8 +15,8 @@ module ApplicationHelper
     return "" if person.nil?
     if person.is_male?
       image_tag('icons/user-male.png', :alt => (alt = "#{person.full_name} is a male"), :title => alt)
-    #elsif person.is_female?
-    #  image_tag('icons/user-female.png', :alt => (alt = "#{person.full_name} is a female"), :title => alt)
+    elsif person.is_female?
+      image_tag('icons/user-female.png', :alt => (alt = "#{person.full_name} is a female"), :title => alt)
     else
       image_tag('icons/user-silhouette.png', :alt => (alt = "#{person.full_name}"), :title => alt)
     end

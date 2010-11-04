@@ -32,7 +32,7 @@ class ReviewsController < AnswerSheetsController
   def new_details
     @subject = Person.find session[:new_review][:subject_id]
     @initiator = Person.find session[:new_review][:initiator_id]
-    @review = Review.new
+    @review = Review.new :question_sheet_id => session[:new_review][:question_sheet_id]
   end
 
   def new_submit_form

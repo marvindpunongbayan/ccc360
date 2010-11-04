@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     if params[:name].present?
       term = '%' + params[:name] + '%'
       conditions = ["firstName like ? OR lastName like ? OR concat(firstname, ' ', lastname) like ?", term, term, params[:name] + '%']
+      if @search_people_filter
+        conditions[0] = "(#{conditions[0]}) AND (personID in (0, ?))"
+        conditions << @search_people_filter
+      end
       @people = Person.where(conditions).includes(:user).limit(@limit)
       @total = Person.where(conditions).count
     else
@@ -84,4 +88,20 @@ class ApplicationController < ActionController::Base
     end
     helper_method :pr_user
 
+    # basic persmissions
+
+    def admin?
+      Admin.find_by_person_id(current_person.id).present?
+    end
+    helper_method :admin?
+
+    def team_leader?
+      current_person.ministry_missional_team_members.find_by_is_leader(true).present?
+    end
+    helper_method :team_leader?
+
+    def can_see_people?
+      team_leader? || admin?
+    end
+    helper_method :can_see_people?
 end

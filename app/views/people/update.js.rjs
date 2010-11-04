@@ -1,0 +1,7 @@
+if @set_admin
+  if @removed_self
+    page.reload
+  else
+    page["#adminflag"].effect("highlight")
+  end
+end

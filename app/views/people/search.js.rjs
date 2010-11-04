@@ -1,0 +1,4 @@
+page["#searchresults tbody"].html(render(@people))
+page["#team_header"].hide
+page["#search_header"].show
+page["#search_header"].html("Search results for #{@search_filter}.  Keep typing to narrow down the search.")

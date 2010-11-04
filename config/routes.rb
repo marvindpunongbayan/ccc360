@@ -1,5 +1,12 @@
 Ccc360::Application.routes.draw do
-  resources :people
+  resources :people do
+    collection do
+      get :search
+    end
+  end
+  resources :personal_forms do
+
+  end
   resources :reviews do
     collection do
       post :new_submit_form
