@@ -42,3 +42,4 @@ module Ccc360
 end
 
 ActiveRecord::SessionStore::Session.table_name = 'pr_sessions'
+require 'md5'

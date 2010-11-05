@@ -1,11 +1,18 @@
 class PersonalFormsController < AnswerSheetsController
   before_filter :get_person
   before_filter :has_permission
+  skip_before_filter :get_answer_sheet, :only => [ :edit ]
 
   def edit
-    if params[:q_id] 
-      f = @person.personal_forms.find_or_create_by_questionnaire_id params[:q_id]
-      redirect_to personal_forms_url(f)
+    if params[:q] == 'true' 
+      f = @person.personal_forms.find_or_create_by_question_sheet_id params[:id]
+      redirect_to edit_personal_form_url(f)
+    else
+      @questionnaire = true
+      @personal_form = PersonalForm.find params[:id]
+      params[:answer_sheet_type] = 'PersonalForm'
+      get_answer_sheet
+      super
     end
   end
 
@@ -20,6 +27,8 @@ class PersonalFormsController < AnswerSheetsController
     end
 
     def has_permission
-      # TODO
+      unless can_see_person?(@person)
+        no_permission
+      end
     end
 end

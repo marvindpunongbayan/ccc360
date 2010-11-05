@@ -16,7 +16,26 @@ function show_reviewers_dialog() {
                                 el.attr('data-confirm', confirm);
                         }*/
                 }
-        });     
+        });
+}
+
+function next_step() {
+	if ($("#step")[0].value == "form") {
+		if (selected['qs_id'] == null) return;
+		$.ajax({ url: "/reviews/new_submit_form", context: document.body, type: 'POST', data: 'question_sheet_id='+selected['qs_id'], success: function() {
+				}});
+	} else if ($("#step")[0].value == "subject") {
+		if (selected['subject_id'] == null) return;
+		$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() { }});
+	} else if ($("#step")[0].value == "initiator") {
+		if (selected['initiator_id'] == null) return;
+		$.ajax({ url: "/reviews/new_submit_initiator", context: document.body, type: 'POST', data: 'initiator_id='+selected['initiator_id'], success: function() {
+			//$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
+		}});
+	} else if ($("#step")[0].value == "details") {
+		$("#new_review").submit();
+		//$(this).dialog('close');
+	}
 }
 
 function new_review_dialog() {
@@ -32,23 +51,10 @@ function new_review_dialog() {
                         },
 			*/
                         Next: function() {
-				if ($("#step")[0].value == "form") {
-					$.ajax({ url: "/reviews/new_submit_form", context: document.body, type: 'POST', data: 'question_sheet_id='+selected['qs_id'], success: function() {
-					}});
-				} else if ($("#step")[0].value == "subject") {
-					$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() {
-					}});
-				} else if ($("#step")[0].value == "initiator") {
-					$.ajax({ url: "/reviews/new_submit_initiator", context: document.body, type: 'POST', data: 'initiator_id='+selected['initiator_id'], success: function() {
-					//$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
-					}});
-				} else if ($("#step")[0].value == "details") {
-					$("#new_review").submit();
-                                	//$(this).dialog('close');
-				}
-                        }
-                }
-        });     
+				next_step();
+			}
+		}
+        });
 }
 
 var selected = [];
@@ -59,7 +65,6 @@ function new_review_select_choice(prefix, qs_id) {
 	if (selected[prefix + "id"] != null) {
 		$("#" + prefix + selected[prefix + "id"] + "_row a").removeClass('selected');
 	}
-	console.log("set selected['"+prefix+"id'] = " + qs_id);
 	selected[prefix + "id"] = qs_id;
 	$("#" + prefix + selected[prefix + "id"] + "_row a").addClass('selected');
 }

@@ -4,9 +4,7 @@ Ccc360::Application.routes.draw do
       get :search
     end
   end
-  resources :personal_forms do
-
-  end
+  resources :personal_forms
   resources :reviews do
     collection do
       post :new_submit_form
@@ -26,6 +24,7 @@ Ccc360::Application.routes.draw do
   match "dashboard", :to => "dashboard#index"
   match "dashboard#new", :to => "reviews#new"
   match "admin", :to => "admin/question_sheets#index"
+  match "/review_codes/:code", :to => "reviewers#edit_from_code"
 
   root :to => "dashboard#index"
 

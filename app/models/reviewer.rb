@@ -1,4 +1,5 @@
 class Reviewer < ActiveRecord::Base
+  before_create :generate_access_key
   set_table_name "pr_reviewers"
   belongs_to :review
   belongs_to :person
@@ -11,4 +12,12 @@ class Reviewer < ActiveRecord::Base
     [ review.question_sheet ]
   end
 
+  # access key for email link
+  def generate_access_key
+    self.access_key = MD5.hexdigest((object_id + Time.now.to_i).to_s)
+  end
+
+  def url(base_url = "")
+    "#{base_url}/review_codes/#{access_key}"
+  end
 end

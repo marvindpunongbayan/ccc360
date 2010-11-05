@@ -1,5 +1,6 @@
 class ReviewersController < AnswerSheetsController
-  before_filter :get_review
+  skip_before_filter :check_valid_user, :only => [ :edit_from_code ]
+  before_filter :get_review, :except => [ :edit_from_code ]
   before_filter :get_reviewer, :only => [ :edit, :show ]
   prepend_before_filter :set_answer_sheet_type
 
@@ -20,6 +21,20 @@ class ReviewersController < AnswerSheetsController
   def edit
     super
     @questionnaire = true
+  end
+
+  def edit_from_code
+    @reviewer = Reviewer.where(:access_key => params[:code]).first
+    if @reviewer
+      # log the person in
+      session[:user_id] = @reviewer.person.user.id
+
+      # redirect to filling out the form
+      @review = @reviewer.review
+      redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
+    else
+      render :text => "Couldn't find review from code #{params[:code]}"
+    end
   end
 
   def show

@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :get_person, :only => [ :show, :update ]
+  before_filter :has_permission, :only => [ :show, :edit ]
 
   def index
     if team_leader?
@@ -12,6 +13,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find params[:id]
+    set_personal_question_sheets
   end
 
   def update
@@ -46,4 +48,11 @@ class PeopleController < ApplicationController
     def get_person
       @person = Person.find params[:id]
     end
+
+    def has_permission
+      unless can_see_person?(@person)
+        no_permission
+      end
+    end
+
 end

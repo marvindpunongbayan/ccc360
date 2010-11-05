@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
 
     def current_person
       unless @current_person
-        raise "no user" unless current_user
+        return nil unless current_user
         # Get their user, or create a new one if theirs doesn't exist
         @current_person = current_user.person || current_user.create_person_and_address
       end
@@ -88,7 +88,20 @@ class ApplicationController < ActionController::Base
     end
     helper_method :pr_user
 
+    def set_personal_question_sheets
+      @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
+                                                            :conditions => [ "personal = true" ])
+    end
+
     # basic persmissions
+
+    def base_url
+      if request.port != 80
+        $base_url = request.protocol + request.host_with_port
+      else
+        $base_url = request.protocol + request.host
+      end
+    end
 
     def admin?
       Admin.find_by_person_id(current_person.id).present?
@@ -103,5 +116,18 @@ class ApplicationController < ActionController::Base
     def can_see_people?
       team_leader? || admin?
     end
+
+    def can_see_person?(p)
+      return true if p == current_person
+      return false unless can_see_people?
+      leading_team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
+      person_member = p.ministry_missional_team_members.collect &:teamID
+      (leading_team_ids & person_member).length > 0
+    end
+
+    def no_permission
+      render :text => "no permission"
+    end
+
     helper_method :can_see_people?
 end

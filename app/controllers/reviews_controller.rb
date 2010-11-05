@@ -12,6 +12,7 @@ class ReviewsController < AnswerSheetsController
         session.delete :add_dialog
       end
     end
+    set_personal_question_sheets
   end
 
   def search

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101104035846) do
+ActiveRecord::Schema.define(:version => 20101104163102) do
 
   create_table "answer_sheet_question_sheets", :force => true do |t|
     t.integer  "answer_sheet_id"
@@ -782,13 +782,6 @@ ActiveRecord::Schema.define(:version => 20101104035846) do
   add_index "ministry_targetarea", ["region"], :name => "index6"
   add_index "ministry_targetarea", ["state"], :name => "index3"
 
-  create_table "personal_forms", :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "questionnaire_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pr_admins", :force => true do |t|
     t.integer  "person_id"
     t.datetime "created_at"
@@ -871,6 +864,13 @@ ActiveRecord::Schema.define(:version => 20101104035846) do
 
   add_index "pr_pages", ["question_sheet_id", "number"], :name => "page_number", :unique => true
 
+  create_table "pr_personal_forms", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "question_sheet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pr_question_sheets", :force => true do |t|
     t.string  "label",    :limit => 60,                    :null => false
     t.boolean "archived",               :default => false
@@ -900,6 +900,7 @@ ActiveRecord::Schema.define(:version => 20101104035846) do
     t.datetime "invitation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_key"
   end
 
   create_table "pr_reviews", :force => true do |t|

@@ -23,5 +23,7 @@ class DashboardController < ApplicationController
         end
       end
     end
+
+    set_personal_question_sheets
   end
 end
