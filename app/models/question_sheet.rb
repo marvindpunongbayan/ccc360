@@ -1,4 +1,3 @@
-puts "in app load QuestionSheet"
 require_dependency "vendor/plugins/questionnaire_engine/app/models/question_sheet.rb"
 
 class QuestionSheet < ActiveRecord::Base

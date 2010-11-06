@@ -1,3 +1,4 @@
 <h2><%= @review.subject.full_name %> <%= @review.name %> - by <%= @reviewer.person.full_name %></h2>
+<p>Purpose: <%= @review.purpose %></p>
 
 <%= render :template => "answer_sheets/show" %>

@@ -19,4 +19,11 @@ class Review < ActiveRecord::Base
     [ question_sheet ]
   end
   
+  def late?
+    Date.today > due && !complete
+  end
+
+  def complete
+    false
+  end
 end

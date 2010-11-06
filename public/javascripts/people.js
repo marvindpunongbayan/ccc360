@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 	$("#person_name").autocomplete({
 		source: function(request, response) {
-			console.log("HERE");
 			// var term = request.term;
 			$.ajax({url: "/people/search",
 				data: { name: $("#person_name")[0].value },

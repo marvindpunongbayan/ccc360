@@ -1,2 +1,3 @@
 page["#new_review_dialog"].html(render("choose_form"))
-page << "new_review_dialog()"
+page << "new_review_dialog();"
+page << "var selected = [];"

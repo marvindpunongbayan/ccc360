@@ -19,16 +19,31 @@ function show_reviewers_dialog() {
         });
 }
 
+function notify_not_selected() {
+	$("#dialog-message").remove();
+	$(".ui-dialog-buttonpane button").after("<span id='dialog-message'>wut?</span>");
+
+	if ($("#step")[0].value == "form") {
+		msg = "Please select a form before continuing.";
+	} else if ($("#step")[0].value == "subject") {
+		msg = "Please select a person to review before continuing.";
+	} else if ($("#step")[0].value == "initiator") {
+		msg = "Please select who will administrate the review before continuing.";
+	}
+
+	$("#dialog-message").html(msg);
+}
+
 function next_step() {
 	if ($("#step")[0].value == "form") {
-		if (selected['qs_id'] == null) return;
+		if (selected['qs_id'] == null) { notify_not_selected(); return; };
 		$.ajax({ url: "/reviews/new_submit_form", context: document.body, type: 'POST', data: 'question_sheet_id='+selected['qs_id'], success: function() {
 				}});
 	} else if ($("#step")[0].value == "subject") {
-		if (selected['subject_id'] == null) return;
+		if (selected['subject_id'] == null) { notify_not_selected(); return; }
 		$.ajax({ url: "/reviews/new_submit_subject", context: document.body, type: 'POST', data: 'subject_id='+selected['subject_id'], success: function() { }});
 	} else if ($("#step")[0].value == "initiator") {
-		if (selected['initiator_id'] == null) return;
+		if (selected['initiator_id'] == null) { notify_not_selected(); return; }
 		$.ajax({ url: "/reviews/new_submit_initiator", context: document.body, type: 'POST', data: 'initiator_id='+selected['initiator_id'], success: function() {
 			//$.ajax({ url: "/reviews/new_details", context: document.body, success: function() {
 		}});

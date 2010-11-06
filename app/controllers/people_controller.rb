@@ -35,12 +35,20 @@ class PeopleController < ApplicationController
       render :inline => ""
     elsif !admin? && team_leader?
       index
-      @search_filter = @leading_ministries_names.join(", ")
+      if params[:name] == ""
+        @search_filter_label = "Your Team Mates (#{@leading_ministries_names.join(", ")})"
+      else
+        @search_filter_label = "'#{params[:name]}'"
+      end
+
       @search_people_filter = @team_members.collect(&:personID)
-    else
+    elsif admin
       @search_filter = "all people"
     end
     super
+    if @people.length == @limit
+      @search_filter_label += " (limited to #{@limit} results)"
+    end
   end
 
   protected

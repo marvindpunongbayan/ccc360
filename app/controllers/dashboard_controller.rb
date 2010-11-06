@@ -26,4 +26,10 @@ class DashboardController < ApplicationController
 
     set_personal_question_sheets
   end
+
+  def logout
+    session.delete :user_id
+    session[:user_id] = nil
+    redirect_to dashboard_url
+  end
 end

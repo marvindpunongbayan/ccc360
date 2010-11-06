@@ -25,4 +25,26 @@ module ApplicationHelper
   def person_gender_email(person)
     "#{gender_icon(person)} #{person.full_name} (#{person.email})".html_safe
   end
+
+  def calendar_date_select_tag(name, value = nil, options = {})
+    options.merge!({'data-calendar' => true})
+    value = case
+            when value.is_a?(Time)
+              l(value.to_date)
+            when value.is_a?(Date)
+              l(value)
+            else
+              value
+            end
+    text_field_tag(name, value, options )
+  end
+
+  def person_link_if_authed(person)
+    if can_see_person?(person)
+      link_to(person.full_name, person_url(person.id))
+    else
+      person.full_name
+    end
+  end
+
 end

@@ -12,10 +12,10 @@
               <%- for reviewing in reviewings; review = reviewing.review -%>
               <tr>
                 <td class="gender"><%= gender_icon(review.subject) %>
-                <td class="name"><%= link_to(review.subject.full_name, person_url(review.subject)) %></th>
+                <td class="name"><%= person_link_if_authed(review.subject) %></th>
                 <td class="reviewname"><%= link_to(review.name, edit_review_reviewer_url(review.id, reviewing.id)) %></th>
-                <td class="duedate"><%= I18n.l review.due %></th>
-                <td class="status">0%</th>
+                <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></th>
+                <td class="status"><%= reviewing.percent_complete %>%</th>
               </tr>
               <%- end -%>
             </tbody>

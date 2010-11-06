@@ -818,7 +818,7 @@ ActiveRecord::Schema.define(:version => 20101104163102) do
   end
 
   create_table "pr_elements", :force => true do |t|
-    t.string   "kind",                      :limit => 40, :null => false
+    t.string   "kind",                      :limit => 40,                    :null => false
     t.string   "style",                     :limit => 40
     t.string   "label"
     t.text     "content"
@@ -841,10 +841,24 @@ ActiveRecord::Schema.define(:version => 20101104163102) do
     t.integer  "related_question_sheet_id"
     t.integer  "conditional_id"
     t.integer  "max_length"
+    t.text     "tooltip"
+    t.boolean  "hide_label",                              :default => false
+    t.boolean  "hide_option_labels",                      :default => false
   end
 
   add_index "pr_elements", ["position"], :name => "index_pr_elements_on_question_sheet_id_and_position_and_page_id"
   add_index "pr_elements", ["slug"], :name => "index_pr_elements_on_slug"
+
+  create_table "pr_email_templates", :force => true do |t|
+    t.string   "name",       :limit => 1000, :null => false
+    t.text     "content"
+    t.boolean  "enabled"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pr_email_templates", ["name"], :name => "index_pr_email_templates_on_name", :length => {"name"=>"767"}
 
   create_table "pr_page_elements", :force => true do |t|
     t.integer  "page_id"

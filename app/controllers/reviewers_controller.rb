@@ -1,8 +1,12 @@
 class ReviewersController < AnswerSheetsController
   skip_before_filter :check_valid_user, :only => [ :edit_from_code ]
   before_filter :get_review, :except => [ :edit_from_code ]
-  before_filter :get_reviewer, :only => [ :edit, :show ]
+  before_filter :get_reviewer, :only => [ :edit, :show, :destroy ]
   prepend_before_filter :set_answer_sheet_type
+
+  def destroy
+    @reviewer.destroy
+  end
 
   def new
     @reviewer = @review.reviewer_wrappers.new
@@ -40,6 +44,10 @@ class ReviewersController < AnswerSheetsController
   def show
     super
     @questionnaire = true
+  end
+
+  def remind
+    # send email out again
   end
 
   protected

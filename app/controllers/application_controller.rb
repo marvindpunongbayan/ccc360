@@ -109,25 +109,26 @@ class ApplicationController < ActionController::Base
     helper_method :admin?
 
     def team_leader?
-      current_person.ministry_missional_team_members.find_by_is_leader(true).present?
+      admin? || current_person.ministry_missional_team_members.find_by_is_leader(true).present?
     end
     helper_method :team_leader?
 
     def can_see_people?
       team_leader? || admin?
     end
+    helper_method :can_see_people?
 
     def can_see_person?(p)
       return true if p == current_person
+      return true if admin?
       return false unless can_see_people?
       leading_team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
       person_member = p.ministry_missional_team_members.collect &:teamID
       (leading_team_ids & person_member).length > 0
     end
+    helper_method :can_see_person?
 
     def no_permission
       render :text => "no permission"
     end
-
-    helper_method :can_see_people?
 end

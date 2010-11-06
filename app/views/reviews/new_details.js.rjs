@@ -1,3 +1,4 @@
 page["#new_review_dialog"].html(render("choose_details"))
 page << "new_review_dialog()"
 page["span.ui-button-text"].html("Done")
+page << "setUpCalendars()"

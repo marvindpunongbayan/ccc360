@@ -1,4 +1,4 @@
-class Reviewer < ActiveRecord::Base
+class Reviewer < AnswerSheet
   before_create :generate_access_key
   set_table_name "pr_reviewers"
   belongs_to :review

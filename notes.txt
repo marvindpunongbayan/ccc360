@@ -14,4 +14,25 @@ Add Josh Starcher to the Great Lakes team:
 
 -> superuser search would make sense
 
+TODO
+
+✓ - jquery date select when choosing deadlines
+✓ - make sure non-leaders have no person links
+✓ - make sure leaders are only searching within their team
+✓ - fix js error on editing
+✓ - add hook in QE to update % complete based on % questions done
+✓ - red minus delete link on admin reviews needs to be implemented
+✓  - due dates should turn red after deadlines has passed
+✓ - add js validation to force form chosen on new review
+✓ - add message beside next button on new review, when no choice selected
+✓ - remove "Invite Selected Reviewers" button
+✓ - add modal confirmation when invite is sent out
+✓ - the style on expanding in admin reviews is not being removed when collapsed
+  - add validation on review model
+  - past review logic: on administrate review, after 1 wk on completed
+  - hide new review button if you're not on a team
+  - implement completed flag for reviewers
+  - implement a percent complete on admin reviews index based on reviewers completed
+  - deploy to int
+
 === questions ===
