@@ -38,7 +38,7 @@ when 'dev'
   set :user, 'deploy'
   set :password, 'alt60m'
   set :rails_env, 'development'
-  set :branch, "avocado"
+  set :branch, "master"
 when 'prod'
   role :app, "hart-w025.uscm.org."
   role :app, "hart-w040.uscm.org."
@@ -48,7 +48,7 @@ when 'prod'
   set :password, 'alt60m'
   set :rails_env, 'production'
   # set :branch, "master"
-  set :branch, "dev"
+  set :branch, "master"
   # set :deploy_via, :copy
 # set :copy_cache, true
 # set :copy_exclude, [".git","coverage"]
