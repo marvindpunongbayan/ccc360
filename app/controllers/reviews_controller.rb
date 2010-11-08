@@ -5,7 +5,6 @@ class ReviewsController < AnswerSheetsController
     reviews = current_person.initiated_reviews(:include => :reviewings)
     @current_reviews = reviews.find_all{ |r| !r.past? }
     @past_reviews = reviews.find_all{ |r| r.past? }
-    @hide_new_review = !admin? && current_person.ministry_missional_team_members.count == 0
     if session[:add_dialog]
       begin
         @review = Review.find session[:add_dialog]

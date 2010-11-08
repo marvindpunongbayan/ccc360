@@ -11,8 +11,10 @@
   
   <div id="contextmenu">
     <ul class="left">
-      <%- unless @hide_new_review -%>
+      <%- if can_start_new_reviews? -%>
       <li><%= link_to('New Review', new_review_url, :class => 'edit withicon', :remote => true) %></li>
+      <%- else -%>
+      <li>Note: You can't start any new reviews because you're not on a team.</li>
       <%- end %>
     </ul>
     <div class="clear"></div>
@@ -48,6 +50,10 @@
       <%= render :file => "reviewers/new.js.rjs" %>
       $("#new_reviewer_prompt").html("The review for <%=@review.subject.full_name%> has been created.  You can now add reviewers.  When finished, hit the Done button.");
     });
+    </script>
+    <%- elsif params[:start] == 'true' %>
+    <script>
+      <%= render :file => "reviews/new.js.rjs" %>
     </script>
     <%- end -%>
   </div>

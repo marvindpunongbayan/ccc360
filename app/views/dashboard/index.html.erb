@@ -29,8 +29,7 @@
           <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
             <div class="action_title">
               You have no people to review. 
-              You might want to <%= link_to "start a review", new_review_url %> 
-              or look at some of <%= link_to "your reviews", reviews_url %>.
+              You might want to <%- if can_start_new_reviews? -%><%= link_to "start a review", reviews_url(:start => true) %> or <%- end -%>look at some of <%= link_to "your reviews", reviews_url %>.  <%- unless can_start_new_reviews? -%><BR/>Note: You can't start any new reviews because you're not on a team.<%- end -%>
             </div>
           <%- end -%>
         </div>

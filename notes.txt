@@ -36,6 +36,7 @@ TODO
 ✓ - implement email invites
 ✓ - handle case where invite is no longer valid, ie. reviewer has been removed
 ✓ - implement resend invites
+✓ - implement the start a review link off dashboard
   - add mocksmtp to server
   - deploy to int
 

@@ -788,6 +788,13 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
     t.datetime "updated_at"
   end
 
+  create_table "pr_answer_sheet_question_sheets", :force => true do |t|
+    t.integer  "answer_sheet_id"
+    t.integer  "question_sheet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pr_answer_sheets", :force => true do |t|
     t.integer  "question_sheet_id", :null => false
     t.datetime "created_at",        :null => false
@@ -840,10 +847,10 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
     t.datetime "updated_at"
     t.integer  "related_question_sheet_id"
     t.integer  "conditional_id"
-    t.integer  "max_length"
     t.text     "tooltip"
     t.boolean  "hide_label",                              :default => false
     t.boolean  "hide_option_labels",                      :default => false
+    t.integer  "max_length"
   end
 
   add_index "pr_elements", ["position"], :name => "index_pr_elements_on_question_sheet_id_and_position_and_page_id"
@@ -885,6 +892,13 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
     t.datetime "updated_at"
   end
 
+  create_table "pr_question_sheet_pr_infos", :force => true do |t|
+    t.integer  "question_sheet_id"
+    t.boolean  "personal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pr_question_sheets", :force => true do |t|
     t.string  "label",    :limit => 60,                    :null => false
     t.boolean "archived",               :default => false
@@ -892,8 +906,7 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
 
   create_table "pr_references", :force => true do |t|
     t.integer  "question_id"
-    t.integer  "answer_sheet_id"
-    t.integer  "response_id"
+    t.integer  "applicant_answer_sheet_id"
     t.datetime "email_sent_at"
     t.string   "relationship"
     t.string   "title"
@@ -957,13 +970,6 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
   end
 
   add_index "profile_pictures", ["person_id"], :name => "index_profile_pictures_on_person_id"
-
-  create_table "question_sheet_pr_infos", :force => true do |t|
-    t.integer  "question_sheet_id"
-    t.boolean  "personal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "school_years", :force => true do |t|
     t.string   "name"

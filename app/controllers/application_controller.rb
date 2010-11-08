@@ -128,6 +128,11 @@ class ApplicationController < ActionController::Base
     end
     helper_method :can_see_person?
 
+    def can_start_new_reviews?
+      admin? || current_person.ministry_missional_team_members.present?
+    end
+    helper_method :can_start_new_reviews?
+
     def no_permission
       render :text => "no permission"
     end
