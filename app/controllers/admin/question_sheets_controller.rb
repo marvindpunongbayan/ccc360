@@ -1,4 +1,4 @@
-require_dependency "vendor/plugins/questionnaire_engine/app/controllers/admin/question_sheets_controller.rb"
+require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/admin/question_sheets_controller.rb"
 
 class Admin::QuestionSheetsController < ApplicationController
   before_filter :set_qe_flags

@@ -1,4 +1,4 @@
-require_dependency Rails.root.join('vendor','plugins','questionnaire_engine','app','controllers','answer_sheets_controller').to_s
+require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/answer_sheets_controller.rb"
 class AnswerSheetsController < ApplicationController
   def submit
     return false unless validate_sheet

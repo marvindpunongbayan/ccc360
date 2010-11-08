@@ -1,4 +1,4 @@
-require_dependency "vendor/plugins/common_engine/app/models/person.rb"
+require_dependency "#{Rails.root}/vendor/plugins/common_engine/app/models/person.rb"
 
 class Person < ActiveRecord::Base
   has_many :initiated_reviews, :class_name => "Review", :foreign_key => "initiator_id"
