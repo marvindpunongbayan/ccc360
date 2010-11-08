@@ -42,4 +42,8 @@ module Ccc360
 end
 
 ActiveRecord::SessionStore::Session.table_name = 'pr_sessions'
-require 'md5'
+if RUBY_VERSION =~ /^1.9/
+  require 'digest/md5'
+elsif RUBY_VERSION =~ /^1.8/
+  require 'md5'
+end

@@ -1,4 +1,4 @@
-require_dependency "vendor/plugins/questionnaire_engine/app/models/question_sheet.rb"
+require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/models/question_sheet.rb"
 
 class QuestionSheet < ActiveRecord::Base
   has_one :question_sheet_pr_info, :dependent => :destroy
