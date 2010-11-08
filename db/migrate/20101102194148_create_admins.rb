@@ -8,6 +8,6 @@ class CreateAdmins < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :admins
+    drop_table "pr_admins"
   end
 end

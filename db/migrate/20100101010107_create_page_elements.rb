@@ -19,6 +19,6 @@ class CreatePageElements < ActiveRecord::Migration
     remove_column Element.table_name, :updated_at
     add_column Element.table_name, :question_sheet_id, :integer
     add_column Element.table_name, :page_id, :integer
-    drop_table :page_elements
+    drop_table PageElement.table_name
   end
 end

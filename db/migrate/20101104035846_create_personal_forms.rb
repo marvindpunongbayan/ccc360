@@ -9,6 +9,6 @@ class CreatePersonalForms < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :personal_forms
+    drop_table :pr_personal_forms
   end
 end
