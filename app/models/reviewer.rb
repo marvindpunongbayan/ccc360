@@ -18,7 +18,7 @@ class Reviewer < AnswerSheet
 
   # access key for email link
   def generate_access_key
-    self.access_key = MD5.hexdigest((object_id + Time.now.to_i).to_s)
+    self.access_key = md5_class.hexdigest((object_id + Time.now.to_i).to_s)
   end
 
   def url(base_url = "")
@@ -35,4 +35,7 @@ class Reviewer < AnswerSheet
     review.late? && !self.submitted_at
   end
 
+  def md5_class
+    if defined?(MD5) then MD5 elsif defined?(Digest::MD5) then Digest::MD5 end
+  end
 end
