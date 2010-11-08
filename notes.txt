@@ -43,12 +43,13 @@ TODO
 
 For David:
 
-  - I added error messages for in the review create dialog on the last step.
+  - I added error messages for in the review create dialogs.
     Take a look to see if you want to add css?
-  - Administrate Questionnaires should float right
-  - Admin checkbox on a person
+  * Administrate Questionnaires should float right
+  * Admin checkbox on a person float right?
   - Columns on my reviews and dashboard not equally spaced
-  - Logout link
+  * Logout link
+  - I added a flash notice on dashboard, it needs styling.
 
 === questions ===
 
