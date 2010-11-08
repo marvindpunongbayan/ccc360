@@ -6,13 +6,14 @@ Add Andrew Roth to the Great Lakes team:
 Add Josh Starcher to the Great Lakes team:
    MinistryMissionalTeamMember.create! :personID => 102546, :teamID => 1016
 
--> add emails every time we list people
--> gender icon, need to handle case where there is no gender
--> add message in new reviews that you don't have any reviews
-
--> move administrate forms to the right
-
--> superuser search would make sense
+Make Josh Starcher an admin:
+   Admin.find_or_create_by_person_id 102546
+Todd:
+   Admin.find_or_create_by_person_id 56002
+Andrew:
+   Admin.find_or_create_by_person_id 778531
+David:
+   Admin.find_or_create_by_person_id 764265
 
 TODO
 
@@ -38,7 +39,7 @@ TODO
 ✓ - implement resend invites
 ✓ - implement the start a review link off dashboard
   - add mocksmtp to server
-  - deploy to int
+✓ - deploy to int
 
 For David:
 
@@ -50,3 +51,8 @@ For David:
   - Logout link
 
 === questions ===
+
+  - it can be awkward when you set up a review for someone else to administrate.  You have
+    only one chance to add reviewers: right after it's created.  Then you can never access it
+    again because you're not administrating it.
+
