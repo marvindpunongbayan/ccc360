@@ -46,4 +46,14 @@ Ccc360::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  if Rails.root.to_s =~ /integration/
+    config.action_controller.consider_all_requests_local = true
+
+    ActionMailer::Base.smtp_settings = {
+      :address => 'localhost',
+      :port => 2525,
+      :domain => 'ccci.org'
+    }
+  end
 end
