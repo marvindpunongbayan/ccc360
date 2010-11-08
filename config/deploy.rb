@@ -31,8 +31,8 @@ default_run_options[:pty] = true
 set :scm, "git"
 case target
 when 'dev'
-  role :app, "hart-w040.uscm.org"
-  role :db, "hart-w040.uscm.org", :primary => true
+  role :app, "172.16.1.25"
+  role :db, "172.16.1.25", :primary => true
   set :deploy_to, "/var/www/html/integration/pr"
   set :app_port, 4110
   set :user, 'deploy'
@@ -40,8 +40,8 @@ when 'dev'
   set :rails_env, 'development'
   set :branch, "master"
 when 'prod'
-  role :app, "hart-w025.uscm.org."
-  role :app, "hart-w040.uscm.org."
+  role :app, "172.16.1.25"
+  role :app, "172.16.1.25"
   set :deploy_to, "/var/www/html/production/pr"
   set :app_port, 4120
   set :user, 'deploy'
@@ -98,6 +98,8 @@ task :after_update_code, :roles => :app do
     ln -s #{shared_path}/tmp #{release_path}/tmp
   CMD
   
+  run "cd #{release_path} && git submodule init"
+  run "cd #{release_path} && git submodule update"
 end
 
 desc "Automatically run cleanup"
