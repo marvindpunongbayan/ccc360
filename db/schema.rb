@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
     t.datetime "updated_at"
   end
 
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "counties", :force => true do |t|
     t.string "name"
     t.string "state"
@@ -782,6 +790,13 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
   add_index "ministry_targetarea", ["region"], :name => "index6"
   add_index "ministry_targetarea", ["state"], :name => "index3"
 
+  create_table "personal_forms", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "questionnaire_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pr_admins", :force => true do |t|
     t.integer  "person_id"
     t.datetime "created_at"
@@ -939,15 +954,10 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
     t.date     "due"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "completed_at"
     t.string   "name"
     t.string   "purpose"
     t.integer  "question_sheet_id"
-    t.datetime "completed_at"
-  end
-
-  create_table "pr_sessions", :force => true do |t|
-    t.text "session_id"
-    t.text "data"
   end
 
   create_table "pr_users", :force => true do |t|
@@ -970,6 +980,13 @@ ActiveRecord::Schema.define(:version => 20101107202622) do
   end
 
   add_index "profile_pictures", ["person_id"], :name => "index_profile_pictures_on_person_id"
+
+  create_table "question_sheet_pr_infos", :force => true do |t|
+    t.integer  "question_sheet_id"
+    t.boolean  "personal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "school_years", :force => true do |t|
     t.string   "name"
