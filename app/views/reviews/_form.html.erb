@@ -2,6 +2,14 @@
 Fields with the <%= image_tag('required.png') %> are required.
 </p>
 
+<% if @review.errors.any? %>
+<div class="errors">
+<% @review.errors.full_messages.each do |msg| %>
+  <div><%= msg %></div>
+<% end %>
+</div>
+<% end %>
+
 <%= hidden_field :review, :subject_id %>
 <%= hidden_field :review, :initiator_id %>
 
@@ -20,9 +28,9 @@ Fields with the <%= image_tag('required.png') %> are required.
   <div id="date-picker"></div>
 </div>
 
-<div class="field required">
+<div class="field">
   <%= f.label(:purpose) do
    'Purpose: '
   end %>
-  <%= f.text_area :purpose, :rows => 5 %>
+  <%= f.text_area :purpose, :rows => 4 %>
 </div>

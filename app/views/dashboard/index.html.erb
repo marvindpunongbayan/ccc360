@@ -6,6 +6,7 @@
   </div>  
   
   <h1>Dashboard</h1>
+  <div class="notice"><%= flash[:notice] %></div>
   <div class="projectedit">
     <div class="left">
       <div id="tabs">
@@ -17,12 +18,12 @@
         <div class="tabcontent" id="toreview">
           <%- unless @team_reviewings.empty? %>
           <h2 class="border">My Team</h2>
-          <%= render "reviewings_table", :reviewings => @team_reviewings %>
+          <%= render "reviewings_table", :reviewings => @team_reviewings, :readonly => false %>
           <%- end -%>
 
           <%- unless @nonteam_reviewings.empty? %>
           <h2 class="border">Other</h2>
-          <%= render "reviewings_table", :reviewings => @nonteam_reviewings %>
+          <%= render "reviewings_table", :reviewings => @nonteam_reviewings, :readonly => false %>
           <%- end -%>
 
           <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
@@ -37,12 +38,12 @@
         <div class="tabcontent" id="pastreview">
           <%- unless @past_nonteam_reviewings.empty? %>
           <h2 class="border">Other</h2>
-          <%= render "reviewings_table", :reviewings => @past_nonteam_reviewings %>
+          <%= render "reviewings_table", :reviewings => @past_nonteam_reviewings, :readonly => true %>
           <%- end -%>
 
           <%- unless @past_team_reviewings.empty? %>
           <h2 class="border">My Team</h2>
-          <%= render "reviewings_table", :reviewings => @past_team_reviewings %>
+          <%= render "reviewings_table", :reviewings => @past_team_reviewings, :readonly => true %>
           <%- end -%>
 
           <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>

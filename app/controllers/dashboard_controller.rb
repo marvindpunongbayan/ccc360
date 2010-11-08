@@ -10,13 +10,13 @@ class DashboardController < ApplicationController
       review = reviewing.review
       next if review.nil?
       if team_members.include?(review.subject)
-        if review.past?
+        if reviewing.submitted_at
           @past_team_reviewings << reviewing
         else
           @team_reviewings << reviewing
         end
       else
-        if review.past?
+        if reviewing.submitted_at
           @past_nonteam_reviewings << reviewing
         else
           @nonteam_reviewings << reviewing

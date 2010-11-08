@@ -13,8 +13,8 @@
               <tr>
                 <td class="gender"><%= gender_icon(review.subject) %>
                 <td class="name"><%= person_link_if_authed(review.subject) %></th>
-                <td class="reviewname"><%= link_to(review.name, edit_review_reviewer_url(review.id, reviewing.id)) %></th>
-                <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></th>
+                <td class="reviewname"><%= link_to(review.name, self.send(:"#{'edit_' unless readonly}review_reviewer_url", review.id, reviewing.id)) %></th>
+                <td class="duedate"><span class="<%= "alert" if reviewing.late? %>"><%= I18n.l review.due %></span></th>
                 <td class="status"><%= reviewing.percent_complete %>%</th>
               </tr>
               <%- end -%>

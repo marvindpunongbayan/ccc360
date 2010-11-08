@@ -1,1 +1,2 @@
 page["#reviewer_#{@reviewer.id}"].fadeOut
+page["#review_#{@review.id} td.status"].html("#{@review.percent}%")

@@ -4,6 +4,10 @@ class Reviewer < AnswerSheet
   belongs_to :review
   belongs_to :person
 
+  before_destroy { |record| review.try(:update_percent_and_completed) }
+  after_update { |record| review.try(:update_percent_and_completed) }
+  after_create { |record| review.try(:update_percent_and_completed) }
+
   def question_sheet
     review.question_sheet
   end
@@ -20,4 +24,15 @@ class Reviewer < AnswerSheet
   def url(base_url = "")
     "#{base_url}/review_codes/#{access_key}"
   end
+
+  def submit!
+    self.submitted_at = Date.today
+    save!
+    review.update_percent_and_completed
+  end
+
+  def late?
+    review.late? && !self.submitted_at
+  end
+
 end

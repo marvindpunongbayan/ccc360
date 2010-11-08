@@ -2,7 +2,10 @@ class ReviewsController < AnswerSheetsController
   prepend_before_filter :set_answer_sheet_type
 
   def index
-    @reviews = current_person.initiated_reviews
+    reviews = current_person.initiated_reviews(:include => :reviewings)
+    @current_reviews = reviews.find_all{ |r| !r.past? }
+    @past_reviews = reviews.find_all{ |r| r.past? }
+    @hide_new_review = !admin? && current_person.ministry_missional_team_members.count == 0
     if session[:add_dialog]
       begin
         @review = Review.find session[:add_dialog]
@@ -61,9 +64,33 @@ class ReviewsController < AnswerSheetsController
     @review = Review.new new_review_params
     if @review.save
       session[:add_dialog] = @review.id
-      redirect_to reviews_url
+      render :update do |page|
+        page.redirect_to reviews_url
+      end
     else
-      render :action => :new_customize
+      @subject = @review.subject
+      @initiator = @review.initiator
+      render :action => :new_details
+    end
+  end
+
+  def remind_reviewers
+    @review = Review.find params[:id]
+    # send email out again
+    msgs = []
+    (params[:reviewers] || []).each do |id, v|
+      if v == "1"
+        r = @review.reviewings.find id
+        msgs << "#{r.person.full_name} (#{r.person.email})"
+        InvitesMailer.reviewer_invite(r).deliver
+      end
+    end
+    if msgs.present?
+      @title = "Email Reminder Sent"
+      @msg = "An email reminder has been sent out to: #{msgs.join(', ')}"
+    else
+      @title = "Email Reminder Error"
+      @msg = "Please select at least one reviewer."
     end
   end
 

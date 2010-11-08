@@ -22,17 +22,30 @@ TODO
 ✓ - fix js error on editing
 ✓ - add hook in QE to update % complete based on % questions done
 ✓ - red minus delete link on admin reviews needs to be implemented
-✓  - due dates should turn red after deadlines has passed
+✓ - due dates should turn red after deadlines has passed
 ✓ - add js validation to force form chosen on new review
 ✓ - add message beside next button on new review, when no choice selected
 ✓ - remove "Invite Selected Reviewers" button
 ✓ - add modal confirmation when invite is sent out
 ✓ - the style on expanding in admin reviews is not being removed when collapsed
-  - add validation on review model
-  - past review logic: on administrate review, after 1 wk on completed
-  - hide new review button if you're not on a team
-  - implement completed flag for reviewers
-  - implement a percent complete on admin reviews index based on reviewers completed
+✓ - add validation on review model
+✓ - implement completed flag for reviewers
+✓ - past review logic: on administrate review, after 1 wk on completed
+✓ - hide new review button if you're not on a team and not admin
+✓ - implement a percent complete on admin reviews index based on reviewers completed
+✓ - implement email invites
+✓ - handle case where invite is no longer valid, ie. reviewer has been removed
+✓ - implement resend invites
+  - add mocksmtp to server
   - deploy to int
+
+For David:
+
+  - I added error messages for in the review create dialog on the last step.
+    Take a look to see if you want to add css?
+  - Administrate Questionnaires should float right
+  - Admin checkbox on a person
+  - Columns on my reviews and dashboard not equally spaced
+  - Logout link
 
 === questions ===

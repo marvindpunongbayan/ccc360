@@ -57,7 +57,7 @@ function new_review_dialog() {
         $("#new_review_dialog").dialog({
                 resizable: false,
                 width:600,
-                height:400,
+                height:425,
                 modal: true,
                 buttons: {
 		/*

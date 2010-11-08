@@ -3,18 +3,26 @@ class ReviewersController < AnswerSheetsController
   before_filter :get_review, :except => [ :edit_from_code ]
   before_filter :get_reviewer, :only => [ :edit, :show, :destroy ]
   prepend_before_filter :set_answer_sheet_type
+  before_filter :base_url, :only => [ :create ]
+
+  def submit
+    debugger
+  end
 
   def destroy
     @reviewer.destroy
+    @review.update_percent_and_completed
   end
 
   def new
-    @reviewer = @review.reviewer_wrappers.new
+    @reviewer = @review.reviewings.new
   end
 
   def create
-    @reviewer = @review.reviewer_wrappers.new params[:reviewer]
+    @reviewer = @review.reviewings.new params[:reviewer]
+    @review.update_percent_and_completed
     @reviewer.save
+    InvitesMailer.reviewer_invite(@reviewer).deliver
   end
 
   def search
@@ -35,19 +43,19 @@ class ReviewersController < AnswerSheetsController
 
       # redirect to filling out the form
       @review = @reviewer.review
-      redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
+      if @review.completed_at || @reviewer.submitted_at
+        redirect_to review_reviewer_url(@review.id, @reviewer.id)
+      else
+        redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
+      end
     else
-      render :text => "Couldn't find review from code #{params[:code]}"
+      render :text => "Couldn't find review with code #{params[:code]}."
     end
   end
 
   def show
     super
     @questionnaire = true
-  end
-
-  def remind
-    # send email out again
   end
 
   protected

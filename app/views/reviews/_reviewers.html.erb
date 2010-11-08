@@ -1,26 +1,30 @@
 <div class="list_of_reviewerswrap">
-  <table class="list_of_reviewers">
-    <tr>
-      <th colspan="8">
-        Reviewers
-      </th>
-    </tr>
-  <%- for wrapper in @review.reviewer_wrappers; review = wrapper.review; reviewer = wrapper.person -%>
-    <tr class="review_<%=@review.id%> reviewer" id="reviewer_<%=wrapper.id%>">
-      <td class="checkbox"><input type="checkbox" name="checkbox"/></td>
-      <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
-      <td class="stafflevel"></td>
-      <td class="stafftitle"></td>
-      <td class="relationship"></td>
-      <td class="duedate"></td>
-      <td class="viewreview"><%= link_to("View", review_reviewer_url(@review, wrapper), :class => "viewreviewlink") %></td>
-      <td class="status"><%= wrapper.percent_complete %>%</td>
-      <td class="deletereview"><%= link_to("", review_reviewer_url(@review, wrapper), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove #{reviewer.full_name} as a reviewer and delete her review.  Are you sure?") %></td>
-    </tr>
+  <%= form_tag remind_reviewers_review_url(@review), :id => "people_#{@review.id}", :remote => true do %>
+    <table class="list_of_reviewers">
+      <tr>
+        <th colspan="8">
+          Reviewers
+        </th>
+      </tr>
+      <%- for reviewing in @review.reviewings; review = reviewing.review; reviewer = reviewing.person -%>
+      <tr class="review_<%=@review.id%> reviewer" id="reviewer_<%=reviewing.id%>">
+        <td class="checkbox"><%= check_box_tag "reviewers[#{reviewing.id}]" %></td>
+        <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
+        <td class="stafflevel"></td>
+        <td class="stafftitle"></td>
+        <td class="relationship"></td>
+        <td class="duedate"></td>
+        <td class="viewreview"><%= link_to("View", review_reviewer_url(@review, reviewing), :class => "viewreviewlink") %></td>
+        <td class="status"><%= reviewing.percent_complete %>%</td>
+        <td class="deletereview"><%= link_to("", review_reviewer_url(@review, reviewing), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove #{reviewer.full_name} as a reviewer and delete her review.  Are you sure?") %></td>
+      </tr>
+      <%- end -%>
+      <%- unless @review.past? -%>
+        <tr><td colspan="8" class="review_buttons last_row">
+          <%= link_to_function "<span>Remind Selected Reviewers</span>".html_safe, "$('#people_#{@review.id}').submit();", :class => "remind_r tablebutt" %>
+          <% link_to new_review_reviewer_url(@review), :class => "add_r tablebutt", :remote => true do %><span>Add Reviewers</span><% end %>
+        </td></tr>
+      <%- end -%>
+    </table>
   <%- end -%>
-    <tr><td colspan="8" class="review_buttons last_row">
-      <% link_to remind_review_reviewer_url(@review), :class => "remind_r tablebutt", :remote => true, :method => :post do %><span>Remind Selected Reviewers</span><% end %>
-      <% link_to new_review_reviewer_url(@review), :class => "add_r tablebutt", :remote => true do %><span>Add Reviewers</span><% end %>
-    </td></tr>
-  </table>
 </div>

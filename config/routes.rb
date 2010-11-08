@@ -15,12 +15,12 @@ Ccc360::Application.routes.draw do
       get :new_details
       get :search
     end
+    member do
+      post :remind_reviewers
+    end
     resources :reviewers do
       collection do
         get :search
-      end
-      member do
-        post :remind
       end
     end
   end
