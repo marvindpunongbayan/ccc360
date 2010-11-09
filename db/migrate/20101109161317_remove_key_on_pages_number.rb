@@ -1,9 +1,9 @@
 class RemoveKeyOnPagesNumber < ActiveRecord::Migration
   def self.up
-    remove_key :pr_pages, :page, :number
+    remove_index :pr_pages, [ :page, :number ]
   end
 
   def self.down
-    add_key :pr_pages, :page, :number
+    add_index :pr_pages, [ :page, :number ]
   end
 end
