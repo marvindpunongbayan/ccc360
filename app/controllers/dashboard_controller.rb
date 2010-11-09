@@ -28,8 +28,7 @@ class DashboardController < ApplicationController
   end
 
   def logout
-    session.delete :user_id
-    session[:user_id] = nil
-    redirect_to dashboard_url
+    logout_keeping_session!
+    redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
   end
 end
