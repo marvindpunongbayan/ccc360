@@ -14,7 +14,7 @@ class ReviewsController < AnswerSheetsController
         session.delete :add_dialog
       end
     end
-    new if params[:sart] == "true"
+    new if params[:start] == "true"
     set_personal_question_sheets
   end
 
