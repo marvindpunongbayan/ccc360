@@ -7,7 +7,7 @@
   
   <h1>Dashboard</h1>
 
-  <div id="flash_notice" class="flash"><%= flash[:notice] %></div>
+  <div id="flash_notice" class="flash" style="<%= 'display:none' unless flash[:notice] %>"><%= flash[:notice] %></div>
 
   <div class="projectedit" id="dashboard">
     <div class="left">
