@@ -7,11 +7,16 @@
     </ul>
   </div>  
   
-  <h1><%= @person.full_name %></h1>
-  <%- if admin? -%>
-  <div id="adminflag"><%= check_box_tag "admin", 'true', @person.admin?, "data-url" => person_url(@person.id), "data-confirm" => ("Are you sure you want to remove yourself from being an admin?  This can not be reversed.  A current admin would have to make you an admin to reinstate you." if @person == current_person) %> Admin
-  </div>
-  <%- end -%>
+  <h1>
+    <%= @person.full_name %>
+    <%- if admin? -%>
+      <div id="adminflag">
+        <%= check_box_tag "admin", 'true', @person.admin?, "data-url" => person_url(@person.id), "data-confirm" => ("Are you sure you want to remove yourself from being an admin?  This can not be reversed.  A current admin would have to make you an admin to reinstate you." if @person == current_person) %>
+        <label for="admin">Admin Privileges</label>
+      </div>
+    <%- end -%>
+  </h1>
+  
   <div class="projectedit">
     <div class="left">
 

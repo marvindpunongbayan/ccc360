@@ -43,7 +43,10 @@ h2.border {
 /* Global */
 #global {
   background: @white;
-  #menu {
+  border-top: 1px solid @white;
+  #menu, #menuright {
+    width: 500px;
+    float: left;
     height: 60px;
     .strip-list;
     li {float: left; line-height: 60px;}
@@ -57,19 +60,26 @@ h2.border {
       margin: 8px;
       font-size: 14px;
       font-weight: bold;
-      }      
+    }      
     li a.selected, li a:hover {
       color: @global-bg;
       background: @dark-blue;
-      }
+    }
     li.withicon {}
     li.withicon a {background: no-repeat 0px; border: 1px solid silver;}
     li.search {
       float: right;
       a {background-image: url('/images/buttonbg_search.png'); padding-left: 31px; }
-      }
     }
   }
+  #menuright {
+    width: auto;
+    float: right;
+    li a {
+      background: none;
+    }
+  }
+}
 
 
 /* Primary */
@@ -79,12 +89,13 @@ h2.border {
   padding-bottom: 50px;
 
   .pagewidth {
-      margin-top: 1.5em;
-      background: @white;
-      border:1px solid @dark-gray; 
-      border-top: 4px solid @dark-blue;
-    }
+    margin-top: 1.5em;
+    background: @white;
+    border:1px solid @dark-gray; 
+    border-top: 4px solid @dark-blue;
+    min-height: 270px;
   }
+}
   
   
 /* Dashboard */
@@ -572,8 +583,28 @@ a.delete {background-image: url('/images/icons/slash.png');}
 a.stats {background-image: url('/images/icons/chart-pie.png'); width: 16px; height: 16px;}
 a.close {text-indent: 0px; width: auto;}
 
-/* Breadcrumbs */
+#adminflag {
+   -moz-border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #0B486B;
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -7px;
+  margin-left: 15px;
+  padding: 3px 6px 3px 2px;
+  position: relative;
+  vertical-align: middle;
+  label {
+    display: inline;
+    float: right;
+    font-family: arial;
+    padding: 3px 0 0;
+  }
+}
 
+
+/* Breadcrumbs */
 #breadcrumb {
   height: 2em;
   ul {
@@ -705,13 +736,20 @@ a.close {text-indent: 0px; width: auto;}
 }
 
 
-/* Errors */
+/* Flash Messages */
+
+#dialog-message {
+  float: right;
+  color: red;
+  line-height: 35px;
+  background: url(/images/icons/exclamation-red.png) no-repeat 0% 50%;
+  padding-left: 20px;
+}
 .flash {
 	margin: 0 auto;
 	margin-top: 20px;
-	width: 935px;
-	
-	}
+	width: auto;
+}
 
 .flash, #errorExplanation {
   border: 2px solid @dark-gray;
@@ -734,21 +772,21 @@ a.close {text-indent: 0px; width: auto;}
 #flash_error, #errorExplanation {
   border-color: #DB4F4F;
   background: url("/images/icons/exclamation-red.png") no-repeat scroll 15px 50% #FFA4A4;
-  }
+}
   
 #errorExplanation {
 	h2 {
 		font-size: 16px;
 		margin: 0;
-		}
+	}
 	p, li {
 		font-weight: normal;
 		margin: 0;
 		padding: 0;
-		}
+	}
 	ul {
 		margin: 0;
-		}
+  }
 }
 
 .field_with_errors {
@@ -758,10 +796,6 @@ a.close {text-indent: 0px; width: auto;}
 	label {
 		color: #DB4F4F;
 	}
-}
-
-.multitext .field_with_errors {
-	display: inline;
 }
 
 /* Header Drop Down */
@@ -894,6 +928,10 @@ table.people {
   td.last_row {
     border-bottom: none;
   }
+}
+
+#dashboard table.people .gender {
+  width: 7.5%;
 }
 
 /* Reviewers List Table */

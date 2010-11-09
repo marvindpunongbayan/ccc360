@@ -6,8 +6,10 @@
   </div>  
   
   <h1>Dashboard</h1>
-  <div class="notice"><%= flash[:notice] %></div>
-  <div class="projectedit">
+
+  <div id="flash_notice" class="flash"><%= flash[:notice] %></div>
+
+  <div class="projectedit" id="dashboard">
     <div class="left">
       <div id="tabs">
         <ul class="tabs">
