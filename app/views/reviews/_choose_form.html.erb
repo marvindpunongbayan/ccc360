@@ -3,7 +3,7 @@
 
 <div class="action_title">Select your form:</div>
 <div class="tablcontent" id="selectform"> 
-  <%- for qs in @question_sheets -%>
+  <%- for qs in @review_question_sheets -%>
     <div class="r_row" id="qs_<%=qs.id%>_row"><%= link_to_function image_tag("icons/clipboard-list.png") + " " + qs.label, "new_review_select_choice('qs_', #{qs.id})" %></div>
   <%- end -%>
 </div>
