@@ -24,8 +24,7 @@ class ReviewsController < AnswerSheetsController
   end
 
   def new
-    @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
-                                                          :conditions => [ "personal = false" ])
+    set_personal_question_sheets
     session[:new_review] = {}
   end
 
