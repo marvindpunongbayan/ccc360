@@ -42,8 +42,9 @@ class PeopleController < ApplicationController
       end
 
       @search_people_filter = @team_members.collect(&:personID)
-    elsif admin
+    elsif admin?
       @search_filter = "all people"
+      @search_filter_label = ""
     end
     super
     if @people.length == @limit
