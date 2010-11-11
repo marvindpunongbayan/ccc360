@@ -19,7 +19,7 @@ class ReviewsController < AnswerSheetsController
   end
 
   def search
-    @limit = 7
+    @limit = 50
     super
   end
 

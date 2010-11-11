@@ -24,7 +24,7 @@
     <hr />
   	
     <%- if team_leader? -%>
-    <h3 id="team_header">Your Team Mates (<%= @leading_ministries_names.join(", ") %>)</h3>
+    <h3 id="team_header">Members of the team you are leading according to the Infobase<%- if @leading_ministries_names.present? %> (<%= @leading_ministries_names.join(", ") %>)<%- end -%></h3>
     <%- end -%>
     <h3 id="search_header" style="display:none">Search results for "INSERT SEARCH CRTIERIA HERE"</h3>
 

@@ -3,6 +3,9 @@ Ccc360::Application.routes.draw do
     collection do
       get :search
     end
+    member do
+      get :impersonate
+    end
   end
   resources :personal_forms
   resources :reviews do

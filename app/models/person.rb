@@ -11,4 +11,8 @@ class Person < ActiveRecord::Base
   def admin?
     admin.present?
   end
+
+  def pr_human_gender
+    if is_male? then "male" elsif is_female? then "female" else "genderless" end
+  end
 end

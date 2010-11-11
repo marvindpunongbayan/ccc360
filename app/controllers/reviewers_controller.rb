@@ -19,15 +19,18 @@ class ReviewersController < AnswerSheetsController
   end
 
   def create
-    @reviewer = @review.reviewings.new params[:reviewer]
+    unless @reviewer = @review.reviewings.where(params[:reviewer]).limit(1).first
+      @reviewer = @review.reviewings.new params[:reviewer]
+      @reviewer.save
+      InvitesMailer.reviewer_invite(@reviewer).deliver
+    end
     @review.update_percent_and_completed
-    @reviewer.save
-    InvitesMailer.reviewer_invite(@reviewer).deliver
   end
 
   def search
-    @limit = 7
+    @limit = 50
     super
+    @people -= @review.reviewings.collect(&:person)
   end
 
   def edit

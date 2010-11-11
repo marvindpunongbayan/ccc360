@@ -1,4 +1,6 @@
-<p class="describe">You are reviewing <span class="person_review <%= @review.subject.human_gender.downcase %>"><%= @review.subject.full_name %>.  </span> As requested by <span class="person_review <%= @review.initiator.human_gender.downcase %>"><%= @review.initiator.full_name %></span>.  Click to add a reviewer.  Reviewers will receive an email invite.</p>
+<p class="describe">You are reviewing <span class="reviewername <%= @review.subject.pr_human_gender %>"><%= @review.subject.full_name %>.  </span> As requested by <span class="reviewername <%= @review.initiator.pr_human_gender %>"><%= @review.initiator.full_name %></span>.  Click to add a reviewer.  Reviewers will receive an email invite.</p>
+
+<p id="new_reviewer_prompt"></p>
 
 <div class="action_title">Search for a reviewer:</div>
 <div class="tablcontent" id="search">
@@ -7,6 +9,6 @@
 
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team">
-  <%= render "reviewers/list_people", :people => current_person.team_members %>
+  <%= render "reviewers/list_people", :people => current_person.team_members - @review.reviewings.collect(&:person) %>
 </div>
   

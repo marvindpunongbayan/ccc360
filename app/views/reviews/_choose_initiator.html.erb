@@ -1,5 +1,5 @@
 <%= hidden_field_tag "step", "initiator" %>
-<p class="describe">You are reviewing <span class="reviewername male"><%= @subject.full_name %></span>. Please select who is requesting this review.  This person will administrate the review and can add and remove reviewers.</p>
+<%= render "describe_review_header" %> Please select who is requesting this review.  This person will administrate the review and can add and remove reviewers.</p>
 <div class="action_title"><%= link_to_function "I requested this review.", "new_review_select_choice('initiator_', #{current_person.id}); next_step();" %></div>
 <div class="action_title">Or, Search for a requester:</div>
 <div class="tablcontent" id="search">

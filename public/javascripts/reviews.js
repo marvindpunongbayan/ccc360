@@ -21,7 +21,7 @@ function show_reviewers_dialog() {
 
 function notify_not_selected() {
 	$("#dialog-message").remove();
-	$(".ui-dialog-buttonpane button").after("<span id='dialog-message'>wut?</span>");
+	$("#new_review_dialog + .ui-dialog-buttonpane button").after("<span id='dialog-message'></span>");
 
 	if ($("#step")[0].value == "form") {
 		msg = "Please select a form before continuing.";
@@ -49,11 +49,12 @@ function next_step() {
 		}});
 	} else if ($("#step")[0].value == "details") {
 		$("#new_review").submit();
-		//$(this).dialog('close');
+		$(this).dialog('close');
 	}
 }
 
 function new_review_dialog() {
+	$("#team").remove(); /* ajax search breaks without this */
         $("#new_review_dialog").dialog({
                 resizable: false,
                 width:600,
