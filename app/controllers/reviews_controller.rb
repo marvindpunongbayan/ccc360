@@ -24,7 +24,7 @@ class ReviewsController < AnswerSheetsController
   end
 
   def new
-    set_personal_question_sheets
+    set_review_question_sheets
     session[:new_review] = {}
   end
 

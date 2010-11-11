@@ -90,8 +90,14 @@ class ApplicationController < ActionController::Base
 
     def set_personal_question_sheets
       @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
-                                                            :conditions => [ "personal = true or personal is null" ])
+                                                            :conditions => [ "personal = true" ])
     end
+
+    def set_review_question_sheets
+      @review_question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
+                                                            :conditions => [ "personal = false or personal is null" ])
+    end
+
 
     # basic persmissions
 
