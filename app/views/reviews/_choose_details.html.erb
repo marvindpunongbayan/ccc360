@@ -1,5 +1,5 @@
 <%= hidden_field_tag "step", "details" %>
-<p class="describe">You are reviewing <span class="reviewername male"><%= @subject.full_name %></span>. As requested by <span class="reviewername female"><%= @initiator.full_name %></span>. Select reviewers.</p>
+<%= render "describe_review_header" %> Select reviewers.</p>
 <%= form_for @review, :remote => true do |f| %>
   <%= render 'reviews/form', :f => f %>
 <% end %>

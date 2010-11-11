@@ -1,3 +1,4 @@
-page["#dialog-message"].html(render("reviewers/new"))
+page << %|$("#team").remove();| # ajax search breaks without this
+page["#new_reviewer_dialog"].html(render("reviewers/new"))
 page << "show_reviewers_dialog()"
 page << "setup_search_autocomplete('reviewer', #{@review.id})"

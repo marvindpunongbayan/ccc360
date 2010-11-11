@@ -25,7 +25,7 @@
     <td class="name"><%= person_link_if_authed(review.subject) %></td>
     <td class="reviewname"><%= review.name %></td>
     <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></td>
-    <td class="status"><%= review.percent %>%</td>
+    <td class="status"><%= review.percent.to_i %>%</td>
   </tr>
   <tr id="review_<%=review.id%>" class="reviewer_content reviewer_content_hide">
     <td colspan="6" class="rowwrap">

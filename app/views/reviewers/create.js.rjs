@@ -1,4 +1,7 @@
-page["#new_reviewer_prompt"].html("#{@reviewer.person.full_name} has been added as a reviewer.  You can now add more reviewers by clicking on other names, or hit Done to close this window.")
+msg = "#{@reviewer.person.full_name} has been added as a reviewer."
 page["#new_reviewer_#{@reviewer.person_id}"].fade_out
 page["#review_#{@review.id} td.status"].html("#{@review.percent}%")
 page << render(:file => "reviews/show")
+page << "$('#dialog-message').remove();"
+page << %|$("#new_reviewer_dialog + .ui-dialog-buttonpane button").after("<span id='dialog-message'></span>");|
+page << %|$("#dialog-message").html('#{msg}');|

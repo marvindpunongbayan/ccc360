@@ -1,6 +1,15 @@
 class PeopleController < ApplicationController
-  before_filter :get_person, :only => [ :show, :update ]
+  before_filter :get_person, :only => [ :show, :update, :impersonate ]
   before_filter :has_permission, :only => [ :show, :edit ]
+
+  def impersonate
+    if admin? && !session[:impersonating]
+      session[:user_id2] = session[:user_id]
+      session[:user_id] = @person.user.id 
+      session[:impersonating] = true
+    end
+    redirect_to dashboard_url
+  end
 
   def index
     if team_leader?
@@ -30,21 +39,20 @@ class PeopleController < ApplicationController
   end
 
   def search
-    @limit = 20
+    @limit = 50
     if !admin? && !team_leader?
       render :inline => ""
     elsif !admin? && team_leader?
       index
       if params[:name] == ""
-        @search_filter_label = "Your Team Mates (#{@leading_ministries_names.join(", ")})"
+        @search_filter_label = "Members of the team you are leading according to the Infobase (#{@leading_ministries_names.join(", ")})"
       else
         @search_filter_label = "'#{params[:name]}'"
       end
 
       @search_people_filter = @team_members.collect(&:personID)
     elsif admin?
-      @search_filter = "all people"
-      @search_filter_label = ""
+      @search_filter_label = "all people"
     end
     super
     if @people.length == @limit

@@ -48,7 +48,6 @@
     $(document).ready(function() {
       <%= render :file => "reviews/show.js.rjs" %>
       <%= render :file => "reviewers/new.js.rjs" %>
-      $("#new_reviewer_prompt").html("The review for <%=@review.subject.full_name%> has been created.  You can now add reviewers.  When finished, hit the Done button.");
     });
     </script>
     <%- elsif params[:start] == 'true' %>

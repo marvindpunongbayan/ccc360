@@ -15,7 +15,47 @@ Andrew:
 David:
    Admin.find_or_create_by_person_id 764265
 
-TODO
+=== TODO ===
+
+Andrew:
+
+✓ - Change Dashboard to Home
+✓ - Change "Your Team Mates" to "Members of the team you are leading according to the Infobase"
+✓ - Add impersonate features
+✓ - On people search, increase results to 50
+✓ - On search, search nickname as well
+✓ - Don't allow the same person to be added as a reviewer
+
+✓ - Fix bug when adding a new review, causing searches to break, if adding more than one review
+✓ - Fix several bugs with displaying the error message explaining what was preventing the new reviewers wizard from going on to the next step.  Specifically, the message would not appear if they had just added reviewers to any existing review, then went on to add a new review.
+✓    - Also fixed a similar bug making the confirmatino message about adding a new reviewer not show up (we actually anticipated that feature before release, but a bug was making it not work)
+✓ - Fix gender icons that were hardcoded in review wizard
+✓ - Fix bug causing the entire details dialog for a new review to show up red in some cases 
+
+Todd bugs:
+
+✓ - Selecting of teams only displays the first 7
+✓ - The first few times you enter the date for a new review, 
+    then leave and hit "Done" the date disappears and it gives
+    you an error because the date is missing.  After a few tries the date stays fine.
+
+Angie bugs:
+
+  - When initiating a review, most of my team members are listed twice
+
+David:
+
+  - Why is dialog-message red now?  ie. Add a new reviewer.
+
+=== questions ===
+
+  - it can be awkward when you set up a review for someone else to administrate.  You have
+    only one chance to add reviewers: right after it's created.  Then you can never access it
+    again because you're not administrating it.
+
+=== TODO history (completed) ===
+
+Andrew:
 
 ✓ - jquery date select when choosing deadlines
 ✓ - make sure non-leaders have no person links
@@ -51,9 +91,4 @@ For David:
   * Logout link
   * I added a flash notice on dashboard, it needs styling.
 
-=== questions ===
-
-  - it can be awkward when you set up a review for someone else to administrate.  You have
-    only one chance to add reviewers: right after it's created.  Then you can never access it
-    again because you're not administrating it.
 
