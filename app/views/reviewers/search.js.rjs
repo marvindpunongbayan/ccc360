@@ -1,1 +1,2 @@
 page["#team"].html(render("list_people", :people => @people))
+page[".team.action_title"].html("Search results:")
