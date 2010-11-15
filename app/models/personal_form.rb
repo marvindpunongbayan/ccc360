@@ -1,4 +1,4 @@
-class PersonalForm < ActiveRecord::Base
+class PersonalForm < AnswerSheet
   set_table_name "pr_personal_forms"
 
   belongs_to :person
