@@ -88,10 +88,6 @@ function new_review_select_choice(prefix, qs_id) {
 	lastClickTime = new Date();
 	selected[prefix + "id"] = qs_id;
 	$("#" + prefix + selected[prefix + "id"] + "_row a").addClass('selected');
-
-	if ($("#step")[0].value == "initiator") {
-		$("#searchfor")[0].checked = true;
-	}
 }
 
 function setup_search_autocomplete(prefix, review_id) {

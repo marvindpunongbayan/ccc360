@@ -1,4 +1,4 @@
-msg = "#{@reviewer.person.full_name} has been added as a reviewer."
+msg = "#{@reviewer.person.full_name} has been added as a reviewer.  Click or search to add more."
 page["#new_reviewer_#{@reviewer.person_id}"].fade_out
 page["#review_#{@review.id} td.status"].html("#{@review.percent}%")
 page << render(:file => "reviews/show")
