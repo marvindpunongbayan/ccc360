@@ -1,7 +1,15 @@
     <div class="right sidebar">
       <div class="module">
-        <h3><span>My Stuff</span></h3>
-        <ul>
+        <h3><span>My Review Sumary</span></h3>
+        <ul class="lesspad">
+          <li>10/2/2010: Executive Director's Review</li>
+          <li>10/2/2010: Executive Director's Review</li>
+        </ul>
+      </div>
+      
+      <div class="module">
+        <h3><span>My Development</span></h3>
+        <ul class="lesspad">
           <%- for q in @question_sheets -%>
           <li><%= link_to(q.label, edit_personal_form_url(q, :person_id => (person.id unless person == current_person), :q => true)) %></li>
           <%- end -%>
@@ -11,13 +19,13 @@
       <div class="module">
         <h3>
           <span>MPD</span>
-          <span class="controls"><a href="show/hide">Show / Hide</a></span>
+          <span class="controls"></span>
         </h3>
         <table class="stafflist">
           <tbody id="_list">
             <tr>
               <td class="icon"><%= image_tag('icons/chart.png') %></td>
-              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="name"><%= link_to("Previous Month's Support") %></td>
               <td class="goal">$4000.00</td>
             </tr>
             <tr>

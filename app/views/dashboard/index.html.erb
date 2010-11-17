@@ -1,7 +1,7 @@
 <div class="pagepad">
   <div id="breadcrumb">
     <ul>
-      <li><a href="">Dashboard</a></li>
+      <li><a href="">Home</a></li>
     </ul>
   </div>  
   
@@ -13,13 +13,19 @@
     <div class="left">
       <div id="tabs">
         <ul class="tabs">
-          <li><%= link_to("People to Review", '#toreview') %></li>
-          <li><%= link_to("Past Reviews", '#pastreview') %></li>
+          <li><%= link_to("Requests to fill out Review", '#toreview') %></li>
+          <li><%= link_to("Completed Review Requests", '#pastreview') %></li>
         </ul>
     
         <div class="tabcontent" id="toreview">
           <%- unless @team_reviewings.empty? %>
-          <h2 class="border">My Team</h2>
+            <div class="action_title">
+              Below are requests for reviews that you need to complete. Click on the Review Title to complete the review.
+            </div>
+          <%- end -%>
+          
+          
+          <%- unless @team_reviewings.empty? %>
           <%= render "reviewings_table", :reviewings => @team_reviewings, :readonly => false %>
           <%- end -%>
 
@@ -49,7 +55,7 @@
 
           <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
             <div class="action_title">
-              You don't have any past reviews.
+              You don't have any Completed Review Requests reviews.
             </div>
           <%- end -%>
         </div>

@@ -1,3 +1,10 @@
-<h2><%= @review.subject.full_name %> <%= @review.name %> - by <%= @reviewer.person.full_name %></h2>
+<style>
+  body {background: #efefef;}
+</style>
 
-<%= render :template => 'answer_sheets/edit' %>
+<div id="padwrap">
+  <h2><%= @review.subject.full_name %> <%= @review.name %><div class="reviewername">by <%= @reviewer.person.full_name %></div></h2>
+  
+  <%= render :template => 'answer_sheets/edit' %>
+  <div class="clear"></div>
+</div>
