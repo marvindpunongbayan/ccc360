@@ -60,7 +60,9 @@ class ReviewsController < AnswerSheetsController
 
   def create
     new_review_params = session[:new_review].merge(params[:review])
+
     @review = Review.new new_review_params
+    @review.due = Date.strptime(new_review_params["due"], (I18n.t 'date.formats.default'))
     if @review.save
       session[:add_dialog] = @review.id
       render :update do |page|

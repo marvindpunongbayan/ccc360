@@ -2,6 +2,7 @@
   <div class="pagewidth">
     <ul id="menu">
       <li><%= link_to_menu "Home", dashboard_url %></li>
+      <li><%= link_to_menu "Start New Review", "" %></li>
       <%- if can_see_people? -%>
       <li><%= link_to_menu "People", people_url %></li>
       <%- end -%>
@@ -9,7 +10,7 @@
     </ul>
     <ul id="menuright">
       <%- if admin? -%>
-      <li><%= link_to_menu "Administrate Questionnaires", admin_question_sheets_url %></li>
+      <li><%= link_to_menu "Administer Review Templates", admin_question_sheets_url %></li>
       <%- end -%>
       <li><%= link_to("Logout", "/logout") %></li>
     </ul>

@@ -1,10 +1,28 @@
 <%= hidden_field_tag "step", "initiator" %>
-<%= render "describe_review_header" %> Please select who is requesting this review.  This person will administrate the review and can add and remove reviewers.</p>
-<div class="action_title"><%= link_to_function "I requested this review.", "new_review_select_choice('initiator_', #{current_person.id}); next_step();" %></div>
-<div class="action_title">Or, Search for a requester:</div>
-<div class="tablcontent" id="search">
-  <input type="text", id="initiator_search_name">
+  <p class="describe">
+  <%= render "describe_review_header" %> 
+  Please select the administrator of the review who can add and remove reviewers as well as view all the review results.
+  </p>
+  
+  
+<div class="action_title">
+  <input type="radio" name="whoreview" id="ireview">
+  <label for="ireview">
+    <%= link_to_function "USE PERSON's name HERE", "new_review_select_choice('initiator_', #{current_person.id}); next_step();" %>
+  </label>
 </div>
+
+<div class="action_title">
+  <input type="radio" name="whoreview" id="searchfor">
+  <label for="searchfor"> 
+    Or, Search for a requester:
+    <div id="search" style="display: inline;">
+      <input type="text", id="initiator_search_name">
+    </div>
+  </label>
+</div>
+
+
 
 <div class="action_title">Or, select someone from your team:</div>
 <div class="tablcontent" id="team"> 
