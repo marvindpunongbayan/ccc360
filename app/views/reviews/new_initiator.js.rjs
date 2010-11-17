@@ -1,3 +1,12 @@
 page["#new_review_dialog"].html(render("choose_initiator"))
+page << %|$("#ireview")[0].checked = true;|
 page["#dialog-message"].remove
 page << "setup_search_autocomplete('initiator')"
+page << %|new_review_select_choice("initiator_", #{current_person.id});|
+page << %|
+$("#initiator_search_name").keydown(function( ) {
+  $("#searchfor")[0].checked = true;
+  selected['initiator_id'] = null;
+});
+|
+
