@@ -1,4 +1,6 @@
     <div class="right sidebar">
+      <%- reminders_only ||= false %>
+      <%- unless reminders_only %>
       <div class="module">
         <h3><span>My Review Sumary</span></h3>
         <ul class="lesspad">
@@ -30,17 +32,18 @@
             </tr>
             <tr>
               <td class="icon"><%= image_tag('icons/chart.png') %></td>
-              <td class="name"><%= link_to('Account Balance') %></td>
-              <td class="goal">$500.26</td>
+              <td class="name"><%= link_to('Monthly Goal') %></td>
+              <td class="goal">$8512.11</td>
             </tr>
             <tr>
               <td class="icon"><%= image_tag('icons/chart.png') %></td>
-              <td class="name"><%= link_to('Monthly Goal') %></td>
-              <td class="goal">$8512.11</td>
+              <td class="name"><%= link_to('Account Balance') %></td>
+              <td class="goal">$500.26</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <%- end -%>
       
       <div class="module">
         <h3>

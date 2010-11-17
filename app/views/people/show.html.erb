@@ -38,7 +38,7 @@
               <td class="name"><%= review.subject.full_name %></td>
               <td class="reviewname"><%= review.name %></td>
               <td class="duedate"><%= l review.due %></td>
-              <td class="status">0</td>
+              <td class="status"><%= review.percent_complete %>%</td>
             </tr>
             <%- end -%>
           </tbody>

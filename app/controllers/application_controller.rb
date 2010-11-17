@@ -19,12 +19,13 @@ class ApplicationController < ActionController::Base
     @limit ||= 10
     if params[:name].present?
       term = '%' + params[:name] + '%'
-      conditions = ["firstName like ? OR lastName like ? OR preferredName like ? OR concat(firstname, ' ', lastname) like ? OR concat(preferredName, ' ', lastname) like ?", term, term, term, params[:name] + '%', params[:name] + '%']
+      conditions = ["firstName like ? OR lastName like ? OR preferredName like ? OR concat(firstName, ' ', lastName) like ? OR concat(preferredName, ' ', lastname) like ?", term, term, term, params[:name] + '%', params[:name] + '%']
       if @search_people_filter
         conditions[0] = "(#{conditions[0]}) AND (personID in (0, ?))"
         conditions << @search_people_filter
       end
-      @people = Person.where(conditions).includes(:user).limit(@limit)
+      order = "firstName ASC, lastName ASC"
+      @people = Person.where(conditions).includes(:user).limit(@limit).order(order)
       @total = Person.where(conditions).count
     else
       render :nothing => true

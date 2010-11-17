@@ -1,6 +1,6 @@
 module ApplicationHelper
   def link_to_menu(name, url, params = {})
-    selected = (name == "Dashboard" && controller_name == "dashboard") || 
+    selected = (name == "Home" && controller_name == "dashboard") || 
       (name == "People" && controller_name == "people") ||
       (name == "Administrate Questionnaires" && controller_name == "question_sheets") ||
       (name == "Administrate Reviews" && controller_name == "reviews" && action_name != "new")

@@ -7,7 +7,7 @@
     </ul>
   </div>  
   
-  <h1>Reviews Administrated by PERSON NAME</h1>
+  <h1>Reviews Administrated by <%= current_person.full_name %></h1>
   
   <div id="contextmenu">
     <ul class="left">
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <%= render "people/sidebar", :person => current_person %>
+    <%= render "people/sidebar", :person => current_person, :reminders_only => true %>
 
     <div class="clear"></div>
     <div id="new_reviewer_dialog" style="display:none" title="Add reviewers"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message"></span></div>
