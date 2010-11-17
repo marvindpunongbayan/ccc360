@@ -74,15 +74,24 @@ function new_review_dialog() {
 }
 
 var selected = [];
+var lastClickTime;
 //selected['qs_id'] = null;
 //selected['person_id'] = null;
 //selected['subject_id'] = null;
 function new_review_select_choice(prefix, qs_id) {
-	if (selected[prefix + "id"] != null) {
+	if (selected[prefix + "id"] == qs_id && (new Date() - lastClickTime < 1000)) {
+		// make clicking twice within 1 second go next
+		next_step();
+	} else if (selected[prefix + "id"] != null) {
 		$("#" + prefix + selected[prefix + "id"] + "_row a").removeClass('selected');
 	}
+	lastClickTime = new Date();
 	selected[prefix + "id"] = qs_id;
 	$("#" + prefix + selected[prefix + "id"] + "_row a").addClass('selected');
+
+	if ($("#step")[0].value == "initiator") {
+		$("#searchfor")[0].checked = true;
+	}
 }
 
 function setup_search_autocomplete(prefix, review_id) {

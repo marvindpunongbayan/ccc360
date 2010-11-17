@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
       session[:user_id] = @person.user.id 
       session[:impersonating] = true
     end
-    redirect_to dashboard_url
+    redirect_to home_url
   end
 
   def index

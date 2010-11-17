@@ -1,11 +1,11 @@
 <%= hidden_field_tag "step", "subject" %>
 <p class="describe">To start your review, select a team mate or search for someone to review.</p>
-<div class="action_title">Search for a reviewer:</div>
+<div class="action_title">Search for person to review:</div>
 <div class="tablcontent" id="search">
   <input type="text", id="subject_search_name">
 </div>
 
-<div class="action_title">Or, select someone from your team:</div>
+<div class="action_title">Or, select someone from your team according to infobase:</div>
 <div class="tablcontent" id="team"> 
   <%= render "choose_list_people", :prefix => "subject_", :people => current_person.team_members %>
 </div>

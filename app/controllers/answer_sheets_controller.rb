@@ -5,7 +5,7 @@ class AnswerSheetsController < ApplicationController
     @answer_sheet.submit!
     flash[:notice] = "Your review has been submitted and is now moved to past reviews."
     render :update do |page|
-      page.redirect_to dashboard_url
+      page.redirect_to home_url
     end
   end
 end

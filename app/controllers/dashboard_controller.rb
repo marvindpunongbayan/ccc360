@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
   def logout
     if session[:impersonating]
       session[:user_id] = session[:user_id2]
-      redirect_to dashboard_url
+      redirect_to home_url
     else
       logout_keeping_session!
       redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
