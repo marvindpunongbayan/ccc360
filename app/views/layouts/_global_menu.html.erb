@@ -2,7 +2,9 @@
   <div class="pagewidth">
     <ul id="menu">
       <li><%= link_to_menu "Home", home_url %></li>
+      <%- if can_start_new_reviews? -%>
       <li><%= ajax = (controller_name == "reviews" && params[:action] == "index"); link_to "Start New Review", ajax ? new_review_url : reviews_url(:start => true), :remote => ajax %></li>
+      <%- end -%>
       <%- if can_see_people? -%>
       <li><%= link_to_menu "People", people_url %></li>
       <%- end -%>

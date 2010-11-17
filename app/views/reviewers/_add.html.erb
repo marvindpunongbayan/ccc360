@@ -2,12 +2,12 @@
 
 <p id="new_reviewer_prompt"></p>
 
-<div class="search action_title">Search for a reviewer:</div>
+<div class="search action_title">Search for reviewer(s):</div>
 <div class="tablcontent" id="search">
   <input type="text" id="reviewer_search_name">
 </div>
 
-<div class="team action_title">Or, select someone from your team according to infobase:</div>
+<div class="team action_title">And/Or, select someone from your team according to infobase:</div>
 <div class="tablcontent" id="team">
   <%= render "reviewers/list_people", :people => current_person.team_members - @review.reviewings.collect(&:person) %>
 </div>
