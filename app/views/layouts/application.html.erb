@@ -16,9 +16,9 @@
   
   <%#= render :partial => 'layouts/ga' %>
 
-  <%- if @questionnaire -%>
+  <%- if @questionnaire && @answer_sheet_type -%>
     <script type="text/javascript" charset="utf-8">
-      var answer_sheet_type = 'Reviewer';
+      var answer_sheet_type = '<%= @answer_sheet_type %>';
     </script>
     <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
   <%- end -%>
@@ -30,9 +30,11 @@
 
 <div id="primary">
 
-  <%#= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
-
   <div class="pagewidth">
+    <% if !view_has_own_flash && flash[:error] -%>
+      <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
+    <% end -%>
+
     <%= yield %>
     <div class="clear"></div>
   </div>

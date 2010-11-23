@@ -36,6 +36,8 @@ class Review < ActiveRecord::Base
     end
     if percent == 100
       self.completed_at ||= Time.now
+    else
+      self.completed_at = nil
     end
     self.save!
   end

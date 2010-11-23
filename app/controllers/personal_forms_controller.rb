@@ -10,7 +10,8 @@ class PersonalFormsController < AnswerSheetsController
     else
       @questionnaire = true
       @personal_form = PersonalForm.find params[:id]
-      params[:answer_sheet_type] = 'PersonalForm'
+      @answer_sheet_type = 'PersonalForm'
+      params[:answer_sheet_type] = @answer_sheet_type
       get_answer_sheet
       super
     end

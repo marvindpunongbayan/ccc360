@@ -25,6 +25,9 @@ Ccc360::Application.routes.draw do
       collection do
         get :search
       end
+      member do
+        post :uncomplete
+      end
     end
   end
   match "home", :to => "dashboard#index"

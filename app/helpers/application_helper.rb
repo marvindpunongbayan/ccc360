@@ -47,4 +47,9 @@ module ApplicationHelper
     end
   end
 
+  def view_has_own_flash
+    return (params[:controller] == "people" && params[:action] == "index") || 
+      (params[:controller] == "dashboard" && params[:action] == "index") || 
+      (params[:controller] == "question_sheets")
+  end
 end

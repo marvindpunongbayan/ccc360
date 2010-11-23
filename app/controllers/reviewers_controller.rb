@@ -1,12 +1,11 @@
 class ReviewersController < AnswerSheetsController
   skip_before_filter :check_valid_user, :only => [ :edit_from_code ]
   before_filter :get_review, :except => [ :edit_from_code ]
-  before_filter :get_reviewer, :only => [ :edit, :show, :destroy ]
+  before_filter :get_reviewer, :only => [ :edit, :show, :destroy, :uncomplete ]
   prepend_before_filter :set_answer_sheet_type
   before_filter :base_url, :only => [ :create ]
 
   def submit
-    debugger
   end
 
   def destroy
@@ -27,6 +26,13 @@ class ReviewersController < AnswerSheetsController
     @review.update_percent_and_completed
   end
 
+  def uncomplete
+    @reviewer.submitted_at = nil
+    @reviewer.save!
+    @review.update_percent_and_completed
+    redirect_to home_url
+  end
+
   def search
     @limit = 50
     super
@@ -34,6 +40,8 @@ class ReviewersController < AnswerSheetsController
   end
 
   def edit
+    @answer_sheet_type = 'Reviewer'
+    params[:answer_sheet_type] = @answer_sheet_type
     super
     @questionnaire = true
   end

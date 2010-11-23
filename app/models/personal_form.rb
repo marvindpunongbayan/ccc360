@@ -7,4 +7,7 @@ class PersonalForm < AnswerSheet
   def question_sheets
     [ question_sheet ]
   end
+
+  def submit!
+  end
 end

@@ -3,7 +3,12 @@ class AnswerSheetsController < ApplicationController
   def submit
     return false unless validate_sheet
     @answer_sheet.submit!
-    flash[:notice] = "Your review has been submitted and is now moved to past reviews."
+    case params[:answer_sheet_type]
+    when "PersonalForm"
+      flash[:notice] = "Your answers have been saved."
+    when "Reviewer"
+      flash[:notice] = "Your review has been submitted and is now moved to past reviews."
+    end
     render :update do |page|
       page.redirect_to home_url
     end
