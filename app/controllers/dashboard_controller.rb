@@ -30,6 +30,7 @@ class DashboardController < ApplicationController
   def logout
     if session[:impersonating]
       session[:user_id] = session[:user_id2]
+      session[:impersonating] = false
       redirect_to home_url
     else
       logout_keeping_session!
