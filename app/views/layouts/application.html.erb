@@ -6,6 +6,15 @@
                              'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js' %>
   <%= javascript_include_tag 'rails', 'rails.extra', 'admin/projects', 'admin/admin', 'admin/users' %>
   
+  <%- if @questionnaire -%>
+    <%- if @answer_sheet_type -%> 
+    <script type="text/javascript" charset="utf-8">
+      var answer_sheet_type = '<%= @answer_sheet_type %>';
+    </script>
+    <%- end -%>
+    <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
+  <%- end -%>
+
   <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom' %>
   <%#= questionnaire_engine_includes %>
   <%= stylesheet_link_tag 'admin', '360front' %>
@@ -15,15 +24,6 @@
   <%= csrf_meta_tag %>
   
   <%#= render :partial => 'layouts/ga' %>
-
-  <%- if @questionnaire -%>
-    <%- if @answer_sheet_type -%> 
-    <script type="text/javascript" charset="utf-8">
-      var answer_sheet_type = '<%= @answer_sheet_type %>';
-    </script>
-    <%- end -%>
-    <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
-  <%- end -%>
 
 </head>
 <body>

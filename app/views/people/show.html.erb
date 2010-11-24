@@ -2,7 +2,7 @@
 <div class="pagepad">
   <div id="breadcrumb">
     <ul>
-      <li><a href=""><%= link_to("People", "") %></li>
+      <li><a href=""><%= link_to("People", people_path) %></li>
       <li><a href=""><%= @person.full_name %></a></li>
     </ul>
   </div>  
@@ -12,7 +12,7 @@
     <%- if admin? -%>
       <div id="adminflag">
         <%= check_box_tag "admin", 'true', @person.admin?, "data-url" => person_url(@person.id), "data-confirm" => ("Are you sure you want to remove yourself from being an admin?  This can not be reversed.  A current admin would have to make you an admin to reinstate you." if @person == current_person) %>
-        <label for="admin">Admin Privileges</label>
+        <label for="admin">Super User Privileges</label>
       </div>
     <%- end -%>
   </h1>
@@ -34,11 +34,11 @@
           <tbody>
             <%- for review in @person.subjected_reviews -%>
             <tr>
-              <td class="gender"></td>
-              <td class="name"><%= review.subject.full_name %></td>
-              <td class="reviewname"><%= review.name %></td>
-              <td class="duedate"><%= l review.due %></td>
-              <td class="status"><%= review.percent %>%</td>
+              <td class="gender"><%= gender_icon(review.subject) %></td>
+              <td class="name"><%= person_link_if_authed(review.subject) %></td>
+              <td class="reviewname"><%= is_leading_person?(review.subject) ? link_to(review.name, review_url(review.id)) : review.name %></td>
+              <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></th>
+              <td class="status"><%= review.percent.to_i %>%</td>
             </tr>
             <%- end -%>
           </tbody>

@@ -8,11 +8,11 @@
       <%- if can_see_people? -%>
       <li><%= link_to_menu "People", people_url %></li>
       <%- end -%>
-      <li><%= link_to_menu "Administrate Reviews", reviews_url, :class => "my withicon" %></li>
+      <li><%= link_to_menu "Administer Review(s)", reviews_url, :class => "my withicon" %></li>
     </ul>
     <ul id="menuright">
       <%- if admin? -%>
-      <li><%= link_to_menu "Administer Review Templates", admin_question_sheets_url %></li>
+      <li><%= link_to_menu "Administer Review Forms", admin_question_sheets_url %></li>
       <%- end -%>
       <li><%= link_to("Logout", "/logout") %></li>
     </ul>

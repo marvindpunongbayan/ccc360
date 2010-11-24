@@ -1133,3 +1133,5 @@ span.reviewername.female { background-image: url("/images/icons/user-female.png"
   text-decoration: underline;
   cursor: pointer;
 }
+.questions textarea.text { width: 685px; }
+.questions input.text { width: 680px; }

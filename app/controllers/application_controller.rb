@@ -125,13 +125,18 @@ class ApplicationController < ActionController::Base
     end
     helper_method :can_see_people?
 
-    def can_see_person?(p)
-      return true if p == current_person
+    def is_leading_person?(p)
       return true if admin?
       return false unless can_see_people?
       leading_team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
       person_member = p.ministry_missional_team_members.collect &:teamID
       (leading_team_ids & person_member).length > 0
+    end
+    helper_method :is_leading_person?
+
+    def can_see_person?(p)
+      return true if p == current_person
+      return is_leading_person?(p)
     end
     helper_method :can_see_person?
 
