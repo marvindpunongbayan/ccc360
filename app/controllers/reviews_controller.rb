@@ -55,7 +55,11 @@ class ReviewsController < AnswerSheetsController
   end
 
   def show
-    @review = Review.find params[:id]
+    unless request.xhr?
+      redirect_to collate_review_path(params[:id])
+    else
+      @review = Review.find params[:id]
+    end
   end
 
   def create

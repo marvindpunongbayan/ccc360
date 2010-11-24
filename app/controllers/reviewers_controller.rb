@@ -4,6 +4,7 @@ class ReviewersController < AnswerSheetsController
   before_filter :get_reviewer, :only => [ :edit, :show, :destroy, :uncomplete ]
   prepend_before_filter :set_answer_sheet_type
   before_filter :base_url, :only => [ :create ]
+  prepend_before_filter :setup_collate
 
   def submit
   end
@@ -65,6 +66,10 @@ class ReviewersController < AnswerSheetsController
   end
 
   def show
+    if params[:collate]
+      params[:collate_ids] = (@review.reviewings.collect(&:id) - [ @reviewer.id ]).join(',')
+    end
+    get_collated_answer_sheets
     super
     @questionnaire = true
   end
@@ -83,4 +88,18 @@ class ReviewersController < AnswerSheetsController
       params[:answer_sheet_type] = 'Reviewer'
     end
 
+    def setup_collate
+      if params[:collate]
+        get_review
+        unless @review.reviewings.present?
+          flash[:error] = "Sorry, there are no reviewers yet.  Try again after some reviewers are added."
+          if request.env["HTTP_REFERER"]
+            redirect_to :back
+          else
+            render :text => "", :layout => true
+          end
+        end
+        params[:id] = @review.reviewings.first.id
+      end
+    end
 end

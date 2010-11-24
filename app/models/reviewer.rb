@@ -39,4 +39,8 @@ class Reviewer < AnswerSheet
   def md5_class
     if defined?(MD5) then MD5 elsif defined?(Digest::MD5) then Digest::MD5 end
   end
+
+  def collat_title
+    person.full_name
+  end
 end

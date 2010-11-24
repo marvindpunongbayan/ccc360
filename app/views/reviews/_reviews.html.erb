@@ -23,7 +23,7 @@
     </td>
     <td class="gender"><%= gender_icon(review.subject) %></td>
     <td class="name"><%= person_link_if_authed(review.subject) %></td>
-    <td class="reviewname"><%= review.name %></td>
+    <td class="reviewname"><%= link_to(review.name, review_url(review.id)) %></td>
     <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></td>
     <td class="status"><%= review.percent.to_i %>%</td>
   </tr>

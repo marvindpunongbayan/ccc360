@@ -30,6 +30,8 @@ Ccc360::Application.routes.draw do
       end
     end
   end
+  #match "/reviews/:review_id/reviewers/:id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review_reviewer"
+  match "/reviews/:review_id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review"
   match "home", :to => "dashboard#index"
   match "home#new", :to => "reviews#new"
   match "admin", :to => "admin/question_sheets#index"
