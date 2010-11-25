@@ -2,7 +2,7 @@ class Review < ActiveRecord::Base
   belongs_to :subject, :class_name => "Person"
   belongs_to :initiator, :class_name => "Person"
   belongs_to :question_sheet
-  has_many :reviewings, :class_name => "Reviewer"
+  has_many :reviewings, :class_name => "Reviewer", :dependent => :destroy
   has_many :reviewers, :through => :reviewings, :class_name => "Person", :source => :person
   set_table_name "pr_reviews"
 
@@ -40,5 +40,13 @@ class Review < ActiveRecord::Base
       self.completed_at = nil
     end
     self.save!
+  end
+
+  def can_delete?(p)
+    return false unless p == self.initiator || p.admin?
+    for reviewing in reviewings
+      return false if reviewing.percent_complete.to_i != 0
+    end
+    return true
   end
 end

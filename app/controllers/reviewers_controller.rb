@@ -2,6 +2,7 @@ class ReviewersController < AnswerSheetsController
   skip_before_filter :check_valid_user, :only => [ :edit_from_code ]
   before_filter :get_review, :except => [ :edit_from_code ]
   before_filter :get_reviewer, :only => [ :edit, :show, :destroy, :uncomplete ]
+  before_filter :check_permission, :only => [ :edit, :show ]
   prepend_before_filter :set_answer_sheet_type
   before_filter :base_url, :only => [ :create ]
   prepend_before_filter :setup_collate
@@ -101,5 +102,24 @@ class ReviewersController < AnswerSheetsController
         end
         params[:id] = @review.reviewings.first.id
       end
+    end
+
+    def check_permission
+      unless has_permission
+        flash[:error] = "Sorry, you don't have permission to view this review."
+        if request.env["HTTP_REFERER"]
+          redirect_to :back
+        else
+          render :text => "", :layout => true
+        end
+      end
+    end
+
+    def has_permission
+      return true if @reviewer.person == current_person && params[:collate] != true
+      return false if @review.subject == current_person
+      return true if @review.initiator == current_person
+      return true if is_leading_person?(@review.subject)
+      return admin?
     end
 end

@@ -111,7 +111,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
-      Admin.find_by_person_id(current_person.id).present?
+      current_person.admin?
     end
     helper_method :admin?
 

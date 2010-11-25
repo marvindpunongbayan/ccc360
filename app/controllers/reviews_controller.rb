@@ -79,6 +79,16 @@ class ReviewsController < AnswerSheetsController
     end
   end
 
+  def destroy
+    @review = Review.find params[:id]
+    if @review.can_delete?(current_person)
+      @review.destroy
+      render :update do |page|
+        page["#review_#{@review.id}"].fadeOut;
+      end
+    end
+  end
+
   def remind_reviewers
     @review = Review.find params[:id]
     # send email out again

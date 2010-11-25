@@ -4,8 +4,10 @@
       <div class="module">
         <h3><span>My Review Sumary</span></h3>
         <ul class="lesspad">
-          <li>10/2/2010: Executive Director's Review</li>
-          <li>10/2/2010: Executive Director's Review</li>
+          <%- for review in person.subjected_reviews[0,1] -%>
+            <%- name = "#{l(review.created_at.to_date)}: #{review.name}" -%>
+            <li><%= is_leading_person?(person) && person != current_person ? link_to(name, review_url(review.id)) : name %></li>
+          <%- end -%>
         </ul>
       </div>
       
