@@ -40,6 +40,10 @@ h2.border {
   border-bottom: 3px solid @dark-blue;
 }
 
+#preview .page h3 {
+  display: none;
+}
+
 /* Global */
 #global {
   background: @white;
@@ -97,6 +101,7 @@ h2.border {
     border:1px solid @dark-gray; 
     border-top: 4px solid @dark-blue;
     min-height: 270px;
+    padding: 10px;
   }
 }
   
@@ -598,6 +603,7 @@ a.close {text-indent: 0px; width: auto;}
   padding: 3px 6px 3px 2px;
   position: relative;
   vertical-align: middle;
+  width: 145px;
   label {
     display: inline;
     float: right;
@@ -1261,4 +1267,14 @@ span.reviewername.female {
 
 .questions input.text {
   width: 680px;
+}
+
+.q div {
+	input[type=radio] {
+	  float: left;
+	  margin: 7px;
+	}
+	label.choice {
+	  margin-left: 25px;
+	}
 }
