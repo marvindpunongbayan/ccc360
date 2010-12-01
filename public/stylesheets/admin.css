@@ -1129,7 +1129,12 @@ span.reviewername.female { background-image: url("/images/icons/user-female.png"
 .questions textarea.text { width: 685px; }
 .questions input.text { width: 680px; }
 .q div input[type=radio] {
-  float: left;
+  position: absolute;
   margin: 7px;
 }
 .q div label.choice { margin-left: 25px; }
+ul#list-elements li {
+  float: left;
+  margin-bottom: 4px;
+}
+.list-elements li a { margin-bottom: 0px; }
