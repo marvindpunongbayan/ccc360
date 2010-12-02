@@ -44,6 +44,7 @@ class Review < ActiveRecord::Base
 
   def can_delete?(p)
     return false unless p == self.initiator || p.admin?
+    return true if p.admin?
     for reviewing in reviewings
       return false if reviewing.percent_complete.to_i != 0
     end

@@ -6,6 +6,7 @@ class ReviewersController < AnswerSheetsController
   prepend_before_filter :set_answer_sheet_type
   before_filter :base_url, :only => [ :create ]
   prepend_before_filter :setup_collate
+  layout :set_layout
 
   def submit
   end

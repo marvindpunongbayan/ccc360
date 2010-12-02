@@ -1,5 +1,6 @@
 class ReviewsController < AnswerSheetsController
   prepend_before_filter :set_answer_sheet_type
+  layout :set_layout
 
   def index
     reviews = current_person.initiated_reviews(:include => :reviewings)
@@ -66,7 +67,10 @@ class ReviewsController < AnswerSheetsController
     new_review_params = session[:new_review].merge(params[:review])
 
     @review = Review.new new_review_params
-    @review.due = Date.strptime(new_review_params["due"], (I18n.t 'date.formats.default'))
+    @review.due = begin Date.strptime(new_review_params["due"], (I18n.t 'date.formats.default'))
+                  rescue
+                    nil
+                  end
     if @review.save
       session[:add_dialog] = @review.id
       render :update do |page|
@@ -83,9 +87,6 @@ class ReviewsController < AnswerSheetsController
     @review = Review.find params[:id]
     if @review.can_delete?(current_person)
       @review.destroy
-      render :update do |page|
-        page["#review_#{@review.id}"].fadeOut;
-      end
     end
   end
 

@@ -2,6 +2,7 @@ class PersonalFormsController < AnswerSheetsController
   before_filter :get_person
   before_filter :has_permission
   skip_before_filter :get_answer_sheet, :only => [ :edit ]
+  layout :set_layout
 
   def edit
     if params[:q] == 'true' 

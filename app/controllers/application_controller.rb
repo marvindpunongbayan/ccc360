@@ -34,6 +34,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def set_layout
+      if params["view"] == "print"
+        "print"
+      else
+        "application"
+      end
+    end
+
     def check_valid_user
       if CASClient::Frameworks::Rails::Filter.filter(self) && AuthenticationFilter.filter(self)
         unless pr_user# && pr_user.can_edit_questionnaire?
