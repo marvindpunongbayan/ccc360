@@ -99,6 +99,7 @@ class ReviewersController < AnswerSheetsController
           else
             render :text => "", :layout => true
           end
+          return
         end
         params[:id] = @review.reviewings.first.id
       end

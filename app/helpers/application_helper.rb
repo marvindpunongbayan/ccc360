@@ -52,4 +52,12 @@ module ApplicationHelper
       (params[:controller] == "dashboard" && params[:action] == "index") || 
       (params[:controller] == "question_sheets")
   end
+
+  def print_url(params)
+    if request.url =~ /\?/
+      request.url + params
+    else
+      request.url + "?" + params
+    end
+  end
 end

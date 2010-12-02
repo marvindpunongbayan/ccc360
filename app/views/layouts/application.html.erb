@@ -12,7 +12,11 @@
       var answer_sheet_type = '<%= @answer_sheet_type %>';
     </script>
     <%- end -%>
-    <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
+    <%- unless params[:view] == 'print' %>
+      <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
+    <%- else -%>
+      <%= stylesheet_link_tag('qe_print.css') %>
+    <%- end %>
   <%- end -%>
 
   <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom' %>

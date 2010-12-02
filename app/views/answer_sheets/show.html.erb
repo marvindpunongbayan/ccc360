@@ -1,5 +1,7 @@
 <div id="controls">
-  <a class="print_button" href="#" onclick="; return false;">Print Application</a>
+  <%- unless params[:view] == "print" -%>
+  <%= link_to "Print", print_url("&view=print"), :target => "_blank", :class => "print_button" %>
+  <%- end -%>
   <div id="panel">
     <div class="panel">
       &nbsp;
