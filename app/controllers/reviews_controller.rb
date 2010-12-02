@@ -101,10 +101,10 @@ class ReviewsController < AnswerSheetsController
       end
     end
     if msgs.present?
-      @title = "Email Reminder Sent"
-      @msg = "An email reminder has been sent out to: #{msgs.join(', ')}"
+      @title = "Email Reminder"
+      @msg = "<strong>An email reminder has been sent out to:</strong><br/> #{msgs.join('<br/>')}"
     else
-      @title = "Email Reminder Error"
+      @title = "Email Reminder"
       @msg = "Please select at least one reviewer."
     end
   end
