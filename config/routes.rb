@@ -30,11 +30,13 @@ Ccc360::Application.routes.draw do
       end
     end
   end
+  resources :question_sheet_pr_infos
   #match "/reviews/:review_id/reviewers/:id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review_reviewer"
   match "/reviews/:review_id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review"
   match "home", :to => "dashboard#index"
   match "home#new", :to => "reviews#new"
   match "admin", :to => "admin/question_sheets#index"
+  #match "/admin/question_sheets/:id/change_form_type", :to => "admin/question_sheets#change_form_type"
   match "/review_codes/:code", :to => "reviewers#edit_from_code"
   match "/logout", :to => "dashboard#logout"
 

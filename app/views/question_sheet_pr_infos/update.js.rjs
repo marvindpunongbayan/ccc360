@@ -1,0 +1,5 @@
+if @question_sheet_pr_info.errors.present?
+  page << render(:file => "question_sheet_pr_infos/edit.js.rjs")
+else
+  page.reload
+end

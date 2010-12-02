@@ -894,7 +894,7 @@ tr.expanded.review_title td {
   border-bottom: none;
 }
 tr.expanded.review_title td.expand { border-left: 2px solid #cccccc; }
-tr.expanded.review_title td.status { border-right: 2px solid #cccccc; }
+tr.expanded.review_title td.deletereview { border-right: 2px solid #cccccc; }
 a.inlinemail {
   background: url("/images/icons/mail.png") no-repeat scroll 0 50% transparent;
   display: inline-block;

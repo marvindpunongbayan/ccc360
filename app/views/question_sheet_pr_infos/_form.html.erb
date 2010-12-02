@@ -1,0 +1,19 @@
+<%- if @question_sheet_pr_info.errors.any? %>
+<div class="errors">
+<% @question_sheet_pr_info.errors.full_messages.each do |msg| %>
+    <div><%= msg %></div>
+<% end %>
+</div>
+<%- end -%>
+
+<div class="field">
+  <%= f.label(:form_type) do 'Form Type: ' end %>
+  <%= f.select(:form_type, [["Review Form", "review" ], [ "Personal Form", "personal" ], 
+               [ "Summary Form", "summary" ]]) %>
+</div>
+
+<div class="field">
+  <%= f.label(:summary_form_id) do 'Form Type: ' end %>
+  <%= f.collection_select(:summary_form_id, QuestionSheet.all_review_forms, name, id) %>
+</div>
+
