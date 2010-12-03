@@ -134,6 +134,11 @@ class ReviewsController < AnswerSheetsController
       return
     end
 
+    @review.due = begin Date.strptime(params[:review].delete("due"), (I18n.t 'date.formats.default'))
+                  rescue
+                    nil
+                  end
+
     if @review.update_attributes(params[:review])
       render :update do |page|
         page.redirect_to reviews_url
