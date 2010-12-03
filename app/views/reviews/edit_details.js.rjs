@@ -1,0 +1,4 @@
+page["#new_review_dialog"].html("")
+page << "edit_review_dialog();"
+page["#edit_review_dialog"].html(render("choose_details"))
+page << "setUpCalendars()"

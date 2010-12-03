@@ -24,7 +24,7 @@ Fields with the <%= image_tag('required.png') %> are required.
   <%= f.label(:due) do
    'Due Date: '
   end %>
-  <%= calendar_date_select_tag "review[due]", "" %>
+  <%= calendar_date_select_tag "review[due]", @review.due %>
   <div id="date-picker"></div>
 </div>
 

@@ -4,10 +4,15 @@ class Review < ActiveRecord::Base
   belongs_to :question_sheet
   has_many :reviewings, :class_name => "Reviewer", :dependent => :destroy
   has_many :reviewers, :through => :reviewings, :class_name => "Person", :source => :person
+  has_one :summary_form
   set_table_name "pr_reviews"
 
   validates_presence_of :name
   validates_presence_of :due
+
+  def has_summary_form
+    question_sheet.summary_form.present?
+  end
 
   def name
     self[:name].present? ? self[:name] : question_sheet.label
@@ -49,5 +54,30 @@ class Review < ActiveRecord::Base
       return false if reviewing.percent_complete.to_i != 0
     end
     return true
+  end
+
+  def find_or_create_summary_form
+    return summary_form || SummaryForm.create!(:person_id => self.subject_id, :review_id => self.id)
+  end
+
+  def send_day_reminder(template, days_ago)
+    if Date.today - due == days_ago
+      for reviewing in reviewings
+        unless reviewing.submitted_at
+          InvitesMailer.reviewer_invite(reviewing, template).deliver
+        end
+      end
+    end
+  end
+
+  def send_day_reminders
+    send_day_reminder("7 Days Before", 7)
+    send_day_reminder("Due Date Today", 0)
+  end
+
+  def self.send_all_reminders
+    Review.where(:completed_at => nil).each do |review|
+      review.send_day_reminders
+    end
   end
 end

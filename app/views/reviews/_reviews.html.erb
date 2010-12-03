@@ -5,6 +5,7 @@
     <th class="gender"></th>
     <th class="name">Name</th>
     <th class="reviewname">Review Name</th>
+    <th class="summary">Summary</th>
     <th class="accdate">Due Date</th>
     <th class="status">Status</th>
     <th class="delete"></th>
@@ -16,7 +17,7 @@
     <%= render "review_tds", :review => review %>
   </tr>
   <tr id="review_<%=review.id%>_reviewers" class="reviewer_content reviewer_content_hide">
-    <td colspan="7" class="rowwrap">
+    <td colspan="8" class="rowwrap">
     </td>
   </tr>
   <%- end -%>

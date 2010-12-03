@@ -24,7 +24,7 @@ class ReviewersController < AnswerSheetsController
     unless @reviewer = @review.reviewings.where(params[:reviewer]).limit(1).first
       @reviewer = @review.reviewings.new params[:reviewer]
       @reviewer.save
-      InvitesMailer.reviewer_invite(@reviewer).deliver
+      InvitesMailer.reviewer_invite(@reviewer, "Reviewer Invite").deliver
     end
     @review.update_percent_and_completed
   end
@@ -94,12 +94,7 @@ class ReviewersController < AnswerSheetsController
       if params[:collate]
         get_review
         unless @review.reviewings.present?
-          flash[:error] = "Sorry, there are no reviewers yet.  Try again after some reviewers are added."
-          if request.env["HTTP_REFERER"]
-            redirect_to :back
-          else
-            render :text => "", :layout => true
-          end
+          error_and_try_back("Sorry, there are no reviewers yet.  Try again after some reviewers are added.")
           return
         end
         params[:id] = @review.reviewings.first.id
@@ -108,12 +103,7 @@ class ReviewersController < AnswerSheetsController
 
     def check_permission
       unless has_permission
-        flash[:error] = "Sorry, you don't have permission to view this review."
-        if request.env["HTTP_REFERER"]
-          redirect_to :back
-        else
-          render :text => "", :layout => true
-        end
+        error_and_try_back("Sorry, you don't have permission to view this review.")
       end
     end
 

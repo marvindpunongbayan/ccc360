@@ -156,4 +156,13 @@ class ApplicationController < ActionController::Base
     def no_permission
       render :text => "no permission"
     end
+
+    def error_and_try_back(s)
+      flash[:error] = s
+      if request.env["HTTP_REFERER"]
+        redirect_to :back
+      else
+        render :text => "", :layout => true
+      end
+    end
 end

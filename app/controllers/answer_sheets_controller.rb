@@ -8,11 +8,16 @@ class AnswerSheetsController < ApplicationController
     case params[:answer_sheet_type]
     when "PersonalForm"
       flash[:notice] = "Your answers have been saved."
+      render :update do |page|
+        page.redirect_to home_url
+      end
     when "Reviewer"
       flash[:notice] = "Your review has been submitted and is now moved to past reviews."
-    end
-    render :update do |page|
-      page.redirect_to home_url
+      render :update do |page|
+        page.redirect_to home_url
+      end
+    when "SummaryForm"
+      render :text => ""
     end
   end
 end

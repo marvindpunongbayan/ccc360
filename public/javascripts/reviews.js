@@ -73,6 +73,25 @@ function new_review_dialog() {
         });
 }
 
+function edit_review_dialog() {
+        $("#edit_review_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:425,
+                modal: true,
+                buttons: {
+		/*
+                        Cancel: function() {
+                                $(this).dialog('close');
+                        },
+			*/
+                        Save: function() {
+                                $("form.edit_review").submit();
+			}
+		}
+        });
+}
+
 var selected = [];
 var lastClickTime;
 //selected['qs_id'] = null;

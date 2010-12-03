@@ -40,7 +40,7 @@
             <tr>
               <td class="icon"><%= image_tag('icons/chart.png') %></td>
               <td class="name"><%= link_to('Account Balance') %></td>
-              <td class="goal">$500.26</td>
+              <td class="goal"><%= number_to_currency current_person.staff.try(:account_balance) %></td>
             </tr>
           </tbody>
         </table>

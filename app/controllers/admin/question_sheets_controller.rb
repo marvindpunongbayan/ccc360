@@ -15,4 +15,13 @@ class Admin::QuestionSheetsController < ApplicationController
       @questionnaire = true
       @qe_admin = true
     end
+
+    def sort_question_sheets
+      @active_question_sheets.sort!{ |qs1, qs2| 
+        s1 = qs1.question_sheet_pr_info.form_type <=> qs2.question_sheet_pr_info.form_type
+        s2 = qs1.label <=> qs2.label
+        s1 != 0 ? s1 : s2
+      }
+    end
+
 end

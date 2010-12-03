@@ -884,6 +884,7 @@ table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.tab
 table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.invite_r span { background-image: url("/images/icons/mail.png"); }
 table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.remind_r span { background-image: url("/images/icons/mail.png"); }
 table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.add_r span { background-image: url("/images/icons/plus-button.png"); }
+table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.edit_details_r span { background-image: url("/images/icons/pencil.png"); }
 table.people td.last_row { border-bottom: none; }
 #dashboard table.people .gender { width: 7.5%; }
 div.list_of_reviewerswrap { padding: 0 4px; }

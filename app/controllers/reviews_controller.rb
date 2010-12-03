@@ -19,6 +19,11 @@ class ReviewsController < AnswerSheetsController
     set_personal_question_sheets
   end
 
+  def send_reminders
+    Review.send_all_reminders
+    render :text => %|Reminders sent.  See <A HREF="http://email.int.uscm.org/">http://email.int.uscm.org</A>|
+  end
+
   def search
     @limit = 50
     super
@@ -91,6 +96,7 @@ class ReviewsController < AnswerSheetsController
   end
 
   def remind_reviewers
+    base_url
     @review = Review.find params[:id]
     # send email out again
     msgs = []
@@ -98,7 +104,7 @@ class ReviewsController < AnswerSheetsController
       if v == "1"
         r = @review.reviewings.find id
         msgs << "#{r.person.full_name} (#{r.person.email})"
-        InvitesMailer.reviewer_invite(r).deliver
+        InvitesMailer.reviewer_invite(r, "Manual Reminder").deliver
       end
     end
     if msgs.present?
@@ -108,6 +114,36 @@ class ReviewsController < AnswerSheetsController
       @title = "Email Reminder"
       @msg = "Please select at least one reviewer."
     end
+  end
+
+  def edit_details
+    @review = Review.find params[:id]
+    unless @review.initiator == current_person || admin?
+      error_and_try_back("Sorry, you don't have permission to edit this review.")
+      return
+    end
+
+    @subject = @review.subject
+    @initiator = @review.initiator
+  end
+
+  def update
+    @review = Review.find params[:id]
+    unless @review.initiator == current_person || admin?
+      error_and_try_back("Sorry, you don't have permission to edit this review.")
+      return
+    end
+
+    if @review.update_attributes(params[:review])
+      render :update do |page|
+        page.redirect_to reviews_url
+      end
+    else
+      @subject = @review.subject
+      @initiator = @review.initiator
+      render :action => :edit_details
+    end
+
   end
 
   protected
