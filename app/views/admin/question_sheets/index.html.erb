@@ -51,3 +51,7 @@
 
 <div id="change_question_type_dialog" style="display:none">
 </div>
+
+<%- if current_user.developer? -%>
+<h1><%= link_to "Email Templates", admin_email_templates_path %></h1>
+<%- end -%>
