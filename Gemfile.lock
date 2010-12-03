@@ -43,6 +43,7 @@ GEM
     less (1.2.21)
       mutter (>= 0.4.2)
       treetop (>= 1.4.2)
+    liquid (2.2.2)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -89,6 +90,7 @@ DEPENDENCIES
   dalli
   factory_girl
   less
+  liquid
   mysql (= 2.8.1)
   paperclip
   rails (= 3.0.0)
