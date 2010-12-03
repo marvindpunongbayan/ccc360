@@ -69,10 +69,13 @@ class ReviewersController < AnswerSheetsController
 
   def show
     if params[:collate]
-      params[:collate_ids] = (@review.reviewings.collect(&:id) - [ @reviewer.id ]).join(',')
+      @collating = true
+      @collated_answer_sheets = { 
+        @answer_sheet => @review.reviewings,
+        @answer_sheet.review.summary_form => [ @answer_sheet.review.summary_form ]
+      }
     end
-    get_collated_answer_sheets
-    super
+    @answer_sheets = [ @answer_sheet, @answer_sheet.review.summary_form ].compact
     @questionnaire = true
   end
 

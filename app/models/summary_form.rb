@@ -12,4 +12,8 @@ class SummaryForm < AnswerSheet
 
   def submit!
   end
+
+  def collat_title
+    review.initiator
+  end
 end
