@@ -87,6 +87,9 @@ task :after_update_code, :roles => :app do
   begin
   # run "ln -s #{shared_path}/system/payment.yml #{release_path}/config/payment.yml"
   rescue; end;
+  begin
+  run "ln -s #{shared_path}/config/base_url.txt #{release_path}/config/base_url.txt"
+  rescue; end;
  # ln -s #{shared_path}/config/cache_money.rb #{release_path}/config/initializers/cache_money.rb
 
   # ln -s #{shared_path}/config/cmt_config.rb #{release_path}/config/initializers/cmt_config.rb &&
