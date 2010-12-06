@@ -1,6 +1,6 @@
 class CreateReminders < ActiveRecord::Migration
   def self.up
-    create_table :reminders do |t|
+    create_table :pr_reminders do |t|
       t.integer :person_id
       t.string :label
       t.string :note
