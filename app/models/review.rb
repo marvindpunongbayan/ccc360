@@ -9,6 +9,7 @@ class Review < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :due
+  validates_presence_of :show_summary_form_days
 
   def has_summary_form
     question_sheet.summary_form.present?
@@ -73,6 +74,10 @@ class Review < ActiveRecord::Base
   def send_day_reminders
     send_day_reminder("7 Days Before", 7)
     send_day_reminder("Due Date Today", 0)
+  end
+
+  def show_summary_form?
+    completed_at? && summary_form.present? && Date.today - due > show_summary_form_days
   end
 
   def self.send_all_reminders

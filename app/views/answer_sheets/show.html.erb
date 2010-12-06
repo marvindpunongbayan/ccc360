@@ -12,6 +12,7 @@
 
 <div id="preview" class="answer-page">
 
+<%- @answer_sheets ||= [ @answer_sheet ] %>
 <%- for @answer_sheet in @answer_sheets -%>
   <%- @elements = QuestionSet.new(@answer_sheet.question_sheet.elements, @answer_sheet).elements.group_by{ |e| e.pages.first } -%>
   <%= render :partial => 'answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>

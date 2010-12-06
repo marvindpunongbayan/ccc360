@@ -776,6 +776,7 @@ a.close {
   padding: 0;
 }
 #errorExplanation ul { margin: 0; }
+.field_with_errors { display: inline; }
 .field_with_errors input { border-color: #db4f4f; }
 .field_with_errors label { color: #db4f4f; }
 .dropdowncontents ul {
@@ -832,14 +833,16 @@ table.people .expand {
   padding-left: 8px;
 }
 table.people .gender { width: 5%; }
-table.people .name { width: 23%; }
-table.people .evaluate img { vertical-align: bottom; }
-table.people .reviewname { width: 35%; }
+table.people .name { width: 25%; }
+table.people .reviewname { width: 25%; }
+table.people .summary { width: 15%; }
 table.people .duedate .alert {
   background: #d10000;
   color: #ffffff;
   padding: 1px 2px;
 }
+table.people .accdate { width: 15%; }
+table.people .status { width: 14%; }
 table.people .status .red { color: #d10000; }
 table.people .status .yellow { color: #f7931e; }
 table.people .status .green { color: #006837; }

@@ -34,3 +34,13 @@ Fields with the <%= image_tag('required.png') %> are required.
   end %>
   <%= f.text_area :purpose, :rows => 4 %>
 </div>
+
+<div class="field required">
+  <%= f.label(:show_summary_form_days, :style => "display:inline") do
+   'Make summary form visible to the person being reivewed '
+  end %>
+  <%= f.text_field :show_summary_form_days, :rows => 4, :style => "width: 70px" %>
+  <%= f.label(:show_summary_form_days, :style => "display:inline; background: none; padding-left: 0px") do
+   'days after the due date.'
+  end %>
+</div>
