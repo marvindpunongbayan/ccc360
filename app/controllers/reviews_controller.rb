@@ -91,7 +91,8 @@ class ReviewsController < AnswerSheetsController
   def destroy
     @review = Review.find params[:id]
     if @review.can_delete?(current_person)
-      @review.destroy
+      @review.fake_deleted = true
+      @review.save!
     end
   end
 

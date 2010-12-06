@@ -5,6 +5,20 @@ class QuestionSheet < ActiveRecord::Base
   has_many :reviews
   has_many :personal_forms
 
+  default_scope where(:fake_deleted => false)
+
+  def self.fake_deleted
+    unscoped.where(:fake_deleted => true)
+  end
+
+  def undelete!
+    self.fake_deleted = false
+    self.save!
+    self.reviews.unscoped.where(:fake_deleted => true).each do |review|
+      review.undelete!
+    end
+  end
+
   after_save do |record|
     unless record.question_sheet_pr_info
       record.question_sheet_pr_info = QuestionSheetPrInfo.new :question_sheet_id => self.id

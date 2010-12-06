@@ -11,6 +11,17 @@ class Review < ActiveRecord::Base
   validates_presence_of :due
   validates_presence_of :show_summary_form_days
 
+  default_scope where(:fake_deleted => false)
+
+  def self.fake_deleted
+    unscoped.where(:fake_deleted => true)
+  end
+
+  def undelete!
+    self.fake_deleted = false
+    self.save!
+  end
+
   def has_summary_form
     question_sheet.summary_form.present?
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206165812) do
+ActiveRecord::Schema.define(:version => 20101206201354) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -900,8 +900,9 @@ ActiveRecord::Schema.define(:version => 20101206165812) do
   end
 
   create_table "pr_question_sheets", :force => true do |t|
-    t.string  "label",    :limit => 60,                    :null => false
-    t.boolean "archived",               :default => false
+    t.string  "label",        :limit => 60,                    :null => false
+    t.boolean "archived",                   :default => false
+    t.boolean "fake_deleted",               :default => false
   end
 
   create_table "pr_references", :force => true do |t|
@@ -955,6 +956,7 @@ ActiveRecord::Schema.define(:version => 20101206165812) do
     t.integer  "question_sheet_id"
     t.datetime "completed_at"
     t.integer  "show_summary_form_days", :default => 14
+    t.boolean  "fake_deleted",           :default => false
   end
 
   create_table "pr_sessions", :force => true do |t|

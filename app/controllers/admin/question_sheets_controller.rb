@@ -9,6 +9,23 @@ class Admin::QuestionSheetsController < ApplicationController
     @question_sheet.save!
   end
 
+  # mark sheet as destroyed
+  # DELETE /question_sheets/1
+  def destroy
+    debugger
+    @question_sheet.fake_deleted = true
+    @question_sheet.save!
+    @question_sheet.reviews.each do |review|
+      review.fake_deleted = true
+      review.save!
+    end
+
+    respond_to do |format|
+      format.html { redirect_to admin_question_sheets_path }
+      format.xml  { head :ok }
+    end
+  end
+
   protected
 
     def set_qe_flags
