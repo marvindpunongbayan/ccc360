@@ -13,7 +13,7 @@ If you could do this before {{ due_date }}, I would appreciate it.
 In His grace,
 {{ initiator_name }}|,
   :enabled => true,
-  :subject => "{{review_name}} for {{subject_name}}" } )
+  :subject => "{{review_name}} for {{subject_name}}" } ) unless EmailTemplate.find_by_name("Reviewer Invite")
 
 EmailTemplate.create!( {
   :name => "Manual Reminder", 
@@ -25,7 +25,7 @@ EmailTemplate.create!( {
 {{review_url}}
 {{due_date}}|,
   :enabled => true,
-  :subject => "manual reminder of {{review_name}} for {{subject_name}}" } )
+  :subject => "manual reminder of {{review_name}} for {{subject_name}}" } ) unless EmailTemplate.find_by_name("Manual Reminder")
 
 EmailTemplate.create!( {
   :name => "7 Days Before",
@@ -37,7 +37,7 @@ EmailTemplate.create!( {
 {{review_url}}
 {{due_date}}|,
   :enabled => true,
-  :subject => "7 day warning of {{review_name}} for {{subject_name}}" } )
+  :subject => "7 day warning of {{review_name}} for {{subject_name}}" } ) unless EmailTemplate.find_by_name("7 Days Before")
 
 EmailTemplate.create!( {
   :name => "Due Date Today",
@@ -49,4 +49,15 @@ EmailTemplate.create!( {
 {{review_url}}
 {{due_date}}|,
   :enabled => true,
-  :subject => "due today: {{review_name}} for {{subject_name}}" } )
+  :subject => "due today: {{review_name}} for {{subject_name}}" } ) unless EmailTemplate.find_by_name("Due Date Today")
+
+EmailTemplate.create!( {
+  :name => "Reminder Email",
+  :content => %|reminder email
+
+{{name}}
+{{label}}
+{{notes}}
+{{reminder_date}}|,
+  :enabled => true,
+  :subject => "Peer Review Tool Reminder: {{label}}" } ) unless EmailTemplate.find_by_name("Reminder Email")

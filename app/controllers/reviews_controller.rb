@@ -21,6 +21,7 @@ class ReviewsController < AnswerSheetsController
 
   def send_reminders
     Review.send_all_reminders
+    Reminder.send_all_emails
     render :text => %|Reminders sent.  See <A HREF="http://email.int.uscm.org/">http://email.int.uscm.org</A>|
   end
 

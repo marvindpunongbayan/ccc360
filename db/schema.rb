@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206201354) do
+ActiveRecord::Schema.define(:version => 20101206204954) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -931,6 +931,7 @@ ActiveRecord::Schema.define(:version => 20101206201354) do
     t.integer  "email_days_diff", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "email_sent_at"
   end
 
   create_table "pr_reviewers", :force => true do |t|
