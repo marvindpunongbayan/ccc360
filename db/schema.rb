@@ -921,6 +921,17 @@ ActiveRecord::Schema.define(:version => 20101206165812) do
     t.datetime "updated_at"
   end
 
+  create_table "pr_reminders", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "label"
+    t.string   "note"
+    t.date     "reminder_date"
+    t.boolean  "send_email",      :default => false
+    t.integer  "email_days_diff", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pr_reviewers", :force => true do |t|
     t.integer  "review_id"
     t.integer  "person_id"
@@ -978,17 +989,6 @@ ActiveRecord::Schema.define(:version => 20101206165812) do
   end
 
   add_index "profile_pictures", ["person_id"], :name => "index_profile_pictures_on_person_id"
-
-  create_table "reminders", :force => true do |t|
-    t.integer  "person_id"
-    t.string   "label"
-    t.string   "note"
-    t.date     "reminder_date"
-    t.boolean  "send_email",      :default => false
-    t.integer  "email_days_diff", :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "school_years", :force => true do |t|
     t.string   "name"

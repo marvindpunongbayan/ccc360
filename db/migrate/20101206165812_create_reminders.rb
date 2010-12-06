@@ -13,6 +13,6 @@ class CreateReminders < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :reminders
+    drop_table :pr_reminders
   end
 end
