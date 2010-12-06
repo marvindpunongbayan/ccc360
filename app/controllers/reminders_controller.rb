@@ -6,6 +6,10 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new params[:reminder]
     @reminder.person_id ||= current_person.id
+    @reminder.reminder_date = begin Date.strptime(params[:reminder]["reminder_date"], (I18n.t 'date.formats.default'))
+                              rescue
+                                nil
+                              end
     if @reminder.save
     else
       render :action => :new
@@ -19,7 +23,11 @@ class RemindersController < ApplicationController
 
   def update
     @reminder = Reminder.find params[:id]
-    @reminder.update_attributes params[:reminder]
+    @reminder.attributes = params[:reminder]
+    @reminder.reminder_date = begin Date.strptime(params[:reminder]["reminder_date"], (I18n.t 'date.formats.default'))
+                              rescue
+                                nil
+                              end
     if @reminder.save
     else
       render :action => :new
