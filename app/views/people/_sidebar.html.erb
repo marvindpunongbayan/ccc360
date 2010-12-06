@@ -52,19 +52,11 @@
       <div class="module">
         <h3>
           <span>Reminders</span>
-          <span class="controls"><%= link_to('Add', '#', :class => 'add edit-leader', 'data-name' => "Add a reminder", 'data-id' => "1", 'data-leader' => "2") %></span>
+          <span class="controls"><%= link_to_function('Add', 'new_reminder_dialog()', :class => 'add edit-leader', 'data-name' => "Add a reminder", 'data-id' => "1", 'data-leader' => "2") %></span>
         </h3>
-        <table class="stafflist">
-          <tbody id="_list">
-            <tr>
-              <td class="icon"><%= image_tag('icons/sticky-note-pin.png') %></td>
-              <td class="name"><%= link_to('Create a review for David') %></td>
-              <td class="date">12/20/2010</td>
-              <td class="delete"><div class="buttons"><a href="" class="inline delete delete-leader"></a></div></td>           
-            </tr>
-          </tbody>
-        </table>
+        <%= render "reminders/reminders_table", :person => person %>
       </div>
       
     </div>
     <div class="clear"></div>
+    <div id="reminders_dialog" style="display:none"></div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206153533) do
+ActiveRecord::Schema.define(:version => 20101206165812) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -978,6 +978,17 @@ ActiveRecord::Schema.define(:version => 20101206153533) do
   end
 
   add_index "profile_pictures", ["person_id"], :name => "index_profile_pictures_on_person_id"
+
+  create_table "reminders", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "label"
+    t.string   "note"
+    t.date     "reminder_date"
+    t.boolean  "send_email",      :default => false
+    t.integer  "email_days_diff", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "school_years", :force => true do |t|
     t.string   "name"

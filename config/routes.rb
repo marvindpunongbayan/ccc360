@@ -33,6 +33,7 @@ Ccc360::Application.routes.draw do
     end
   end
   resources :question_sheet_pr_infos
+  resources :reminders
   #match "/reviews/:review_id/reviewers/:id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review_reviewer"
   match "/reviews/:review_id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review"
   match "/reviews/:review_id/summary/edit", :to => "summary_forms#edit", :as => "edit_review_summary"

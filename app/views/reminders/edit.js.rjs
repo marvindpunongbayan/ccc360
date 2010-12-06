@@ -1,0 +1,2 @@
+page["#reminders_dialog"].html(render("edit"))
+page << "setUpCalendars()"
