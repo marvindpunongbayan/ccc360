@@ -35,7 +35,8 @@ Ccc360::Application.routes.draw do
   resources :question_sheet_pr_infos
   #match "/reviews/:review_id/reviewers/:id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review_reviewer"
   match "/reviews/:review_id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review"
-  match "/reviews/:review_id/summary", :to => "summary_forms#edit", :as => "review_summary"
+  match "/reviews/:review_id/summary/edit", :to => "summary_forms#edit", :as => "edit_review_summary"
+  match "/reviews/:review_id/summary", :to => "summary_forms#show", :as => "review_summary"
   match "home", :to => "dashboard#index"
   match "home#new", :to => "reviews#new"
   match "admin", :to => "admin/question_sheets#index"

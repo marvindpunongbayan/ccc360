@@ -72,8 +72,10 @@ class ReviewersController < AnswerSheetsController
       @collating = true
       @collated_answer_sheets = { 
         @answer_sheet => @review.reviewings,
-        @answer_sheet.review.summary_form => [ @answer_sheet.review.summary_form ]
       }
+      if @answer_sheet.review.summary_form && @answer_sheet.review.summary_form.question_sheets.present?
+        @collated_answer_sheets[@answer_sheet.review.summary_form] = [ @answer_sheet.review.summary_form ]
+      end
     end
     @answer_sheets = [ @answer_sheet, @answer_sheet.review.summary_form ].compact
     @questionnaire = true

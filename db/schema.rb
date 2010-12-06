@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203042855) do
+ActiveRecord::Schema.define(:version => 20101206153533) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -943,6 +943,7 @@ ActiveRecord::Schema.define(:version => 20101203042855) do
     t.string   "purpose"
     t.integer  "question_sheet_id"
     t.datetime "completed_at"
+    t.integer  "show_summary_form_days", :default => 14
   end
 
   create_table "pr_sessions", :force => true do |t|

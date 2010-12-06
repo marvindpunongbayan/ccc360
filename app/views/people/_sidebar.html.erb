@@ -5,8 +5,10 @@
         <h3><span>My Review Sumary</span></h3>
         <ul class="lesspad">
           <%- for review in person.subjected_reviews[0,1] -%>
-            <%- name = "#{l(review.created_at.to_date)}: #{review.name}" -%>
-            <li><%= is_leading_person?(person) && person != current_person ? link_to(name, review_url(review.id)) : name %></li>
+            <%- if review.show_summary_form? -%>
+              <%- name = "#{l(review.created_at.to_date)}: #{review.name}" -%>
+              <li><%= can_view_summary?(review.subject, review.summary_form) ? link_to(name, review_summary_url(review.id)) : name %></li>
+            <%- end -%>
           <%- end -%>
         </ul>
       </div>
