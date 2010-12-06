@@ -48,4 +48,6 @@ function edit_reminders_dialog(reminder_id) {
 	});
 }
 
-
+function update_send_email_defaults() {
+	$("#reminder_send_email")[0].checked = true;
+}

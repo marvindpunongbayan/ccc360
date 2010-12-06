@@ -29,6 +29,7 @@ Fields with the <%= image_tag('required.png') %> are required.
 <div class="field">
   <%= f.check_box(:send_email) %>
   <%= f.label(:email, :style => "display:inline") do 'Send a reminder email ' end %>
-  <%= f.text_field :email_days_diff, :rows => 4, :style => "width: 70px" %>
+  <%= f.text_field :email_days_diff, :rows => 4, :style => "width: 70px", :onClick => "update_send_email_defaults()", :onChange => "update_send_email_defaults()" %>
   <%= f.label(:email, :style => "display:inline") do 'day(s) before the reminder date.' end %>
+  <label style='padding-left: 25px'><i>Note: Set this to 0 to send the email the day of the reminder.</i></label>
 </div>
