@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  skip_before_filter :check_valid_user, :only => [ :logout ]
+
   def index
     reviewings = current_person.reviewings
     team_members = current_person.team_members
