@@ -3,6 +3,12 @@ require 'pp'
 
 class ExceptionNotifier
   class Notifier < ActionMailer::Base
+
+    Notifier.smtp_settings = {
+      :address        => "smtp1.ccci.org",
+      :domain         => "ccci.org"
+    }
+
     self.mailer_name = 'exception_notifier'
     self.append_view_path "#{File.dirname(__FILE__)}/views"
 
