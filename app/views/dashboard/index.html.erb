@@ -14,8 +14,8 @@
     <div class="left">
       <div id="tabs">
         <ul class="tabs">
-          <li><%= link_to("Requests to fill out Review", '#toreview') %></li>
-          <li><%= link_to("Completed Review Requests", '#pastreview') %></li>
+          <li><%= link_to("Reviews I need to fill out", '#toreview') %></li>
+          <li><%= link_to("Completed reviews", '#pastreview') %></li>
         </ul>
     
         <div class="tabcontent" id="toreview">
@@ -37,7 +37,7 @@
 
           <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
             <div class="action_title">
-              You have no people to review. 
+              You have no reviews to fill out.<BR/>
               You might want to <%- if can_start_new_reviews? -%><%= link_to "start a review", reviews_url(:start => true) %> or <%- end -%>look at some of <%= link_to "your reviews", reviews_url %>.  <%- unless can_start_new_reviews? -%><BR/>Note: You can't start any new reviews because you're not on a team.<%- end -%>
             </div>
           <%- end -%>
@@ -56,7 +56,7 @@
 
           <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
             <div class="action_title">
-              You don't have any Completed Review Requests reviews.
+              You don't have any completed reviews that you filled out.
             </div>
           <%- end -%>
         </div>
