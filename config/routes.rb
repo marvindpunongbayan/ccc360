@@ -44,6 +44,7 @@ Ccc360::Application.routes.draw do
   #match "/admin/question_sheets/:id/change_form_type", :to => "admin/question_sheets#change_form_type"
   match "/review_codes/:code", :to => "reviewers#edit_from_code"
   match "/logout", :to => "dashboard#logout"
+  match "/test_crash", :to => "dashboard#test_crash"
 
   root :to => "dashboard#index"
 

@@ -39,4 +39,8 @@ class DashboardController < ApplicationController
       redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
     end
   end
+
+  def test_crash
+    throw "CRASH"
+  end
 end
