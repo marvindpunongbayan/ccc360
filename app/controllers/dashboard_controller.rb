@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
       session[:impersonating] = false
       redirect_to home_url
     else
-      logout_keeping_session!
+      session.clear
       redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
     end
   end
