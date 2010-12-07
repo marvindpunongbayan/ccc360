@@ -53,6 +53,20 @@ function next_step() {
 	}
 }
 
+function previous_step() {
+	if ($("#step")[0].value == "form") {
+	} else if ($("#step")[0].value == "subject") {
+		$.ajax({ url: "/reviews/new", context: document.body, type: 'GET', });
+		selected['qs_id'] = null;
+	} else if ($("#step")[0].value == "initiator") {
+		$.ajax({ url: "/reviews/new_subject", context: document.body, type: 'GET', });
+		selected['subject_id'] = null;
+	} else if ($("#step")[0].value == "details") {
+		$.ajax({ url: "/reviews/new_initiator", context: document.body, type: 'GET', });
+		selected['initiator_id'] = null;
+	}
+}
+
 function new_review_dialog() {
 	$("#team").remove(); /* ajax search breaks without this */
         $("#new_review_dialog").dialog({
@@ -68,9 +82,14 @@ function new_review_dialog() {
 			*/
                         Next: function() {
 				next_step();
+			},
+                 	Back: function() {
+				previous_step();
 			}
 		}
         });
+	$("span:contains('Back')").parent().hide();
+	$("span:contains('Back')").parent().css("float", "left");
 }
 
 function edit_review_dialog() {
