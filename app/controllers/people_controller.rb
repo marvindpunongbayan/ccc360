@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
       @current_address.errors.add_to_base({ :email_exists => person_exists })
     end
 
-    if @person.errors.present? || @current_address.errors.present?
+    unless @person.valid? && @current_address.valid?
       render :new
     else
       @person.save!
