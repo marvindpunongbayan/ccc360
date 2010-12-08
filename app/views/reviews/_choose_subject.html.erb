@@ -7,7 +7,7 @@
 
 <div class="action_title">Or, select someone from your team according to infobase:</div>
 <div class="tablcontent" id="team"> 
-  <%= render "choose_list_people", :prefix => "subject_", :people => current_person.team_members %>
+  <%= render "choose_list_people", :prefix => "subject_", :people => current_person.all_team_members %>
 </div>
   
 
