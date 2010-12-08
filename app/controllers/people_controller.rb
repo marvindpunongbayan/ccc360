@@ -2,6 +2,47 @@ class PeopleController < ApplicationController
   before_filter :get_person, :only => [ :show, :update, :impersonate ]
   before_filter :has_permission, :only => [ :show, :edit ]
 
+  def new
+    @person = Person.new
+    names = params[:name].to_s.split(' ')
+    @person = Person.new(:firstName => names[0], :lastName => (names[1..-1] || []).join(' '))
+    @person.current_address = CurrentAddress.new
+    @review = Review.find params[:review_id]
+  end
+
+  def create
+    params[:person] ||= {}
+    params[:person][:current_address] ||= {}
+    @review = Review.find params[:review_id]
+    @current_address = CurrentAddress.new(params[:person].delete(:current_address).merge({:addressType => 'current'}))
+    @person = Person.new(params[:person])
+    @person.current_address = @current_address
+
+    [:firstName, :lastName].each do |c|
+      @person.errors.add_on_blank(c)
+    end
+
+    [:email].each do |c|
+      @current_address.errors.add_on_blank(c)
+    end
+
+    if @current_address.email.present? && person_exists = Address.find_by_email(@current_address.email).try(:person)
+      @current_address.errors.add_to_base({ :email_exists => person_exists })
+    end
+
+    if @person.errors.present? || @current_address.errors.present?
+      render :new
+    else
+      @person.save!
+      @current_address.save!
+      render(:update) do |page|
+        page << %|
+          $.ajax({ url: "#{review_reviewers_url(@review.id, "reviewer[person_id]" => @person.id, :close_person_dialog => true, :format => "js", :method => :post)}", type: "POST" });
+        |
+      end
+    end
+  end
+
   def impersonate
     if admin? && !session[:impersonating]
       session[:user_id2] = session[:user_id]

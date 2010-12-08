@@ -1,0 +1,2 @@
+page << "show_new_person_dialog();"
+page["#new_person_dialog"].html(render("new"))

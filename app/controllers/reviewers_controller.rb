@@ -1,5 +1,5 @@
 class ReviewersController < AnswerSheetsController
-  skip_before_filter :check_valid_user, :only => [ :edit_from_code ]
+  skip_before_filter :check_valid_user, :only => [ :edit_from_code, :edit ]
   before_filter :get_review, :except => [ :edit_from_code ]
   before_filter :get_reviewer, :only => [ :edit, :show, :destroy, :uncomplete ]
   before_filter :check_permission, :only => [ :edit, :show ]
@@ -39,10 +39,11 @@ class ReviewersController < AnswerSheetsController
   def search
     @limit = 50
     super
-    @people -= @review.reviewings.collect(&:person)
+    #@people -= @review.reviewings.collect(&:person)
   end
 
   def edit
+    check_valid_user unless session[:person_id].present?
     @answer_sheet_type = 'Reviewer'
     params[:answer_sheet_type] = @answer_sheet_type
     super
@@ -51,9 +52,16 @@ class ReviewersController < AnswerSheetsController
 
   def edit_from_code
     @reviewer = Reviewer.where(:access_key => params[:code]).first
+    # force people with users to log in
+    if !current_person.present? && @reviewer && @reviewer.person.user.present?
+      check_valid_user
+      return unless current_user.present?
+    end
+
     if @reviewer
       # log the person in
-      session[:user_id] = @reviewer.person.user.id
+      session[:person_id] = @reviewer.person.try(:id)
+      session[:user_id] = @reviewer.person.try(:user).try(:id)
 
       # redirect to filling out the form
       @review = @reviewer.review

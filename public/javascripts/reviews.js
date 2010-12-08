@@ -2,7 +2,7 @@ function show_reviewers_dialog() {
         $("#new_reviewer_dialog").dialog({
                 resizable: false,
                 width:600,
-                height:400,
+                height:425,
                 modal: true,
                 buttons: {
                         Done: function() {
@@ -141,3 +141,22 @@ function setup_search_autocomplete(prefix, review_id) {
 		}
         });
 };
+
+function show_new_person_dialog() {
+        $("#new_person_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:425,
+                modal: true,
+                buttons: {
+			"Create person and add them as a reviewer": function() {
+                                $("form.new_person").submit();
+                        },
+			Cancel: function() {
+                                $(this).dialog('close');
+                        }
+
+                }
+        });
+}
+

@@ -38,7 +38,9 @@
           <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
             <div class="action_title">
               You have no reviews to fill out.<BR/>
-              You might want to <%- if can_start_new_reviews? -%><%= link_to "start a review", reviews_url(:start => true) %> or <%- end -%>look at some of <%= link_to "your reviews", reviews_url %>.  <%- unless can_start_new_reviews? -%><BR/>Note: You can't start any new reviews because you're not on a team.<%- end -%>
+              <%- if can_start_new_reviews? %>
+              You might want to <%- if can_start_new_reviews? -%><%= link_to "start a review", reviews_url(:start => true) %> or <%- end -%>look at some of <%= link_to "your reviews", reviews_url %>.
+              <%- end -%>
             </div>
           <%- end -%>
         </div>
