@@ -24,7 +24,9 @@ span.answer {
 }
 
 label.desc {
-  font-weight: normal;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
 }
 
 .col1 {

@@ -81,6 +81,23 @@ h2.border {
     li a {
       background: none;
     }
+    li#help {
+      position: absolute;
+      margin: 98px 0px 0px 265px;
+      padding: 0;
+      a {
+        padding: 0;
+        margin: 0;
+        background: url("/images/help.png") no-repeat;
+        width: 32px;
+        height: 32px;
+        display: block;
+        text-indent: -10000px;
+      }
+      a:hover {
+        background-color: none;
+      }
+    }
   }
 }
 
@@ -1323,4 +1340,8 @@ span.reviewer_name {
   label.desc {
     margin-bottom: 0;
   }
+}
+
+span.answer {
+  word-wrap: break-word;
 }
