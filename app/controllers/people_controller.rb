@@ -13,8 +13,8 @@ class PeopleController < ApplicationController
 
   def index
     if team_leader?
-      team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
-      @leading_ministries = MinistryLocalLevel.find team_ids, :include => { :people => :subjected_reviews }
+      team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
+      @leading_ministries = Team.find team_ids, :include => { :people => :subjected_reviews }
       @leading_ministries_names = @leading_ministries.collect &:name
       @team_members = @leading_ministries.collect(&:people).flatten
     end

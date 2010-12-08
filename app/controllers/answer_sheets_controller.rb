@@ -17,7 +17,9 @@ class AnswerSheetsController < ApplicationController
         page.redirect_to home_url
       end
     when "SummaryForm"
-      render :text => ""
+      render :update do |page|
+        page.redirect_to reviews_url
+      end
     end
   end
 end

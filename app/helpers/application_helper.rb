@@ -53,8 +53,10 @@ module ApplicationHelper
       (params[:controller] == "question_sheets")
   end
 
-  def print_url(params)
-    if request.url =~ /\?/
+  def print_url(params = '')
+    if request.url =~ /(.*)\/edit/
+      $1 + "?view=print"
+    elsif request.url =~ /\?/
       request.url + params
     else
       request.url + "?" + params

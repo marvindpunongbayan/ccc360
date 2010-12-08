@@ -3,3 +3,8 @@
 <p>Purpose: <%= @review.purpose %></p>
 
 <%= render :template => 'answer_sheets/edit' %>
+<script>
+  $(document).ready(function() {
+    $("#controls").append("<%= escape_javascript(link_to("Print", print_url, :class => "print_button", :target => "_blank")) %>");
+  });
+</script>

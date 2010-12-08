@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     reviewings = current_person.reviewings
-    team_members = current_person.team_members
+    team_members = current_person.all_team_members
     @nonteam_reviewings = []
     @team_reviewings = []
     @past_nonteam_reviewings = []

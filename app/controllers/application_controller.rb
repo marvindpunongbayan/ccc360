@@ -124,7 +124,7 @@ class ApplicationController < ActionController::Base
     helper_method :admin?
 
     def team_leader?
-      admin? || current_person.ministry_missional_team_members.find_by_is_leader(true).present?
+      admin? || current_person.team_members.find_by_is_leader(true).present?
     end
     helper_method :team_leader?
 
@@ -136,8 +136,8 @@ class ApplicationController < ActionController::Base
     def is_leading_person?(p)
       return true if admin?
       return false unless can_see_people?
-      leading_team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
-      person_member = p.ministry_missional_team_members.collect &:teamID
+      leading_team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
+      person_member = p.team_members.collect &:teamID
       (leading_team_ids & person_member).length > 0
     end
     helper_method :is_leading_person?
@@ -149,7 +149,7 @@ class ApplicationController < ActionController::Base
     helper_method :can_see_person?
 
     def can_start_new_reviews?
-      admin? || current_person.ministry_missional_team_members.present?
+      admin? || current_person.team_members.present?
     end
     helper_method :can_start_new_reviews?
 
