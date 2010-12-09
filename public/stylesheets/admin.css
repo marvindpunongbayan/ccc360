@@ -1144,8 +1144,9 @@ span.reviewername.female { background-image: url("/images/icons/user-female.png"
   text-decoration: underline;
   cursor: pointer;
 }
-.questions textarea.text { width: 685px; }
-.questions input.text { width: 680px; }
+.questions textarea.text { width: 100%; }
+.questions input.text { width: auto; }
+table.grid { width: 100%; }
 .q div input[type=radio] {
   position: absolute;
   margin: 7px;
