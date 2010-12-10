@@ -2,6 +2,7 @@ class PersonalFormsController < AnswerSheetsController
   before_filter :get_person
   before_filter :has_permission
   skip_before_filter :get_answer_sheet, :only => [ :edit ]
+  prepend_before_filter :setup_show, :only => [ :show ]
   layout :set_layout
 
   def edit
@@ -32,5 +33,10 @@ class PersonalFormsController < AnswerSheetsController
       unless can_see_person?(@person)
         no_permission
       end
+    end
+
+    def setup_show
+      @answer_sheet_type = 'PersonalForm'
+      params[:answer_sheet_type] = @answer_sheet_type
     end
 end

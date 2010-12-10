@@ -15,10 +15,17 @@ Fields with the <%= image_tag('required.png') %> are required.
   <%= f.text_field(:label) %>
 </div>
 
-<div class="field required">
+<div class="field">
   <%= f.label(:reminder_date) do 'Reminder date: ' end %>
-  <%= calendar_date_select_tag "reminder[reminder_date]", @reminder.reminder_date %>
+  <%= calendar_date_select_tag "reminder[reminder_date]", @reminder.reminder_date, :id => "reminder_date" %>
   <div id="date-picker"></div>
+  <script>
+    function toggle_email() { $("#email_enclosing_div").toggle($("#reminder_date")[0].value != ""); }
+    $("#reminder_date").change(toggle_email);
+    $("#reminder_date").focus(toggle_email);
+    $("#reminder_date").blur(toggle_email);
+    $(document).ready(function() { toggle_email(); });
+  </script>
 </div>
 
 <div class="field">
@@ -26,7 +33,7 @@ Fields with the <%= image_tag('required.png') %> are required.
   <%= f.text_area(:note, :rows => 4) %>
 </div>
 
-<div class="field">
+<div class="field" id="email_enclosing_div" style="display:none">
   <%= f.check_box(:send_email) %>
   <%= f.label(:email, :style => "display:inline") do 'Send a reminder email ' end %>
   <%= f.text_field :email_days_diff, :rows => 4, :style => "width: 70px", :onClick => "update_send_email_defaults()", :onChange => "update_send_email_defaults()" %>

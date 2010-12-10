@@ -1,6 +1,6 @@
 class Reminder < ActiveRecord::Base
   set_table_name "pr_reminders"
-  validates_presence_of :label, :reminder_date
+  validates_presence_of :label
   belongs_to :person
 
   def self.send_all_emails

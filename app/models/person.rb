@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   has_many :participating_reviews, :class_name => "Review", :through => :reviewings, :source => :review
   has_one :admin
   has_many :personal_forms
-  has_many :reminders
+  has_many :reminders, :order => "COALESCE(reminder_date, 'ZZZ') ASC" # nulls go at the end
 
   def admin?
     admin.present?

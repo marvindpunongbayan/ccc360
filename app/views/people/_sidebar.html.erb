@@ -53,8 +53,8 @@
       
       <div class="module">
         <h3>
-          <span>Reminders</span>
-          <span class="controls"><%= link_to_function('Add', 'new_reminder_dialog()', :class => 'add edit-leader', 'data-name' => "Add a reminder", 'data-id' => "1", 'data-leader' => "2") %></span>
+          <span>Reminders/Notes</span>
+          <span class="controls"><%= link_to_function('Add', 'new_reminder_dialog()', :class => 'add edit-leader', 'data-name' => "Add a reminder/note", 'data-id' => "1", 'data-leader' => "2") %></span>
         </h3>
         <%= render "reminders/reminders_table", :person => person %>
       </div>

@@ -1,6 +1,6 @@
 function new_reminder_dialog() {
         $("#reminders_dialog").dialog({
-		title: "New Reminder",
+		title: "New Reminder/Note",
                 resizable: false,
                 width:600,
                 height:425,
@@ -25,7 +25,7 @@ function new_reminder_dialog() {
 
 function edit_reminders_dialog(reminder_id) {
         $("#reminders_dialog").dialog({
-		title: "Edit Reminder",
+		title: "Edit Reminder/Note",
                 resizable: false,
                 width:600,
                 height:425,
