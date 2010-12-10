@@ -1,3 +1,7 @@
+if params[:close_person_dialog] == 'true'
+  page << %|$("#new_person_dialog").dialog("close")|
+  page << %|$("#new_person_dialog").html("")|
+end
 msg = "#{@reviewer.person.full_name} has been added as a reviewer.  Click or search to add more."
 page["#new_reviewer_#{@reviewer.person_id}"].fade_out
 page["#review_#{@review.id} td.status"].html("#{@review.percent}%")

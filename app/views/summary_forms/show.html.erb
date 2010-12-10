@@ -1,0 +1,6 @@
+<h2><%= @review.subject.full_name %> <%= @review.name %> Summary</h2>
+<h3>administered by <%= @review.initiator.full_name %></h3>
+<p>Purpose: <%= @review.purpose %></p>
+
+<%= render :template => "answer_sheets/show" %>
+

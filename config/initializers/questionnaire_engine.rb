@@ -8,4 +8,7 @@ module Questionnaire
 
   mattr_accessor :from_email
   self.from_email = 'info@example.com'
+
+  mattr_accessor :no_refs
+  self.no_refs = true
 end

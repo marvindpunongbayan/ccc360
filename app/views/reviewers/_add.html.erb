@@ -9,6 +9,8 @@
 
 <div class="team action_title">And/Or, select someone from your team according to infobase:</div>
 <div class="tablcontent" id="team">
-  <%= render "reviewers/list_people", :people => current_person.team_members - @review.reviewings.collect(&:person) %>
+  <%= render "reviewers/list_people", :people => current_person.all_team_members - @review.reviewings.collect(&:person) %>
 </div>
   
+<div id="notfound" style="display:none">
+</div>

@@ -1,5 +1,6 @@
 class ReviewsController < AnswerSheetsController
   prepend_before_filter :set_answer_sheet_type
+  layout :set_layout
 
   def index
     reviews = current_person.initiated_reviews(:include => :reviewings)
@@ -16,6 +17,12 @@ class ReviewsController < AnswerSheetsController
     end
     new if params[:start] == "true"
     set_personal_question_sheets
+  end
+
+  def send_reminders
+    Review.send_all_reminders
+    Reminder.send_all_emails
+    render :text => %|Reminders sent.  See <A HREF="http://email.int.uscm.org/">http://email.int.uscm.org</A>|
   end
 
   def search
@@ -66,7 +73,10 @@ class ReviewsController < AnswerSheetsController
     new_review_params = session[:new_review].merge(params[:review])
 
     @review = Review.new new_review_params
-    @review.due = Date.strptime(new_review_params["due"], (I18n.t 'date.formats.default'))
+    @review.due = begin Date.strptime(new_review_params["due"], (I18n.t 'date.formats.default'))
+                  rescue
+                    nil
+                  end
     if @review.save
       session[:add_dialog] = @review.id
       render :update do |page|
@@ -82,14 +92,13 @@ class ReviewsController < AnswerSheetsController
   def destroy
     @review = Review.find params[:id]
     if @review.can_delete?(current_person)
-      @review.destroy
-      render :update do |page|
-        page["#review_#{@review.id}"].fadeOut;
-      end
+      @review.fake_deleted = true
+      @review.save!
     end
   end
 
   def remind_reviewers
+    base_url
     @review = Review.find params[:id]
     # send email out again
     msgs = []
@@ -97,7 +106,7 @@ class ReviewsController < AnswerSheetsController
       if v == "1"
         r = @review.reviewings.find id
         msgs << "#{r.person.full_name} (#{r.person.email})"
-        InvitesMailer.reviewer_invite(r).deliver
+        InvitesMailer.reviewer_invite(r, "Manual Reminder").deliver
       end
     end
     if msgs.present?
@@ -107,6 +116,41 @@ class ReviewsController < AnswerSheetsController
       @title = "Email Reminder"
       @msg = "Please select at least one reviewer."
     end
+  end
+
+  def edit_details
+    @review = Review.find params[:id]
+    unless @review.initiator == current_person || admin?
+      error_and_try_back("Sorry, you don't have permission to edit this review.")
+      return
+    end
+
+    @subject = @review.subject
+    @initiator = @review.initiator
+  end
+
+  def update
+    @review = Review.find params[:id]
+    unless @review.initiator == current_person || admin?
+      error_and_try_back("Sorry, you don't have permission to edit this review.")
+      return
+    end
+
+    @review.due = begin Date.strptime(params[:review].delete("due"), (I18n.t 'date.formats.default'))
+                  rescue
+                    nil
+                  end
+
+    if @review.update_attributes(params[:review])
+      render :update do |page|
+        page.redirect_to reviews_url
+      end
+    else
+      @subject = @review.subject
+      @initiator = @review.initiator
+      render :action => :edit_details
+    end
+
   end
 
   protected

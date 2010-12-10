@@ -1,7 +1,9 @@
 class DashboardController < ApplicationController
+  skip_before_filter :check_valid_user, :only => [ :logout ]
+
   def index
     reviewings = current_person.reviewings
-    team_members = current_person.team_members
+    team_members = current_person.all_team_members
     @nonteam_reviewings = []
     @team_reviewings = []
     @past_nonteam_reviewings = []
@@ -33,8 +35,12 @@ class DashboardController < ApplicationController
       session[:impersonating] = false
       redirect_to home_url
     else
-      logout_keeping_session!
+      session.clear
       redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
     end
+  end
+
+  def test_crash
+    throw "CRASH"
   end
 end

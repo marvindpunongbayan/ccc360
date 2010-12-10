@@ -2,6 +2,48 @@ class PeopleController < ApplicationController
   before_filter :get_person, :only => [ :show, :update, :impersonate ]
   before_filter :has_permission, :only => [ :show, :edit ]
 
+  def new
+    @person = Person.new
+    names = params[:name].to_s.split(' ')
+    @person = Person.new(:firstName => names[0], :lastName => (names[1..-1] || []).join(' '))
+    @person.current_address = CurrentAddress.new
+    @review = Review.find params[:review_id]
+  end
+
+  def create
+    params[:person] ||= {}
+    params[:person][:current_address] ||= {}
+    @review = Review.find params[:review_id]
+    @current_address = CurrentAddress.new(params[:person].delete(:current_address).merge({:addressType => 'current'}))
+    @person = Person.new(params[:person])
+    @person.current_address = @current_address
+
+    [:firstName, :lastName].each do |c|
+      @person.errors.add_on_blank(c)
+    end
+
+    [:email].each do |c|
+      @current_address.errors.add_on_blank(c)
+    end
+
+    if @current_address.email.present? && person_exists = Address.find_by_email(@current_address.email).try(:person)
+      @current_address.errors.add_to_base({ :email_exists => person_exists })
+    end
+
+    unless !@current_address.errors.present? && @current_address.valid? && 
+      !@person.errors.present? && @person.valid?
+      render :new
+    else
+      @person.save!
+      @current_address.save!
+      render(:update) do |page|
+        page << %|
+          $.ajax({ url: "#{review_reviewers_url(@review.id, "reviewer[person_id]" => @person.id, :close_person_dialog => true, :format => "js", :method => :post)}", type: "POST" });
+        |
+      end
+    end
+  end
+
   def impersonate
     if admin? && !session[:impersonating]
       session[:user_id2] = session[:user_id]
@@ -13,8 +55,8 @@ class PeopleController < ApplicationController
 
   def index
     if team_leader?
-      team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
-      @leading_ministries = MinistryLocalLevel.find team_ids, :include => { :people => :subjected_reviews }
+      team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
+      @leading_ministries = Team.find team_ids, :include => { :people => :subjected_reviews }
       @leading_ministries_names = @leading_ministries.collect &:name
       @team_members = @leading_ministries.collect(&:people).flatten
     end

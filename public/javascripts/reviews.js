@@ -2,7 +2,7 @@ function show_reviewers_dialog() {
         $("#new_reviewer_dialog").dialog({
                 resizable: false,
                 width:600,
-                height:400,
+                height:425,
                 modal: true,
                 buttons: {
                         Done: function() {
@@ -53,6 +53,20 @@ function next_step() {
 	}
 }
 
+function previous_step() {
+	if ($("#step")[0].value == "form") {
+	} else if ($("#step")[0].value == "subject") {
+		$.ajax({ url: "/reviews/new", context: document.body, type: 'GET', });
+		selected['qs_id'] = null;
+	} else if ($("#step")[0].value == "initiator") {
+		$.ajax({ url: "/reviews/new_subject", context: document.body, type: 'GET', });
+		selected['subject_id'] = null;
+	} else if ($("#step")[0].value == "details") {
+		$.ajax({ url: "/reviews/new_initiator", context: document.body, type: 'GET', });
+		selected['initiator_id'] = null;
+	}
+}
+
 function new_review_dialog() {
 	$("#team").remove(); /* ajax search breaks without this */
         $("#new_review_dialog").dialog({
@@ -68,6 +82,30 @@ function new_review_dialog() {
 			*/
                         Next: function() {
 				next_step();
+			},
+                 	Back: function() {
+				previous_step();
+			}
+		}
+        });
+	$("span:contains('Back')").parent().hide();
+	$("span:contains('Back')").parent().css("float", "left");
+}
+
+function edit_review_dialog() {
+        $("#edit_review_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:425,
+                modal: true,
+                buttons: {
+		/*
+                        Cancel: function() {
+                                $(this).dialog('close');
+                        },
+			*/
+                        Save: function() {
+                                $("form.edit_review").submit();
 			}
 		}
         });
@@ -103,3 +141,22 @@ function setup_search_autocomplete(prefix, review_id) {
 		}
         });
 };
+
+function show_new_person_dialog() {
+        $("#new_person_dialog").dialog({
+                resizable: false,
+                width:600,
+                height:425,
+                modal: true,
+                buttons: {
+			"Create person and add them as a reviewer": function() {
+                                $("form.new_person").submit();
+                        },
+			Cancel: function() {
+                                $(this).dialog('close');
+                        }
+
+                }
+        });
+}
+

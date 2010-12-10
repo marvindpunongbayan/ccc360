@@ -23,7 +23,7 @@
       <div id="tabs">
         <ul class="tabs">
           <li><%= link_to("Current Reviews", '#toreview') %></li>
-          <li><%= link_to("Past Reviews", '#pastreview') %></li>
+          <li><%= link_to("Past Reviews (completed at least 7 days ago)", '#pastreview') %></li>
         </ul>
     
         <div class="tabcontent" id="toreview">
@@ -41,6 +41,8 @@
     <div class="clear"></div>
     <div id="new_reviewer_dialog" style="display:none" title="Add reviewers"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message"></span></div>
     <div id="new_review_dialog" style="display:none" title="New Review"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message"></span></div>
+    <div id="edit_review_dialog" style="display:none" title="Edit Review Details"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-message"></span></div>
+    <div id="new_person_dialog"></div>
     <%- if @add_dialog -%>
     <script>
     $(document).ready(function() {

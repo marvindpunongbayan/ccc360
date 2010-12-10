@@ -1,0 +1,2 @@
+page["#review_#{@review.id}"].fadeOut
+page["#review_#{@review.id}_reviewers"].fadeOut

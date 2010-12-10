@@ -1,0 +1,2 @@
+page << render("reminders/hide_dialog_and_update_reminders_table")
+page["#reminder_#{@reminder.id}"].effect("highlight")

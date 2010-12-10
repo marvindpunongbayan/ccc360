@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
         conditions << @search_people_filter
       end
       order = "firstName ASC, lastName ASC"
-      @people = Person.where(conditions).includes(:user).limit(@limit).order(order)
+      @people = Person.where(conditions).limit(@limit).order(order)
       @total = Person.where(conditions).count
     else
       render :nothing => true
@@ -34,8 +34,18 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def set_layout
+      if params["view"] == "print"
+        "print"
+      else
+        "application"
+      end
+    end
+
     def check_valid_user
-      if CASClient::Frameworks::Rails::Filter.filter(self) && AuthenticationFilter.filter(self)
+      if session[:person_id].present?
+        return nil
+      elsif CASClient::Frameworks::Rails::Filter.filter(self) && AuthenticationFilter.filter(self)
         unless pr_user# && pr_user.can_edit_questionnaire?
           redirect_to '/'
           return false
@@ -66,9 +76,14 @@ class ApplicationController < ActionController::Base
 
     def current_person
       unless @current_person
-        return nil unless current_user
-        # Get their user, or create a new one if theirs doesn't exist
-        @current_person = current_user.person || current_user.create_person_and_address
+        if current_user
+          # Get their user, or create a new one if theirs doesn't exist
+          @current_person = current_user.person || current_user.create_person_and_address
+        elsif session[:person_id].present?
+          @current_person = Person.find session[:person_id]
+        else
+          return nil
+        end
       end
       @current_person
     end
@@ -91,12 +106,12 @@ class ApplicationController < ActionController::Base
 
     def set_personal_question_sheets
       @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
-                                                            :conditions => [ "personal = true" ])
+           :conditions => [ "form_type = 'personal'" ])
     end
 
     def set_review_question_sheets
       @review_question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
-                                                            :conditions => [ "personal = false or personal is null" ])
+           :conditions => [ "form_type is null or form_type = 'review'" ])
     end
 
 
@@ -116,7 +131,7 @@ class ApplicationController < ActionController::Base
     helper_method :admin?
 
     def team_leader?
-      admin? || current_person.ministry_missional_team_members.find_by_is_leader(true).present?
+      admin? || current_person.team_members.find_by_is_leader(true).present?
     end
     helper_method :team_leader?
 
@@ -128,8 +143,8 @@ class ApplicationController < ActionController::Base
     def is_leading_person?(p)
       return true if admin?
       return false unless can_see_people?
-      leading_team_ids = current_person.ministry_missional_team_members.find_all_by_is_leader(true).collect &:teamID
-      person_member = p.ministry_missional_team_members.collect &:teamID
+      leading_team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
+      person_member = p.team_members.collect &:teamID
       (leading_team_ids & person_member).length > 0
     end
     helper_method :is_leading_person?
@@ -141,11 +156,25 @@ class ApplicationController < ActionController::Base
     helper_method :can_see_person?
 
     def can_start_new_reviews?
-      admin? || current_person.ministry_missional_team_members.present?
+      admin? || current_person.team_members.present?
     end
     helper_method :can_start_new_reviews?
 
+    def can_view_summary?(person, summary)
+      is_leading_person?(person) || person == current_person || summary.review.initiator = person
+    end
+    helper_method :can_view_summary?
+
     def no_permission
       render :text => "no permission"
+    end
+
+    def error_and_try_back(s)
+      flash[:error] = s
+      if request.env["HTTP_REFERER"]
+        redirect_to :back
+      else
+        render :text => "", :layout => true
+      end
     end
 end

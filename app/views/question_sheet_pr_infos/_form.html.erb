@@ -1,0 +1,24 @@
+<%- if @question_sheet_pr_info.errors.any? %>
+<div class="errors">
+<% @question_sheet_pr_info.errors.full_messages.each do |msg| %>
+    <div><%= msg %></div>
+<% end %>
+</div>
+<%- end -%>
+
+<div class="field">
+  <%= f.label(:form_type) do 'Form Type: ' end %>
+  <%= f.select(:form_type, [["Review Form", "review" ], [ "Personal Form", "personal" ], 
+               [ "Summary Form", "summary" ]], {}, :onChange => %|
+if (this.value == 'review') {
+  $("#summary_form_wrapper").show();
+} else {
+  $("#summary_form_wrapper").hide();
+}
+               |) %>
+</div>
+
+<div class="field" id="summary_form_wrapper" style="<%= 'display:none' if @question_sheet_pr_info.form_type != 'review' %>">
+  <%= f.label(:summary_form_id) do 'Summary Form: ' end %>
+  <%= f.collection_select :summary_form_id, QuestionSheet.all_summary_forms, :id, :label, :include_blank => true %>
+</div>

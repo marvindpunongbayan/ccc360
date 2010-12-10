@@ -1,3 +1,4 @@
 page["#new_review_dialog"].html(render("choose_subject"))
 page["#dialog-message"].remove
 page << "setup_search_autocomplete('subject')"
+page << %|$("span:contains('Back')").parent().show();|

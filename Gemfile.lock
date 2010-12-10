@@ -43,6 +43,7 @@ GEM
     less (1.2.21)
       mutter (>= 0.4.2)
       treetop (>= 1.4.2)
+    liquid (2.2.2)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -78,6 +79,9 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    validate_email (0.1.5)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
 
 PLATFORMS
   ruby
@@ -89,7 +93,9 @@ DEPENDENCIES
   dalli
   factory_girl
   less
+  liquid
   mysql (= 2.8.1)
   paperclip
   rails (= 3.0.0)
   ruby-oci8
+  validate_email

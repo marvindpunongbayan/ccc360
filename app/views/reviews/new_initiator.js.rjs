@@ -9,4 +9,4 @@ $("#initiator_search_name").keydown(function( ) {
   selected['initiator_id'] = null;
 });
 |
-
+page << %|$("span:contains('Back')").parent().show();|

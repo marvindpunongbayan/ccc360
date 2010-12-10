@@ -1,4 +1,8 @@
 <div id="controls">
+  <%- unless params[:view] == "print" -%>
+  <%= link_to "Print", print_url("&view=print"), :target => "_blank", :class => "print_button" %>
+  <%- end -%>
+
   <div id="panel">
     <div class="panel">
       &nbsp;
@@ -7,7 +11,11 @@
 </div>
 
 <div id="preview" class="answer-page">
-    
-<%= render :partial => 'answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>
+
+<%- @answer_sheets ||= [ @answer_sheet ] %>
+<%- for @answer_sheet in @answer_sheets -%>
+  <%- @elements = QuestionSet.new(@answer_sheet.question_sheet.elements, @answer_sheet).elements.group_by{ |e| e.pages.first } -%>
+  <%= render :partial => 'answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>
+<%- end -%>
 
 </div>

@@ -1,0 +1,17 @@
+<table class="reminderlist">
+  <tbody id="_list">
+    <%- for reminder in person.reminders -%>
+    <tr id="reminder_<%=reminder.id%>">
+      <td class="icon">
+        <%- if reminder.send_email -%>
+          <%= image_tag('icons/mail.png') %></td>
+        <%- else -%>
+          <%= image_tag('icons/sticky-note-pin.png') %></td>
+        <%- end -%>
+      <td class="name"><%= link_to_function(reminder.label, "edit_reminders_dialog(#{reminder.id})") %></td>
+      <td class="date"><%= l(reminder.reminder_date) %></td>
+      <td class="delete"><div class="buttons"><%= link_to "", reminder_url(reminder.id), :remote => true, :class => "inline delete delete-leader", :method => :delete, :confirm => "Are you sure you want to remove this reminder?" %></div></td>
+    </tr>
+    <%- end -%>
+  </tbody>
+</table>

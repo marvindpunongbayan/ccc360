@@ -4,7 +4,7 @@
   <title>360&deg; Tool</title>
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' ,
                              'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js' %>
-  <%= javascript_include_tag 'rails', 'rails.extra', 'admin/projects', 'admin/admin', 'admin/users' %>
+  <%= javascript_include_tag 'rails', 'rails.extra', 'admin/projects', 'admin/admin', 'admin/users', 'reminders' %>
   
   <%- if @questionnaire -%>
     <%- if @answer_sheet_type -%> 
@@ -12,7 +12,11 @@
       var answer_sheet_type = '<%= @answer_sheet_type %>';
     </script>
     <%- end -%>
-    <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
+    <%- unless params[:view] == 'print' %>
+      <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
+    <%- else -%>
+      <%= stylesheet_link_tag('qe_print.css') %>
+    <%- end %>
   <%- end -%>
 
   <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom' %>
@@ -24,6 +28,7 @@
   <%= csrf_meta_tag %>
   
   <%#= render :partial => 'layouts/ga' %>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 </head>
 <body>
@@ -31,7 +36,6 @@
 <%= render "layouts/global_menu" %>
 
 <div id="primary">
-
   <div class="pagewidth">
     <% if !view_has_own_flash && flash[:error] -%>
       <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
@@ -39,12 +43,18 @@
 
     <%= yield %>
     <div class="clear"></div>
+  
+  </div><!-- pagewidth -->
+  
+  
+  
+  <div id="status" style="display: none;"><%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span></div>
+  <div id="feedback">
+    <h2>We listen!</h2><p>Have some feedback on how we can improve the 360&deg; tool? Send us an email: <%= mail_to('360tool@uscm.org') %>
   </div>
+  <!--[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>-->
 </div>
 
-<div id="status" style="display: none;"><%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span></div>
 
-<div id="feedback"><h2>We listen!</h2><p>Have some feedback on how we can improve the 360&deg; tool? Send us an email: <%= mail_to('360tool@uscm.org') %></div>
 </body>
-[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>
 </html>

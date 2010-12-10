@@ -1,0 +1,58 @@
+Add a person.
+
+<p class="legend">
+Fields with the <%= image_tag('required.png') %> are required.
+</p>
+
+<% if @person.errors.any? || @person.current_address.errors.any? %>
+<div class="errors">
+<% @person.errors.full_messages.each do |msg| %>
+  <div><%= msg.html_safe %></div>
+<% end %>
+<% @person.current_address.errors.full_messages.each do |msg| %>
+  <div>
+  <%- if msg.is_a?(Hash) && person = msg[:email_exists] -%>
+    <%= link_to "Person #{person_gender_email(person)} already exists in the system.  Click here to add them as a reviewer.".html_safe, review_reviewers_url(@review.id, "reviewer[person_id]" => person.id, :close_person_dialog => true), :method => :post, :remote => true %>
+  <%- else -%>
+    <%= msg %>
+  <%- end -%>
+  </div>
+<% end %>
+</div>
+<% end %>
+
+<%= hidden_field_tag "review_id", params[:review_id] %>
+
+<div style="float:left">
+  <div class="field required">
+    <%= f.label(:firstName) do 'First Name: ' end %>
+    <%= f.text_field(:firstName) %>
+  </div>
+
+  <div class="field required">
+    <%= f.label(:lastName) do 'Last Name: ' end %>
+    <%= f.text_field(:lastName) %>
+  </div>
+
+  <div class="field required">
+    <%= f.fields_for @person.current_address do |af| %>
+      <%= af.label(:email) do 'Email: ' end %>
+      <%= af.text_field(:email) %>
+    <%- end -%>
+  </div>
+</div>
+
+<div style="float:left; padding-left: 50px">
+  <div class="field">
+    <%= f.label(:gender) do 'Gender: ' end %>
+    <%= f.radio_button :gender, '1' %> Male 
+    <%= f.radio_button :gender, '0' %> Female 
+  </div>
+
+  <div class="field">
+    <%= f.fields_for @person.current_address do |af| %>
+      <%= af.label(:homePhone) do 'Phone: ' end %>
+      <%= af.text_field(:homePhone) %>
+    <%- end -%>
+  </div>
+</div>

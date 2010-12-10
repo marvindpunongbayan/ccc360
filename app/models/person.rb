@@ -7,6 +7,7 @@ class Person < ActiveRecord::Base
   has_many :participating_reviews, :class_name => "Review", :through => :reviewings, :source => :review
   has_one :admin
   has_many :personal_forms
+  has_many :reminders
 
   def admin?
     admin.present?

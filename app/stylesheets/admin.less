@@ -40,10 +40,6 @@ h2.border {
   border-bottom: 3px solid @dark-blue;
 }
 
-#preview .page h3 {
-  display: none;
-}
-
 /* Global */
 #global {
   background: @white;
@@ -84,6 +80,23 @@ h2.border {
     float: right;
     li a {
       background: none;
+    }
+    li#help {
+      position: absolute;
+      margin: 98px 0px 0px 265px;
+      padding: 0;
+      a {
+        padding: 0;
+        margin: 0;
+        background: url("/images/help.png") no-repeat;
+        width: 32px;
+        height: 32px;
+        display: block;
+        text-indent: -10000px;
+      }
+      a:hover {
+        background-color: none;
+      }
     }
   }
 }
@@ -251,7 +264,7 @@ label {
   font-size: 11px; 
   font-weight: bold; 
   display: block;
-  padding: 4px;
+  padding: 4px 0;
   }
     
 input[type=text] {
@@ -805,6 +818,17 @@ a.close {text-indent: 0px; width: auto;}
 	label {
 		color: #DB4F4F;
 	}
+	display: inline;
+}
+
+label.error {
+  background: none repeat scroll 0 0 #FFDFDF;
+  border: 1px solid red;
+  color: red;
+  display: block;
+  padding: 0 8px;
+  text-align: center;
+  width: 71px;
 }
 
 /* Header Drop Down */
@@ -864,14 +888,16 @@ table.people {
   }
   .expand {width: 1%; padding-left: 8px;}
   .gender {width: 5%;}
-  .name {width: 23%;}
-  .evaluate img {vertical-align: bottom;}
-  .reviewname {width: 35%;}
+  .name {width: 25%;}
+  .reviewname {width: 25%;}
+  .summary {width: 15%;}
   .duedate .alert {
     background: #D10000;
     color: @white;
     padding: 1px 2px;
   }
+  .accdate {width: 15%;}
+  .status {width: 14%;}
   .status {
     .red {color: #D10000;}
     .yellow {color: #F7931E;}
@@ -929,6 +955,9 @@ table.people {
         }
         a.add_r span {
           background-image: url("/images/icons/plus-button.png");
+        }
+        a.edit_details_r span {
+          background-image: url("/images/icons/pencil.png");
         }
         
       }
@@ -1262,19 +1291,75 @@ span.reviewername.female {
 }
 
 .questions textarea.text {
-  width: 685px;
+  width: 100%;
 }
 
 .questions input.text {
-  width: 680px;
+  width: auto;
+}
+
+
+table.grid {
+  width: 100%;
+  td {
+    padding-right: 15px;
+  }
 }
 
 .q div {
 	input[type=radio] {
-	  float: left;
+	  position: absolute;
 	  margin: 7px;
 	}
 	label.choice {
 	  margin-left: 25px;
 	}
+}
+
+ul#list-elements {
+  li {
+    float: left;
+    margin-bottom: 4px;
+  }
+}
+
+.list-elements li a {
+  margin-bottom: 0px;
+}
+a.print_button {
+  -moz-border-radius: 7px 7px 7px 7px;
+  background: none repeat scroll 0 0 #EFEFEF;
+  border: 1px solid silver;
+  color: #000000;
+  display: block;
+  font-weight: bold;
+  margin-top: 0px;
+  padding: 8px 11px;
+  width: 93px;
+}
+
+span.reviewer_answer {
+  margin-left: 150px;
+  display: inline-block;
+  min-height: 1em;
+}
+
+span.reviewer_name {
+  width: 140px;
+  position: absolute;
+}
+
+.answer.collate {
+  margin-bottom: .75em;
+}
+
+.answer-page ul.questions li {
+  border-top: 1px dotted #999;
+  label.desc {
+    margin-bottom: 0;
+  }
+}
+
+span.answer {
+  word-wrap: break-word;
 }
