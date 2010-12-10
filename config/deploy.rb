@@ -78,6 +78,12 @@ set :git_enable_submodules, 1
 
 desc "Add linked files after deploy and set permissions"
 task :after_update_code, :roles => :app do
+    run <<-CMD
+      mkdir -p #{shared_path}/bundle &&
+      ln -s #{shared_path}/bundle #{release_path}/vendor/bundle &&
+      export LD_LIBRARY_PATH=/opt/oracle/instantclient_10_2 &&
+      cd #{release_path} && bundle install --deployment --without development
+    CMD
   begin
   run "ln -s #{shared_path}/coverage #{release_path}/public/coverage"
   rescue; end;
