@@ -18,7 +18,7 @@ function change_questionnaire_type_dialog(question_sheet_id) {
         });
 	$("#change_question_type_dialog").show();
 	$.ajax({
-		url: "/question_sheet_pr_infos/" + question_sheet_id + "/edit"
+		url: "/question_sheet_pr_infos/" + question_sheet_id + "/edit.js"
 	});
 }
 
