@@ -62,4 +62,8 @@ class QuestionSheet < ActiveRecord::Base
   def submit
     redirect_to :back
   end
+
+  def self.untitled_labels
+    QuestionSheet.unscoped.find(:all, :conditions => %{label like 'Untitled form%'}).map {|s| s.label}
+  end
 end
