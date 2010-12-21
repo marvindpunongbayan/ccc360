@@ -3,7 +3,7 @@
     <title><%= @person %></title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
   </head>
-  <body>
+  <body onload='window.print()'>
     <%= yield %>   
   </body>
 </html>
