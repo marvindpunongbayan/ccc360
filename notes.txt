@@ -15,6 +15,9 @@ Andrew:
 David:
    Admin.find_or_create_by_person_id 764265
 
+team leader = 73372  http://hp2:3000/people/73372/impersonate  Allison
+team member = 73451  http://hp2:3000/people/73451/impersonate  Adam
+
 === TODO ===
 
 Andrew:
