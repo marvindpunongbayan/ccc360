@@ -65,13 +65,15 @@ class ReviewersController < AnswerSheetsController
 
       # redirect to filling out the form
       @review = @reviewer.review
-      if @review.completed_at || @reviewer.submitted_at
+      if @review.nil? && Review.unscoped.find(@reviewer.review_id)
+        render :text => "This review has been deleted.", :layout => true
+      elsif @review.completed_at || @reviewer.submitted_at
         redirect_to review_reviewer_url(@review.id, @reviewer.id)
       else
         redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
       end
     else
-      render :text => "Couldn't find review with code #{params[:code]}."
+      render :text => "Couldn't find review with code #{params[:code]}.", :layout => true
     end
   end
 
@@ -92,7 +94,10 @@ class ReviewersController < AnswerSheetsController
   protected
 
     def get_review
-      @review = Review.find params[:review_id]
+      @review = Review.unscoped.find params[:review_id]
+      if @review.fake_deleted
+        render :text => "This review has been deleted.", :layout => true
+      end
     end
 
     def get_reviewer
