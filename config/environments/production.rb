@@ -51,8 +51,8 @@ Ccc360::Application.configure do
     #config.action_controller.consider_all_requests_local = true
 
     ActionMailer::Base.smtp_settings = {
-      :address => 'localhost',
-      :port => 2525,
+      :address => 'smtp1.ccci.org',
+      #:port => 2525,
       :domain => 'ccci.org'
     }
   #end
