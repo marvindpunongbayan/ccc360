@@ -1,5 +1,6 @@
 class ReviewersController < AnswerSheetsController
   skip_before_filter :check_valid_user, :only => [ :edit_from_code, :edit ]
+  before_filter :check_valid_user_local, :only => [ :edit ]
   before_filter :get_review, :except => [ :edit_from_code ]
   before_filter :get_reviewer, :only => [ :edit, :show, :destroy, :uncomplete ]
   before_filter :check_permission, :only => [ :edit, :show ]
@@ -43,7 +44,6 @@ class ReviewersController < AnswerSheetsController
   end
 
   def edit
-    check_valid_user unless session[:person_id].present?
     @answer_sheet_type = 'Reviewer'
     params[:answer_sheet_type] = @answer_sheet_type
     super
@@ -92,6 +92,13 @@ class ReviewersController < AnswerSheetsController
   end
 
   protected
+
+    def check_valid_user_local
+      unless session[:person_id].present?
+        return check_valid_user
+      end
+      return true
+    end
 
     def get_review
       @review = Review.unscoped.find params[:review_id]
