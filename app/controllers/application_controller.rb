@@ -156,7 +156,7 @@ class ApplicationController < ActionController::Base
     helper_method :can_see_person?
 
     def can_start_new_reviews?
-      admin? || current_person.team_members.present?
+      true
     end
     helper_method :can_start_new_reviews?
 
