@@ -155,11 +155,6 @@ class ApplicationController < ActionController::Base
     end
     helper_method :can_see_person?
 
-    def can_start_new_reviews?
-      true
-    end
-    helper_method :can_start_new_reviews?
-
     def can_view_summary?(person, summary)
       is_leading_person?(person) || person == current_person || summary.review.initiator = person
     end
