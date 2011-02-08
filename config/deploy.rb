@@ -102,6 +102,7 @@ task :after_update_code, :roles => :app do
 
   run <<-CMD 
     ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml &&
+    ln -s #{shared_path}/config/amazon_s3.yml #{release_path}/config/amazon_s3.yml &&
     mkdir -p -m 770 #{shared_path}/tmp/{cache,sessions,sockets,pids} &&
     rm -Rf #{release_path}/tmp &&
     ln -s #{shared_path}/tmp #{release_path}/tmp
