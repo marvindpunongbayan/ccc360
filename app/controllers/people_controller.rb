@@ -58,7 +58,7 @@ class PeopleController < ApplicationController
       team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
       @leading_ministries = Team.find team_ids, :include => { :people => :subjected_reviews }
       @leading_ministries_names = @leading_ministries.collect &:name
-      @team_members = @leading_ministries.collect(&:people).flatten
+      @team_members = @leading_ministries.collect(&:people).flatten.uniq
     end
   end
 

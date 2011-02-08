@@ -58,6 +58,12 @@ class ReviewersController < AnswerSheetsController
       return unless current_user.present?
     end
 
+    if current_person.present? && (@reviewer.person.nil? || @reviewer.person != current_person)
+      flash[:notice] = "Sorry, that review link is for someone else.  Click the Logout button then click the link again."
+      redirect_to '/'
+      return
+    end
+
     if @reviewer
       # log the person in
       session[:person_id] = @reviewer.person.try(:id)
