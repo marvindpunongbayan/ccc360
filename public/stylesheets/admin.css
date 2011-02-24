@@ -150,12 +150,12 @@ h2.border { border-bottom: 3px solid #0b486b; }
   float: right;
 }
 #global #menuright li a { background: none; }
-#global #menuright li#help {
-  position: absolute;
-  margin: 98px 0px 0px 265px;
+div#help {
+  float: right;
+  margin: 0px 0px 0px 5px;
   padding: 0;
 }
-#global #menuright li#help a {
+div#help a {
   padding: 0;
   margin: 0;
   background: url("/images/help.png") no-repeat;
@@ -164,7 +164,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
   display: block;
   text-indent: -10000px;
 }
-#global #menuright li#help a:hover { background-color: none; }
+div#help a:hover { background-color: none; }
 #primary {
   padding: 0 25px 0 35px;
   padding-bottom: 50px;

@@ -102,6 +102,6 @@ DEPENDENCIES
   liquid
   mysql2
   paperclip
-  rails (~> 3.0.0)
+  rails (= 3.0.3)
   ruby-oci8
   validate_email
