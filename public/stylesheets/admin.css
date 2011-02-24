@@ -152,7 +152,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
 #global #menuright li a { background: none; }
 div#help {
   float: right;
-  margin: 0px 0px 0px 5px;
+  margin: 14px 0px 0px 5px;
   padding: 0;
 }
 div#help a {
