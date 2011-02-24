@@ -3,7 +3,7 @@ class AnswerPagesController < ApplicationController
   protected
   
   def get_answer_sheet
-    @answer_sheet = PersonalForm.find(params[:answer_sheet_id])
+    @answer_sheet = (params[:answer_sheet_type].present? ? answer_sheet_type : PersonalForm).find(params[:answer_sheet_id])
     @presenter = AnswerPagesPresenter.new(self, @answer_sheet, params[:a])
   end
     

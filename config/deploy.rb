@@ -14,7 +14,7 @@
 
 set :application, "peer_review"
 # set :repository, "http://svn.uscm.org/#{application}/trunk"
-set :repository,  "git@git.26am.com:ccc360.git"
+set :repository,  "git@git.uscm.org:ccc360.git"
 # set :checkout, 'co'
 set :keep_releases, '3'
 
@@ -54,11 +54,6 @@ when 'prod'
 # set :copy_exclude, [".git","coverage"]
 
 # set :scm_passphrase, "p@ssw0rd" #This is your custom users password
-when 'slice'
-  role :app, "mt.ministryhacks.com"
-  role :db, "mt.ministryhacks.com", :primary => true
-  set :deploy_to, "/var/www/mt.ministryhacks.com"
-  set :rails_env, 'production'
 end
 
 # define the restart task
