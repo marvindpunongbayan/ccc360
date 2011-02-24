@@ -7,6 +7,7 @@ gem 'acts_as_list'
 gem 'less'
 gem 'factory_girl'
 gem 'validate_email'
+gem 'hoptoad_notifier'
 
 # required for common_engine
 gem 'acts_as_state_machine'
