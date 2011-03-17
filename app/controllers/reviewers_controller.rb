@@ -53,16 +53,16 @@ class ReviewersController < AnswerSheetsController
   def edit_from_code
     @reviewer = Reviewer.where(:access_key => params[:code]).first
     # force people with users to log in
-    if !current_person.present? && @reviewer && @reviewer.person.user.present?
-      check_valid_user
-      return unless current_user.present?
-    end
+    # if !current_person.present? && @reviewer && @reviewer.person.user.present?
+    #   check_valid_user
+    #   return unless current_user.present?
+    # end
 
-    if current_person.present? && (@reviewer.person.nil? || @reviewer.person != current_person)
-      flash[:notice] = "Sorry, that review link is for someone else.  Click the Logout button then click the link again."
-      redirect_to '/'
-      return
-    end
+    # if current_person.present? && (@reviewer.person.nil? || @reviewer.person != current_person)
+    #   flash[:notice] = "Sorry, that review link is for someone else.  Click the Logout button then click the link again."
+    #   redirect_to '/'
+    #   return
+    # end
 
     if @reviewer
       # log the person in
