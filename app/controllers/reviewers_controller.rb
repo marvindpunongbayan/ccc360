@@ -79,7 +79,7 @@ class ReviewersController < AnswerSheetsController
         redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
       end
     else
-      render :text => "Couldn't find review with code #{params[:code]}.", :layout => true
+      render :text => "We couldn't find the review that you're looking for. Please ask whoever initiated the review to send you a new invitation.", :layout => true
     end
   end
 

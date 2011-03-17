@@ -126,12 +126,12 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
-      current_person.admin?
+      current_person && current_person.admin?
     end
     helper_method :admin?
 
     def team_leader?
-      admin? || current_person.team_members.find_by_is_leader(true).present?
+      admin? || (current_person && current_person.team_members.find_by_is_leader(true).present?)
     end
     helper_method :team_leader?
 
