@@ -1123,12 +1123,12 @@ span.reviewername.female { background-image: url("/images/icons/user-female.png"
 }
 #qe_wrapper .pagewidth { padding: 10px 15px; }
 #qe_wrapper #global .pagewidth { padding: 0; }
-#footer {
+#footertag {
   position: fixed;
   bottom: 0;
   fixed: fixed;
-  left: 0;
-  height: 25px;
+  right: 130px;
+  height: 20px;
   border: 2px;
   border-bottom: none;
   border-right: none;
