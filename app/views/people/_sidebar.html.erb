@@ -2,7 +2,7 @@
       <%- reminders_only ||= false %>
       <%- unless reminders_only %>
       <div class="module">
-        <h3><span>My Review Sumary</span></h3>
+        <h3><span>My Review Summary</span></h3>
         <ul class="lesspad">
           <%- for review in person.subjected_reviews[0,1] -%>
             <%- if review.show_summary_form? -%>
