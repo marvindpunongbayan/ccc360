@@ -24,8 +24,9 @@ class ReviewersController < AnswerSheetsController
   def create
     unless @reviewer = @review.reviewings.where(params[:reviewer]).limit(1).first
       @reviewer = @review.reviewings.new params[:reviewer]
-      @reviewer.save
-      InvitesMailer.reviewer_invite(@reviewer, "Reviewer Invite").deliver
+      if @reviewer.save
+        InvitesMailer.reviewer_invite(@reviewer, "Reviewer Invite").deliver
+      end
     end
     @review.update_percent_and_completed
   end
