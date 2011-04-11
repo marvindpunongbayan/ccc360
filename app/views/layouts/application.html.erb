@@ -26,6 +26,10 @@
     <%= stylesheet_link_tag 'ie7-admin' %>
   <![endif]--> 
   <%= csrf_meta_tag %>
+  <script type="text/javascript" charset="utf-8">
+    <%= raw Rack::TimeZone::Javascript %>
+    setTimezoneCookie()
+  </script>
   
   <%#= render :partial => 'layouts/ga' %>
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">

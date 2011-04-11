@@ -4,6 +4,7 @@ require 'authentication_filter'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   before_filter :check_valid_user
+  before_filter :set_time_zone, :only => [:action, :action], :except => [:action, :action]
 
   protect_from_forgery
 
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def application_name
     ApplicationController.application_name
+  end
+  
+  def set_time_zone
+    Time.zone = request.env['rack.timezone.utc_offset'].present? ? request.env['rack.timezone.utc_offset'] : -14400
   end
 
   def search
