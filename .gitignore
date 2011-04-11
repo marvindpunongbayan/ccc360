@@ -9,3 +9,5 @@ config/database.yml
 config/base_url.txt
 config/amazon_s3.yml
 .project
+.rvmrc
+vendor/ruby

@@ -24,8 +24,9 @@ class ReviewersController < AnswerSheetsController
   def create
     unless @reviewer = @review.reviewings.where(params[:reviewer]).limit(1).first
       @reviewer = @review.reviewings.new params[:reviewer]
-      @reviewer.save
-      InvitesMailer.reviewer_invite(@reviewer, "Reviewer Invite").deliver
+      if @reviewer.save
+        InvitesMailer.reviewer_invite(@reviewer, "Reviewer Invite").deliver
+      end
     end
     @review.update_percent_and_completed
   end
@@ -53,16 +54,16 @@ class ReviewersController < AnswerSheetsController
   def edit_from_code
     @reviewer = Reviewer.where(:access_key => params[:code]).first
     # force people with users to log in
-    if !current_person.present? && @reviewer && @reviewer.person.user.present?
-      check_valid_user
-      return unless current_user.present?
-    end
+    # if !current_person.present? && @reviewer && @reviewer.person.user.present?
+    #   check_valid_user
+    #   return unless current_user.present?
+    # end
 
-    if current_person.present? && (@reviewer.person.nil? || @reviewer.person != current_person)
-      flash[:notice] = "Sorry, that review link is for someone else.  Click the Logout button then click the link again."
-      redirect_to '/'
-      return
-    end
+    # if current_person.present? && (@reviewer.person.nil? || @reviewer.person != current_person)
+    #   flash[:notice] = "Sorry, that review link is for someone else.  Click the Logout button then click the link again."
+    #   redirect_to '/'
+    #   return
+    # end
 
     if @reviewer
       # log the person in
@@ -79,7 +80,7 @@ class ReviewersController < AnswerSheetsController
         redirect_to edit_review_reviewer_url(@review.id, @reviewer.id)
       end
     else
-      render :text => "Couldn't find review with code #{params[:code]}.", :layout => true
+      render :text => "We couldn't find the review that you're looking for. Please ask whoever initiated the review to send you a new invitation.", :layout => true
     end
   end
 
