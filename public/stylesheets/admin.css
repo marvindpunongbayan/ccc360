@@ -39,6 +39,17 @@ img {
 }
 .pagepad { padding: 15px; }
 .clear { clear: both; }
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
 .spinner { vertical-align: middle; }
 .roundit {
   -moz-border-radius: 10px;
@@ -1201,3 +1212,8 @@ span.reviewer_name {
 .answer-page ul.questions li { border-top: 1px dotted #999999; }
 .answer-page ul.questions li label.desc { margin-bottom: 0; }
 span.answer { word-wrap: break-word; }
+#preview { width: 685px; }
+#controls {
+  position: relative;
+  float: left;
+}
