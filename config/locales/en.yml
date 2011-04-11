@@ -23,7 +23,7 @@ en:
   time:
     formats:
       default: "%m/%d/%Y"
-      datetime: "%b %d, %Y %I:%M:%S %p %Z"
+      datetime: "%b %d, %Y %I:%M:%S %p"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
     am: "am"

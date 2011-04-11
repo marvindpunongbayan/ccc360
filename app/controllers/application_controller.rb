@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   end
   
   def set_time_zone
-    Time.zone = request.env['rack.timezone.utc_offset'].present? ? request.env['rack.timezone.utc_offset'] : -14400
+    offset = Time.now.dst? ? 3600 : 0
+    Time.zone = (request.env['rack.timezone.utc_offset'].present? ? request.env['rack.timezone.utc_offset'] : -14400) - offset
   end
 
   def search
