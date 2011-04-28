@@ -96,4 +96,25 @@ class Review < ActiveRecord::Base
       review.send_day_reminders
     end
   end
+
+  def copy_answers_to(other_review)
+    reviewings.each do |reviewing|
+      other_reviewing = other_review.reviewings.where(:person_id => reviewing.person_id).first
+      if other_reviewing
+        num_copied = 0
+        reviewing.answers.each do |a|
+          existing_answer = Answer.where(:answer_sheet_id => other_reviewing.id, :question_id => a.question_id).first
+          unless existing_answer
+            a2 = a.clone
+            a2.answer_sheet_id = other_reviewing.id
+            a2.save!
+            num_copied += 1
+          end
+        end
+        puts "#{reviewing.person.full_name}: Found an answer sheet for this person, and copied #{num_copied} of #{reviewing.answers.count} answers over."
+      else
+        puts "#{reviewing.person.full_name}: Could not find an answer sheet for this person."
+      end
+    end
+  end
 end
