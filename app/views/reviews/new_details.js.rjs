@@ -1,5 +1,5 @@
 page["#new_review_dialog"].html(render("choose_details"))
 page["#dialog-message"].remove
-page["span.ui-button-text:contains('Next')"].html("Done")
+page["span.ui-button-text:contains('Next')"].html("Next")
 page << "setUpCalendars()"
 page << %|$("span:contains('Back')").parent().show();|
