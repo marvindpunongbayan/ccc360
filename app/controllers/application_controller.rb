@@ -4,7 +4,7 @@ require 'authentication_filter'
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   before_filter :check_valid_user
-  before_filter :set_time_zone, :only => [:action, :action], :except => [:action, :action]
+  before_filter :set_time_zone
 
   protect_from_forgery
 
