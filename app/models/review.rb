@@ -42,6 +42,14 @@ class Review < ActiveRecord::Base
     Date.today > due && !completed_at
   end
 
+  def rtotal
+    reviewings.count
+  end
+
+  def rsubmitted
+    reviewings.where("submitted_at is not null").count
+  end
+
   def update_percent_and_completed
     submitted = reviewings.where("submitted_at is not null").count
     total = reviewings.count
