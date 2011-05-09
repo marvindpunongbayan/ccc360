@@ -9,6 +9,10 @@ class Reviewer < AnswerSheet
   after_update { |record| review.try(:update_percent_and_completed) }
   after_create { |record| review.try(:update_percent_and_completed) }
 
+  def complete?
+    !submitted_at.nil?
+  end
+
   def question_sheet
     review.question_sheet
   end
