@@ -18,7 +18,7 @@
           </ul>     
       
 					<div class="savestatus">
-            Last Saved: <span class="last-saved"><%= l(@answer_sheet.updated_at, :format => :datetime) %><%= @answer_sheet.udpated_at.zone %></span><%= spinner(page_dom) %>
+            Last Saved: <span class="last-saved"><%= l(@answer_sheet.updated_at, :format => :datetime) %> <%= @answer_sheet.updated_at.zone %></span><%= spinner(page_dom) %>
 					</div>
           <% if next_js.empty? -%>
             <div id="submit_message" class="validation-advice" style="display: none;"></div>
