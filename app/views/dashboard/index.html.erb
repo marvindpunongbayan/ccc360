@@ -15,7 +15,7 @@
       <div id="tabs">
         <ul class="tabs">
           <li><%= link_to("Reviews I need to fill out", '#toreview') %></li>
-          <li><%= link_to("Completed review requests", '#pastreview') %></li>
+          <li><%= link_to("Submitted review requests", '#pastreview') %></li>
         </ul>
     
         <div class="tabcontent" id="toreview">
@@ -56,7 +56,7 @@
 
           <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
             <div class="action_title">
-              You don't have any completed reviews that you filled out.
+              You don't have any submitted reviews that you filled out.
             </div>
           <%- end -%>
         </div>
