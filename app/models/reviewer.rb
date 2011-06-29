@@ -34,6 +34,8 @@ class Reviewer < AnswerSheet
     self.submitted_at = Date.today
     save!
     review.update_percent_and_completed
+    # invalidate the special access link for this review
+    self.update_attribute(:access_key, nil)
   end
 
   def late?
