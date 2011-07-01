@@ -40,6 +40,7 @@ module ApplicationHelper
   end
 
   def person_link_if_authed(person)
+    return "" unless person.present?
     if can_see_person?(person)
       link_to(person.full_name, person_url(person.id))
     else

@@ -9,7 +9,7 @@
               </tr>
             </thead>
             <tbody>
-              <%- for reviewing in reviewings; review = reviewing.review -%>
+              <%- for reviewing in reviewings; review = reviewing.review; next unless review.subject.present? -%>
               <tr>
                 <td class="gender"><%= gender_icon(review.subject) %>
                 <td class="name"><%= person_link_if_authed(review.subject) %></th>

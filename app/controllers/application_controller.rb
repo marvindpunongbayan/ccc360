@@ -157,6 +157,7 @@ class ApplicationController < ActionController::Base
     helper_method :is_leading_person?
 
     def can_see_person?(p)
+      return false unless p.present?
       p == current_person || is_leading_person?(p) || people_in_access_level.include?(p)
     end
     helper_method :can_see_person?
