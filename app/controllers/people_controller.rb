@@ -65,6 +65,10 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find params[:id]
+    if admin? && !@person.staff.present?
+      flash[:error] = "This person is not in Peoplesoft, so they can't be assigned advanced permissions."
+    end
+
     set_personal_question_sheets
   end
 
