@@ -5,9 +5,9 @@
   <input type="text", id="subject_search_name">
 </div>
 
-<div class="action_title">Or, select someone from your team according to infobase:</div>
+<div class="action_title">Or, select someone from your team according to infobase <%= ' and access level' if current_person.try(:person_access).try(:any_access_set) %>:</div>
 <div class="tablcontent" id="team"> 
-  <%= render "choose_list_people", :prefix => "subject_", :people => current_person.all_team_members %>
+  <%= render "choose_list_people", :prefix => "subject_", :people => (current_person.all_team_members | people_in_access_level) %>
 </div>
   
 

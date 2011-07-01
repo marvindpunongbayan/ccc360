@@ -162,11 +162,7 @@ class ApplicationController < ActionController::Base
     helper_method :can_see_person?
 
     def people_in_access_level
-      if current_person.person_access && current_person.staff &&
-          (current_person.person_access.national_access || current_person.person_access.regional_access ||
-           current_person.person_access.ics_access || current_person.person_access.intern_access ||
-           current_person.person_access.stint_access)
-
+      if current_person.person_access && current_person.staff && current_person.person_access.any_access_set
         access_conditions = []
         access_conditions_values = []
         if current_person.person_access.national_access
@@ -204,6 +200,7 @@ class ApplicationController < ActionController::Base
         return []
       end
     end
+    helper_method :people_in_access_level
 
     def can_view_summary?(person, summary)
       is_leading_person?(person) || person == current_person || summary.review.initiator = person

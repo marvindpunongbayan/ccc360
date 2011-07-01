@@ -7,9 +7,9 @@
   <input type="text" id="reviewer_search_name">
 </div>
 
-<div class="team action_title">And/Or, select someone from your team according to infobase:</div>
+<div class="team action_title">And/Or, select someone from your team according to infobase <%= ' and access level' if current_person.try(:person_access).try(:any_access_set) %>:</div>
 <div class="tablcontent" id="team">
-  <%= render "reviewers/list_people", :people => current_person.all_team_members - @review.reviewings.collect(&:person) %>
+  <%= render "reviewers/list_people", :people => (current_person.all_team_members | people_in_access_level) - @review.reviewings.collect(&:person) %>
 </div>
   
 <div id="notfound" style="display:none">

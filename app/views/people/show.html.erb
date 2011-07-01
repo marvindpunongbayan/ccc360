@@ -18,11 +18,11 @@
       <%- if @person.staff.present? %>
       <div id="nationalflag">
         <%= check_box_tag "national_access", 'true', @person.get_person_access.national_access, "data-access" => "national", "data-url" => person_url(@person.id) %>
-        <label for="national">National: <span class="highlight"><%= @person.staff.strategy %></span></label>
+        <label for="national_access">National: <span class="highlight"><BR/><%= @person.staff.strategy %></span></label>
       </div>
       <div id="regionalflag">
         <%= check_box_tag "regional_access", 'true', @person.get_person_access.regional_access, "data-access" => "regional", "data-url" => person_url(@person.id) %>
-        <label for="regional">Regional: <span class="highlight"><%= @person.staff.region %></span></label>
+        <label for="regional_access">Regional: <span class="highlight"><BR/><%= @person.staff.region %></span></label>
       </div>
       <div id="jobstatusflag">
         &nbsp;&nbsp;
@@ -43,21 +43,6 @@
     <%- end -%>
   </h1>
   
-  <div>
-    <%- if admin? -%>
-      <%- if @person.staff.present? %>
-        <!--
-        Your strategy according to Infobase: <%=  @person.staff.strategy %><br/>
-        Your region according to Infobase: <%= @person.staff.region %>
-        -->
-      <%- else %>
-        This person is not in Peoplesoft, so 
-        they can't be assigned advanced 
-        permissions.
-      <%- end -%>
-    <%- end -%>
-  </div>
-
   <div class="projectedit">
     <div class="left">
 
