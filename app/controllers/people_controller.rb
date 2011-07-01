@@ -59,6 +59,7 @@ class PeopleController < ApplicationController
       @leading_ministries = Team.find team_ids, :include => { :people => :subjected_reviews }
       @leading_ministries_names = @leading_ministries.collect &:name
       @team_members = @leading_ministries.collect(&:people).flatten.uniq
+      @team_members += people_in_access_level
     end
   end
 
@@ -68,15 +69,39 @@ class PeopleController < ApplicationController
   end
 
   def update
-    if params[:admin] && admin?
-      set_admin = params[:admin] == 'true'
-      if set_admin
-        Admin.find_or_create_by_person_id @person.id
-      else
-        @person.admin.destroy if @person.admin
+    if params[:access] == "admin"
+      if admin?
+        set_admin = params[:value] == 'true'
+        if set_admin
+          Admin.find_or_create_by_person_id @person.id
+        else
+          @person.admin.destroy if @person.admin
+        end
+        @set_admin = true
+        @removed_self = @person == current_person
       end
-      @set_admin = true
-      @removed_self = @person == current_person
+    elsif params[:access] == "jobstatus"
+      access = @person.get_person_access
+      access.ics_access = false
+      access.intern_access = false
+      access.stint_access = false
+      if params[:value] == "stint_and_intern"
+        access.stint_access = true
+        access.intern_access = true
+      elsif params[:value].present?
+        access.send("#{params[:value]}_access=", true)
+      end
+      access.save!
+    elsif params[:access] == "jobtitle"
+      access = @person.get_person_access
+      access.mtl_access = false
+      if params[:value].present?
+        access.mtl_access = true
+      end
+      access.save!
+    elsif params[:access]
+      @person.get_person_access.send("#{params[:access]}_access=", params[:value] == 'true')
+      @person.get_person_access.save!
     end
   end
 
@@ -87,12 +112,16 @@ class PeopleController < ApplicationController
     elsif !admin? && team_leader?
       index
       if params[:name] == ""
-        @search_filter_label = "Members of the team you are leading according to the Infobase (#{@leading_ministries_names.join(", ")})"
+        @search_filter_label = "Members of the team you are leading according to the Infobase (#{@leading_ministries_names.join(", ")})#{" and your level of access" if @person.try(:person_access).any_access_set}"
       else
         @search_filter_label = "'#{params[:name]}'"
       end
 
       @search_people_filter = @team_members.collect(&:personID)
+
+      # also include people in access level
+      @search_people_filter = @search_people_filter | people_in_access_level.collect(&:personID)
+
     elsif admin?
       @search_filter_label = "all people"
     end

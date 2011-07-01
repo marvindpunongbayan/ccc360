@@ -570,6 +570,90 @@ a.close {
   font-family: arial;
   padding: 3px 0 0;
 }
+#nationalflag {
+  -moz-border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #0b486b;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -7px;
+  margin-left: 15px;
+  padding: 3px 6px 3px 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 105px;
+}
+#nationalflag label {
+  display: inline;
+  float: right;
+  font-family: arial;
+  padding: 3px 0 0;
+}
+#nationalflag label .highlight {
+  color: yellow;
+}
+#regionalflag label .highlight {
+  color: yellow;
+}
+#regionalflag {
+  -moz-border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #0b486b;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -7px;
+  margin-left: 15px;
+  padding: 3px 6px 3px 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 118px;
+}
+#regionalflag label {
+  display: inline;
+  float: right;
+  font-family: arial;
+  padding: 3px 0 0;
+}
+#jobstatusflag {
+  -moz-border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #0b486b;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -7px;
+  margin-left: 15px;
+  padding: 3px 6px 3px 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 250px;
+}
+#jobstatusflag label {
+  display: inline;
+  font-family: arial;
+  padding: 3px 0 0;
+}
+#jobtitleflag {
+  -moz-border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #0b486b;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -7px;
+  margin-left: 15px;
+  padding: 3px 6px 3px 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 180px;
+}
+#jobtitleflag label {
+  display: inline;
+  font-family: arial;
+  padding: 3px 0 0;
+}
 #breadcrumb { height: 2em; }
 #breadcrumb ul {
   margin: 0;

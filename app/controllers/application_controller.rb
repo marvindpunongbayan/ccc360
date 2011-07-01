@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
     @limit ||= 10
     if params[:name].present?
       term = '%' + params[:name] + '%'
-      conditions = ["firstName like ? OR lastName like ? OR preferredName like ? OR concat(firstName, ' ', lastName) like ? OR concat(preferredName, ' ', lastname) like ?", term, term, term, params[:name] + '%', params[:name] + '%']
+      conditions = ["ministry_person.firstName like ? OR ministry_person.lastName like ? OR ministry_person.preferredName like ? OR concat(ministry_person.firstName, ' ', ministry_person.lastName) " + 
+        "like ? OR concat(ministry_person.preferredName, ' ', ministry_person.lastname) like ?", term, term, term, params[:name] + '%', params[:name] + '%']
       if @search_people_filter
         conditions[0] = "(#{conditions[0]}) AND (personID in (0, ?))"
         conditions << @search_people_filter
@@ -156,10 +157,53 @@ class ApplicationController < ActionController::Base
     helper_method :is_leading_person?
 
     def can_see_person?(p)
-      return true if p == current_person
-      return is_leading_person?(p)
+      p == current_person || is_leading_person?(p) || people_in_access_level.include?(p)
     end
     helper_method :can_see_person?
+
+    def people_in_access_level
+      if current_person.person_access && current_person.staff &&
+          (current_person.person_access.national_access || current_person.person_access.regional_access ||
+           current_person.person_access.ics_access || current_person.person_access.intern_access ||
+           current_person.person_access.stint_access)
+
+        access_conditions = []
+        access_conditions_values = []
+        if current_person.person_access.national_access
+          access_conditions << "(ministry_staff.strategy = ?)"
+          access_conditions_values << current_person.staff.strategy
+        end
+        if current_person.person_access.regional_access
+          access_conditions << "(ministry_staff.region = ?)"
+          access_conditions_values << current_person.staff.region
+        end
+        if current_person.person_access.ics_access
+          access_conditions << "(cccHRCaringDept IN ? AND assignmentLength = 'LTRM')"
+          access_conditions_values << %w(CGL CGN CMIDA CMIDS CMNCO CNE CPS CRR CSE CUPM CWC CGP)
+        end
+        if current_person.person_access.intern_access && current_person.person_access.stint_access
+          access_conditions << "((ministry_staff.jobStatus = ?) OR (ministry_staff.jobStatus = ?)) OR ((ministry_staff.jobStatus = ?) OR (ministry_staff.jobStatus = ?))"
+        end
+        if current_person.person_access.intern_access
+          access_conditions << "((ministry_staff.jobStatus = ?) OR (ministry_staff.jobStatus = ?))" unless current_person.person_access.stint_access
+          access_conditions_values << "Ministry Intern"
+          access_conditions_values << "Ministry Intern Applicant"
+        end
+        if current_person.person_access.stint_access
+          access_conditions << "((ministry_staff.jobStatus = ?) OR (ministry_staff.jobStatus = ?))" unless current_person.person_access.intern_access
+          access_conditions_values << "Full Time STINT"
+          access_conditions_values << "STINT Applicant"
+        end
+        if current_person.person_access.mtl_access
+          access_conditions << "(ministry_staff.jobTitle = ?)"
+          access_conditions_values << "Team Leader (Direct Ministry)"
+        end
+        merged_access_conditions = [ access_conditions.join(" AND ") ] + access_conditions_values
+        return Person.where(merged_access_conditions).joins(:staff).order("lastName ASC, firstName ASC").includes(:subjected_reviews)
+      else
+        return []
+      end
+    end
 
     def can_view_summary?(person, summary)
       is_leading_person?(person) || person == current_person || summary.review.initiator = person

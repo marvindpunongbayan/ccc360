@@ -8,6 +8,11 @@ class Person < ActiveRecord::Base
   has_one :admin
   has_many :personal_forms
   has_many :reminders, :order => "COALESCE(reminder_date, 'ZZZ') ASC" # nulls go at the end
+  has_one :person_access
+
+  def get_person_access
+    @person_access ||= PersonAccess.find_or_create_by_person_id(self.id)
+  end
 
   def admin?
     admin.present?

@@ -10,13 +10,54 @@
   <h1>
     <%= @person.full_name %>
     <%- if admin? -%>
+    <div id="flags">
       <div id="adminflag">
-        <%= check_box_tag "admin", 'true', @person.admin?, "data-url" => person_url(@person.id), "data-confirm" => ("Are you sure you want to remove yourself from being an admin?  This can not be reversed.  A current admin would have to make you an admin to reinstate you." if @person == current_person) %>
+        <%= check_box_tag "admin", 'true', @person.admin?, "data-access" => "admin", "data-url" => person_url(@person.id), "data-confirm" => ("Are you sure you want to remove yourself from being an admin?  This can not be reversed.  A current admin would have to make you an admin to reinstate you." if @person == current_person) %>
         <label for="admin">Super User Privileges</label>
       </div>
+      <%- if @person.staff.present? %>
+      <div id="nationalflag">
+        <%= check_box_tag "national_access", 'true', @person.get_person_access.national_access, "data-access" => "national", "data-url" => person_url(@person.id) %>
+        <label for="national">National: <span class="highlight"><%= @person.staff.strategy %></span></label>
+      </div>
+      <div id="regionalflag">
+        <%= check_box_tag "regional_access", 'true', @person.get_person_access.regional_access, "data-access" => "regional", "data-url" => person_url(@person.id) %>
+        <label for="regional">Regional: <span class="highlight"><%= @person.staff.region %></span></label>
+      </div>
+      <div id="jobstatusflag">
+        &nbsp;&nbsp;
+        <label for="ics">Job Status Access</label>
+        &nbsp;&nbsp;
+        <%= select_tag "jobstatus_access", options_for_select(["", [ "ICS", "ics" ], [ "Intern", "intern" ], 
+                                                              [ "Stint", "stint" ], [ "Stint and Intern", "stint_and_intern" ]],
+                                                             @person.get_person_access.jobstatus_access) %>
+      </div>
+      <div id="jobtitleflag">
+        &nbsp;&nbsp;
+        <label for="ics">Job Title Access</label>
+        &nbsp;&nbsp;
+        <%= select_tag "jobtitle_access", options_for_select(["", [ "MTL", "mtl" ]], @person.get_person_access.jobtitle_access) %>
+      </div>
+      <%- end -%>
+    </div>
     <%- end -%>
   </h1>
   
+  <div>
+    <%- if admin? -%>
+      <%- if @person.staff.present? %>
+        <!--
+        Your strategy according to Infobase: <%=  @person.staff.strategy %><br/>
+        Your region according to Infobase: <%= @person.staff.region %>
+        -->
+      <%- else %>
+        This person is not in Peoplesoft, so 
+        they can't be assigned advanced 
+        permissions.
+      <%- end -%>
+    <%- end -%>
+  </div>
+
   <div class="projectedit">
     <div class="left">
 
