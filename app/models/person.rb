@@ -21,4 +21,10 @@ class Person < ActiveRecord::Base
   def pr_human_gender
     if is_male? then "male" elsif is_female? then "female" else "genderless" end
   end
+
+  def <=>(other)
+    lnd = self.lastName <=> other.lastName
+    return lnd unless lnd == 0
+    return self.firstName <=> other.firstName
+  end
 end
