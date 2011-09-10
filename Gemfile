@@ -11,7 +11,10 @@ gem 'hoptoad_notifier'
 
 # required for common_engine
 gem 'acts_as_state_machine'
-gem 'activerecord-oracle_enhanced-adapter', '1.3.2'
+group :production do
+  gem 'activerecord-oracle_enhanced-adapter', '1.3.2'
+end
+
 gem 'ruby-oci8'
 gem 'paperclip'
 gem 'dalli'
