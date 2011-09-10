@@ -3,11 +3,11 @@ require 'authentication_filter'
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
-  skip_before_filter :verify_authenticity_token
+  # skip_before_filter :verify_authenticity_token
   before_filter :check_valid_user
   #before_filter :set_time_zone
 
-  # protect_from_forgery
+  protect_from_forgery
 
   def self.application_name
     'pr'

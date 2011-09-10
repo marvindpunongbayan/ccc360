@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Panorama</title>
-  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' ,
-                             'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' ,
+                             'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
   <%= javascript_include_tag 'rails', 'rails.extra', '/uploadify/jquery.uploadify.v2.1.0.min.js', '/uploadify/swfobject.js', 'admin/projects', 'admin/admin', 'admin/users', 'reminders' %>
   
   <%- if @questionnaire -%>
@@ -34,7 +34,6 @@
   <%#= render :partial => 'layouts/ga' %>
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
-  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 </head>
 <body>
 

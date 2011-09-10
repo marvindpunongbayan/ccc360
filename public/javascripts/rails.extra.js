@@ -1,4 +1,7 @@
 (function($) {
+	if ($('#dialog-confirm')[0] == null) {
+		$('body').append('<div id="dialog-confirm" style="display:none" title="Are you sure?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-confirm-message"></span></p></div>');
+	}
 	// Enable sortable items
 	$(function() {
 		setUpJsHelpers();
