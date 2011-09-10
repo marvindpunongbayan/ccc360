@@ -34,8 +34,10 @@
   <%#= render :partial => 'layouts/ga' %>
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 </head>
 <body>
+
 
 <%= render "layouts/global_menu" %>
 
