@@ -9,7 +9,7 @@ function new_reminder_dialog() {
                         Create: function() {
 				$.ajax({ url: "/reminders",
 					 type: "POST",
-					 data: $("form.new_reminder").serialize()
+					 data: $("form.new_reminder").serialize() + "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN)
 				});
                         },
                         Cancel: function() {
@@ -34,7 +34,7 @@ function edit_reminders_dialog(reminder_id) {
                         Save: function() {
 				$.ajax({ url: "/reminders/" + reminder_id,
 					 type: "POST",
-					 data: $("form.edit_reminder").serialize()+"&_method=PUT"
+					 data: $("form.edit_reminder").serialize()+"&_method=PUT&authenticity_token="+encodeURIComponent(AUTH_TOKEN)
 				});
                         },
                         Cancel: function() {
