@@ -38,7 +38,7 @@ when 'dev'
   set :user, 'deploy'
   set :password, 'alt60m'
   set :rails_env, 'development'
-  set :branch, "permissions"
+  # set :branch, "permissions"
 when 'prod'
   role :app, "172.16.1.25"
   role :app, "172.16.1.25"
