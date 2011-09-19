@@ -12,7 +12,6 @@ class Admin::QuestionSheetsController < ApplicationController
   # mark sheet as destroyed
   # DELETE /question_sheets/1
   def destroy
-    debugger
     @question_sheet.fake_deleted = true
     @question_sheet.save!
     @question_sheet.reviews.each do |review|

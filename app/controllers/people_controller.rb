@@ -132,6 +132,7 @@ class PeopleController < ApplicationController
     elsif admin?
       @search_filter_label = "all people"
     end
+    @search_filter_label ||= ""
     super
     if @people.length == @limit
       @search_filter_label += " (limited to #{@limit} results)"

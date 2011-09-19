@@ -10,6 +10,8 @@ class PersonAccess < ActiveRecord::Base
       'stint'
     elsif intern_access
       'intern'
+    elsif ics_access
+      'ics'
     else
       ''
     end
