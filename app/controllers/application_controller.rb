@@ -144,7 +144,7 @@ class ApplicationController < ActionController::Base
     helper_method :team_leader?
 
     def can_see_people?
-      team_leader? || admin?
+      team_leader? || people_in_access_level.present? || admin?
     end
     helper_method :can_see_people?
 
