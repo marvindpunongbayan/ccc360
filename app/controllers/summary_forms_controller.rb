@@ -7,7 +7,7 @@ class SummaryFormsController < AnswerSheetsController
     @questionnaire = true
     @review = Review.find(params[:review_id])
     @summary_form = @review.find_or_create_summary_form
-    unless @summary_form.review.question_sheet.summary_form
+    unless @summary_form && @summary_form.review.question_sheet.summary_form
       error_and_try_back("Sorry, no summary form has been chosen for this review.")
       return 
     end
@@ -30,7 +30,7 @@ class SummaryFormsController < AnswerSheetsController
       @questionnaire = true
       @review = Review.find(params[:review_id])
       @summary_form = @review.find_or_create_summary_form
-      params[:id] = @summary_form.id
+      params[:id] = @summary_form.id if @summary_form
       @answer_sheet_type = 'SummaryForm'
       params[:answer_sheet_type] = @answer_sheet_type
     end
