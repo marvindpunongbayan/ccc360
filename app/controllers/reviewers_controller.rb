@@ -144,6 +144,7 @@ class ReviewersController < AnswerSheetsController
       return false if @review.subject == current_person
       return true if @review.initiator == current_person
       return true if is_leading_person?(@review.subject)
+      return true if people_in_access_level.include?(@review.subject)
       return admin?
     end
 end
