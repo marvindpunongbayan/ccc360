@@ -213,6 +213,11 @@ class ApplicationController < ActionController::Base
       render :text => "no permission"
     end
 
+    def error_and_go_home(s)
+      flash[:error] = s
+      redirect_to home_path
+    end
+
     def error_and_try_back(s)
       flash[:error] = s
       if request.env["HTTP_REFERER"]

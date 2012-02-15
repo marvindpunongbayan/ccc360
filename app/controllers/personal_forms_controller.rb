@@ -1,6 +1,6 @@
 class PersonalFormsController < AnswerSheetsController
   before_filter :get_person
-  before_filter :has_permission
+  before_filter :has_permission, :unless => :going_to_redirect?
   skip_before_filter :get_answer_sheet, :only => [ :edit ]
   prepend_before_filter :setup_show, :only => [ :show ]
   layout :set_layout
@@ -20,18 +20,25 @@ class PersonalFormsController < AnswerSheetsController
   end
 
   protected
+  
+    def going_to_redirect?
+      params[:q] == 'true'
+    end
 
     def get_person
       if params[:person_id]
         @person = Person.find params[:person_id]
-      else
+      elsif params[:q] == 'true'
         @person = current_person
+      else
+        @personal_form = PersonalForm.find params[:id]
+        @person = @personal_form.person
       end
     end
 
     def has_permission
       unless can_see_person?(@person)
-        no_permission
+        error_and_go_home("You don't have permission to view this form.")
       end
     end
 
