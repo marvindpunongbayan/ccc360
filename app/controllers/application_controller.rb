@@ -197,7 +197,7 @@ class ApplicationController < ActionController::Base
           access_conditions_values << "Team Leader (Direct Ministry)"
         end
         merged_access_conditions = [ access_conditions.join(" AND ") ] + access_conditions_values
-        return Person.where(merged_access_conditions).joins(:staff).order("lastName ASC, firstName ASC").includes(:subjected_reviews, :current_address)
+        return Person.where(merged_access_conditions).joins(:staff).where(Staff.table_name + ".removedFromPeopleSoft <> 'Y'").order("lastName ASC, firstName ASC").includes(:subjected_reviews, :current_address)
       else
         return []
       end
