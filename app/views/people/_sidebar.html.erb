@@ -16,7 +16,7 @@
       <div class="module">
         <h3><span>My Development</span></h3>
         <ul class="lesspad">
-          <%- for q in @question_sheets -%>
+          <%- for q in @question_sheets.reverse -%>
           <li><%= link_to(q.label, edit_personal_form_url(q, :person_id => (person.id unless person == current_person), :q => true)) %></li>
           <%- end -%>
         </ul>
