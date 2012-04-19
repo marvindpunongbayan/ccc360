@@ -77,7 +77,11 @@ class Review < ActiveRecord::Base
   end
 
   def find_or_create_summary_form
-    return summary_form || SummaryForm.create!(:person_id => self.subject_id, :review_id => self.id)
+    if question_sheet.question_sheet_pr_info.summary_form
+      return summary_form || SummaryForm.create!(:person_id => self.subject_id, :review_id => self.id)
+    else
+      return nil
+    end
   end
 
   def send_day_reminder(template, days_ago)

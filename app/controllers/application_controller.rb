@@ -144,7 +144,7 @@ class ApplicationController < ActionController::Base
     helper_method :team_leader?
 
     def can_see_people?
-      team_leader? || admin?
+      team_leader? || current_person.try(:person_access).try(:any_access_set) || admin?
     end
     helper_method :can_see_people?
 
@@ -176,7 +176,7 @@ class ApplicationController < ActionController::Base
           access_conditions_values << current_person.staff.region
         end
         if current_person.person_access.ics_access
-          access_conditions << "(cccHRCaringDept IN ? AND assignmentLength = 'LTRM')"
+          access_conditions << "(cccHRCaringDept IN (?) AND assignmentLength = 'LTRM')"
           access_conditions_values << %w(CGL CGN CMIDA CMIDS CMNCO CNE CPS CRR CSE CUPM CWC CGP)
         end
         if current_person.person_access.intern_access && current_person.person_access.stint_access
@@ -197,7 +197,7 @@ class ApplicationController < ActionController::Base
           access_conditions_values << "Team Leader (Direct Ministry)"
         end
         merged_access_conditions = [ access_conditions.join(" AND ") ] + access_conditions_values
-        return Person.where(merged_access_conditions).joins(:staff).order("lastName ASC, firstName ASC").includes(:subjected_reviews, :current_address)
+        return Person.where(merged_access_conditions).joins(:staff).where(Staff.table_name + ".removedFromPeopleSoft <> 'Y'").order("lastName ASC, firstName ASC").includes(:subjected_reviews, :current_address)
       else
         return []
       end
@@ -211,6 +211,11 @@ class ApplicationController < ActionController::Base
 
     def no_permission
       render :text => "no permission"
+    end
+
+    def error_and_go_home(s)
+      flash[:error] = s
+      redirect_to home_path
     end
 
     def error_and_try_back(s)

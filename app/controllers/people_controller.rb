@@ -54,13 +54,15 @@ class PeopleController < ApplicationController
   end
 
   def index
+    @team_members = []
     if team_leader?
       team_ids = current_person.team_members.find_all_by_is_leader(true).collect &:teamID
       @leading_ministries = Team.find team_ids, :include => { :people => :subjected_reviews }
       @leading_ministries_names = @leading_ministries.collect &:name
-      @team_members = @leading_ministries.collect(&:people).flatten.uniq
-      @team_members += people_in_access_level
+      @team_members += @leading_ministries.collect(&:people).flatten.uniq
     end
+    @team_members += people_in_access_level
+    @team_members.uniq!
   end
 
   def show
@@ -111,9 +113,10 @@ class PeopleController < ApplicationController
 
   def search
     @limit = 50
-    if !admin? && !team_leader?
+    @people_in_access_level = people_in_access_level
+    if !admin? && (!team_leader? && @people_in_access_level.empty?)
       render :inline => ""
-    elsif !admin? && team_leader?
+    elsif !admin? && (team_leader? || @people_in_access_level.present?)
       index
       if params[:name] == ""
         @search_filter_label = "Members of the team you are leading according to the Infobase (#{@leading_ministries_names.join(", ")})#{" and your level of access" if @person.try(:person_access).any_access_set}"
@@ -124,11 +127,12 @@ class PeopleController < ApplicationController
       @search_people_filter = @team_members.collect(&:personID)
 
       # also include people in access level
-      @search_people_filter = @search_people_filter | people_in_access_level.collect(&:personID)
+      @search_people_filter = @search_people_filter | @people_in_access_level.collect(&:personID)
 
     elsif admin?
       @search_filter_label = "all people"
     end
+    @search_filter_label ||= ""
     super
     if @people.length == @limit
       @search_filter_label += " (limited to #{@limit} results)"

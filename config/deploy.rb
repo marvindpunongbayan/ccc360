@@ -1,4 +1,4 @@
-require 'hoptoad_notifier/capistrano'
+require 'airbrake/capistrano'
 
 # This defines a deployment "recipe" that you can feed to capistrano
 # (http://manuals.rubyonrails.com/read/book/17). It allows you to automate

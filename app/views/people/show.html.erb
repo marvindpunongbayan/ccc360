@@ -63,7 +63,7 @@
             <tr>
               <td class="gender"><%= gender_icon(review.subject) %></td>
               <td class="name"><%= person_link_if_authed(review.subject) %></td>
-              <td class="reviewname"><%= is_leading_person?(review.subject) ? link_to(review.name, review_url(review.id)) : review.name %></td>
+              <td class="reviewname"><%= (is_leading_person?(review.subject) || people_in_access_level.include?(review.subject)) ? link_to(review.name, review_url(review.id)) : review.name %></td>
               <td class="reviewname">
                 <%- if review.show_summary_form? && can_view_summary?(review.subject, review.summary_form) -%>
                   <%= link_to("Summary", review_summary_url(review.id)) %>
