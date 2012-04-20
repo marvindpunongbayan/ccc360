@@ -68,15 +68,22 @@ span.reviewer_answer {
   margin-left: 150px;
   display: inline-block;
   min-height: 1em;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
+p {
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+}
 span.reviewer_name {
   width: 140px;
   position: absolute;
+  margin: 4px 0px;
 }
 
 .answer.collate {
-  margin-bottom: .75em;
+/*  margin-bottom: .75em; */
 }
 
 table.grid {
