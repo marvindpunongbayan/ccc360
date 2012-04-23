@@ -1,5 +1,5 @@
 page["#dialog-confirm"].attr('title', @title)
-page["#dialog-confirm-message"].html(@msg)
+page["#dialog-confirm"].html(@msg)
 page << %|
 $("#dialog-confirm").dialog({
         resizable: false,
@@ -11,4 +11,3 @@ $("#dialog-confirm").dialog({
                 }
         }
 });|
-
