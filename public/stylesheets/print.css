@@ -67,7 +67,7 @@ ul.questions li {
 span.reviewer_answer {
   margin-left: 150px;
   display: inline-block;
-  min-height: 1em;
+  height: 18px;
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -79,6 +79,7 @@ p {
 span.reviewer_name {
   width: 140px;
   position: absolute;
+  height: 18px;
   margin: 4px 0px;
 }
 
