@@ -59,7 +59,7 @@
   <!--[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>-->
   <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
 </div>
-<div id="dialog-confirm" style="display:none"></div>
+<div id="dialog-confirm" style="display:none" title="Are you sure?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-confirm-message"></span></p></div>
 
 </body>
 </html>
