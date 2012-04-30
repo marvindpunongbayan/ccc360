@@ -67,20 +67,21 @@ ul.questions li {
 span.reviewer_answer {
   margin-left: 150px;
   display: inline-block;
-  height: 18px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  min-height: 18px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 p {
   padding: 0px;
   margin: 0px 0px 0px 0px;
+  _height: 18px;
 }
 span.reviewer_name {
   width: 140px;
   position: absolute;
   height: 18px;
-  margin: 4px 0px;
+  margin: 1px 0px;
 }
 
 .answer.collate {
