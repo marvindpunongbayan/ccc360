@@ -17,25 +17,25 @@ class InvitesMailer < ActionMailer::Base
       body = Liquid::Template.parse(email_template.content).render(template_params)
 
       ## sometimes there is no to address, notify sender
-      if !reviewer.person.email.blank?
-        #original mailer
-        mail(:from => review.initiator.email, 
-             :to => reviewer.person.email, 
-             :subject => subject,
-             :body => body)
-      else
-        if !review.initiator.email.blank?
+      if reviewer.person.email.blank?
+        if review.initiator.email.blank?
+          ## Both emails failed
+          raise "The email address is missing for #{reviewer.person.full_name}; no email has been sent."
+        else
           #let sender know about missing email
           body_with_err = "The following message was unable to be delivered to #{reviewer.person.full_name} because the email address is missing. \n\r #{body}"
           mail(:from => review.initiator.email, 
                :to => review.initiator.email, 
                :subject => subject,
                :body => body_with_err)
-        else
-          ## Both emails failed
-          raise "The email address is missing for #{reviewer.person.full_name}; no email has been sent."
         end
-      end 
+      else
+        #original mailer
+        mail(:from => review.initiator.email, 
+             :to => reviewer.person.email, 
+             :subject => subject,
+             :body => body)
+      end
     end
   end
   def manual_reminder(reminder, template_name)
@@ -51,13 +51,13 @@ class InvitesMailer < ActionMailer::Base
       }
       subject = Liquid::Template.parse(email_template.subject).render(template_params)
       body = Liquid::Template.parse(email_template.content).render(template_params)
-      if !reminder.person.email.blank?
+      if reminder.person.email.blank?
+        raise "The email address is missing for #{reminder.person.full_name}; no email has been sent."
+      else
         mail(:from => "no-reply@pr.uscm.org", 
              :to => reminder.person.email, 
              :subject => subject,
              :body => body)
-      else
-          raise "The email address is missing for #{reminder.person.full_name}; no email has been sent."
       end
     end
   end
