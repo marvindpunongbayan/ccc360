@@ -15,10 +15,27 @@ class InvitesMailer < ActionMailer::Base
       }
       subject = Liquid::Template.parse(email_template.subject).render(template_params)
       body = Liquid::Template.parse(email_template.content).render(template_params)
-      mail(:from => review.initiator.email, 
-           :to => reviewer.person.email, 
-           :subject => subject,
-           :body => body)
+
+      ## sometimes there is no to address, notify sender
+      if !reviewer.person.email.blank?
+        #original mailer
+        mail(:from => review.initiator.email, 
+             :to => reviewer.person.email, 
+             :subject => subject,
+             :body => body)
+      else
+        if !review.initiator.email.blank?
+          #let sender know about missing email
+          body_with_err = "The following message was unable to be delivered to #{reviewer.person.full_name} because the email address is missing. \n\r #{body}"
+          mail(:from => review.initiator.email, 
+               :to => review.initiator.email, 
+               :subject => subject,
+               :body => body_with_err)
+        else
+          ## Both emails failed
+          raise "The email address is missing for #{reviewer.person.full_name}; no email has been sent."
+        end
+      end 
     end
   end
   def manual_reminder(reminder, template_name)
@@ -34,10 +51,14 @@ class InvitesMailer < ActionMailer::Base
       }
       subject = Liquid::Template.parse(email_template.subject).render(template_params)
       body = Liquid::Template.parse(email_template.content).render(template_params)
-      mail(:from => "no-reply@pr.uscm.org", 
-           :to => reminder.person.email, 
-           :subject => subject,
-           :body => body)
+      if !reminder.person.email.blank?
+        mail(:from => "no-reply@pr.uscm.org", 
+             :to => reminder.person.email, 
+             :subject => subject,
+             :body => body)
+      else
+          raise "The email address is missing for #{reminder.person.full_name}; no email has been sent."
+      end
     end
   end
 end
