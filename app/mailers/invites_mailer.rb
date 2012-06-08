@@ -23,7 +23,7 @@ class InvitesMailer < ActionMailer::Base
           raise "The email address is missing for #{reviewer.person.full_name}; no email has been sent."
         else
           #let sender know about missing email
-          body_with_err = "A message was unable to be delivered to #{reviewer.person.full_name} because the email address is missing. \n\r"
+          body_with_err = "The following message was unable to be delivered to #{reviewer.person.full_name} because the email address is missing. \n\r #{body}"
           mail(:from => review.initiator.email, 
                :to => review.initiator.email, 
                :subject => subject,
