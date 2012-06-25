@@ -2,9 +2,15 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+# Rails 3.0 code
+# # If you have a Gemfile, require the gems listed there, including any gems
+# # you've limited to :test, :development, or :production.
+# Bundler.require(:default, Rails.env) if defined?(Bundler)
+
+# Rails 3.1 upgrade
+if defined?(Bundler)
+    Bundler.require *Rails.groups(:assets => %w(development test))
+end
 
 module Ccc360
   class Application < Rails::Application
@@ -38,6 +44,15 @@ module Ccc360
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # --------------------------------------------------------------------------
+    # Rails 3.1 code
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+    # --------------------------------------------------------------------------
   end
 end
 

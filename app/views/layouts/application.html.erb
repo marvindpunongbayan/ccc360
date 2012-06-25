@@ -19,6 +19,12 @@
     <%- end %>
   <%- end -%>
 
+
+  <%# Rails 3.1 upgrade %> 
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+
+
   <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom' %>
   <%#= questionnaire_engine_includes %>
   <%= stylesheet_link_tag 'admin', '360front' %>

@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     def check_valid_user
       if session[:person_id].present?
         return nil
-      elsif CASClient::Frameworks::Rails::Filter.filter(self) && AuthenticationFilter.filter(self)
+      elsif CASClient::Frameworks::Rails3::Filter.filter(self) && AuthenticationFilter.filter(self)
         unless pr_user# && pr_user.can_edit_questionnaire?
           redirect_to '/'
           return false

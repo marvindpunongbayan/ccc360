@@ -32,4 +32,17 @@ Ccc360::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+
+  # ---------------------------------------------------------------------------- 
+  # Rails 3.1 upgrade code
+
+  # Configure static asset server for tests with Cache-Control for performance
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=3600"
+
+  # This config option was shown in the episode but is actually not used, so don't bother adding it.
+  # config.assets.allow_debugging = true
+  # ---------------------------------------------------------------------------- 
+
 end
