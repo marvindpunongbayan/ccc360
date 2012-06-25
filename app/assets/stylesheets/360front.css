@@ -1,0 +1,57 @@
+/* *********************************************************** */
+/* FRONT END FILE 360 Review */
+/* *********************************************************** */
+
+#padwrap {
+  padding: 10px;
+}
+
+#padwrap #controls {
+  width: 270px;
+}
+
+#padwrap textarea {
+  width: 400px;
+}
+
+#padwrap ul#list-pages {
+  margin-bottom: 15px;
+}
+
+#padwrap .reviewername {
+  font-size: 14px;
+  color: #999;
+  padding-top: 5px;
+}
+
+#padwrap h2 {
+  margin-bottom: 1.5em;
+  font-size: 20px;
+}
+
+#padwrap .field label {
+  display: inline;
+}
+
+#padwrap .field {
+
+}
+
+
+.lesspad {
+padding: 0 0 0 2em;
+}
+#padwrap .field_check input[type="checkbox"], #padwrap .field_check input[type="radio"]{
+  
+}
+
+#padwrap button {
+  font-family: Arial;
+  padding: 5px 10px;
+}
+
+.help2 {
+  float: right;
+  font-size:12px;
+  font-weight:bold;
+}
