@@ -2,10 +2,19 @@
 <html>
 <head>
   <title>Panorama</title>
-  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' ,
-                             'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
-  <%= javascript_include_tag 'rails', 'rails.extra', '/uploadify/jquery.uploadify.v2.1.0.min.js', '/uploadify/swfobject.js', 'admin/projects', 'admin/admin', 'admin/users', 'reminders' %>
+  <%#= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' %>
+  <%#= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
+  <%#= javascript_include_tag 'rails' %>
+  <%#= javascript_include_tag 'rails.extra' %>
+  <%#= javascript_include_tag 'uploadify/jquery.uploadify.v2.1.0.min.js' %>
+  <%#= javascript_include_tag 'uploadify/swfobject.js' %>
+  <%#= javascript_include_tag 'admin/projects' %>
+  <%#= javascript_include_tag 'admin/admin' %>
+  <%#= javascript_include_tag 'admin/users' %> 
+  <%#= javascript_include_tag 'reminders' %>
 
+<%
+=begin %>
   <%- if @questionnaire -%>
     <%- if @answer_sheet_type -%> 
     <script type="text/javascript" charset="utf-8">
@@ -18,9 +27,9 @@
       <%= stylesheet_link_tag('qe_print.css') %>
     <%- end %>
   <%- end -%>
-
-
-  <%# Rails 3.1 upgrade %> 
+<%
+=end %>
+ 
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
 
@@ -32,11 +41,19 @@
     <%= stylesheet_link_tag 'ie7-admin' %>
   <![endif]--> 
   <%= csrf_meta_tag %>
+
+
+<%
+=begin %>
   <script type="text/javascript" charset="utf-8">
     <%= raw Rack::TimeZone::Javascript %>
     setTimezoneCookie()
   </script>
-  
+<%
+=end
+%>
+
+
   <%#= render :partial => 'layouts/ga' %>
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
@@ -58,9 +75,12 @@
   </div><!-- pagewidth -->
   
   
-  <div id="status" style="display: none;"><%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span></div>
+  <div id="status" style="display: none;">
+    <%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span>
+  </div>
   <div id="feedback">
-    <h2>We listen!</h2><p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
+    <h2>We listen!</h2>
+    <p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
   </div>
   <!--[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>-->
   <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
@@ -68,4 +88,6 @@
 <div id="dialog-confirm" style="display:none" title="Are you sure?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-confirm-message"></span></p></div>
 
 </body>
+  
+
 </html>
