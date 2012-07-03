@@ -7,7 +7,7 @@ gem 'acts_as_list'
 gem 'factory_girl'
 gem 'validate_email'
 gem 'airbrake'
-gem 'acts_as_state_machine' # this is what is giving me Rails 3.2 grief
+gem 'aasm'
 
 gem 'jquery-rails'
 

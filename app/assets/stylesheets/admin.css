@@ -102,7 +102,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
 }
 #global #menu li.search { float: right; }
 #global #menu li.search a {
-  background-image: url('/images/buttonbg_search.png');
+  background-image: url('images/buttonbg_search.png');
   padding-left: 31px;
 }
 #global #menuright {

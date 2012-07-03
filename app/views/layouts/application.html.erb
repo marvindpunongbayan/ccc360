@@ -2,19 +2,13 @@
 <html>
 <head>
   <title>Panorama</title>
-  <%#= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' %>
-  <%#= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
-  <%#= javascript_include_tag 'rails' %>
-  <%#= javascript_include_tag 'rails.extra' %>
-  <%#= javascript_include_tag 'uploadify/jquery.uploadify.v2.1.0.min.js' %>
-  <%#= javascript_include_tag 'uploadify/swfobject.js' %>
-  <%#= javascript_include_tag 'admin/projects' %>
-  <%#= javascript_include_tag 'admin/admin' %>
-  <%#= javascript_include_tag 'admin/users' %> 
-  <%#= javascript_include_tag 'reminders' %>
 
-<%
-=begin %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
+
   <%- if @questionnaire -%>
     <%- if @answer_sheet_type -%> 
     <script type="text/javascript" charset="utf-8">
@@ -26,40 +20,21 @@
     <%- else -%>
       <%= stylesheet_link_tag('qe_print.css') %>
     <%- end %>
-  <%- end -%>
-<%
-=end %>
- 
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
+  <%- end -%> 
 
-
-  <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom' %>
-  <%#= questionnaire_engine_includes %>
-  <%= stylesheet_link_tag 'admin', '360front' %>
-  <!--[if IE 7]>
-    <%= stylesheet_link_tag 'ie7-admin' %>
-  <![endif]--> 
   <%= csrf_meta_tag %>
 
-
-<%
-=begin %>
   <script type="text/javascript" charset="utf-8">
     <%= raw Rack::TimeZone::Javascript %>
     setTimezoneCookie()
   </script>
-<%
-=end
-%>
 
-
-  <%#= render :partial => 'layouts/ga' %>
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
 </head>
-<body>
 
+
+<body>
 
 <%= render "layouts/global_menu" %>
 
@@ -68,13 +43,9 @@
     <% if !view_has_own_flash && flash[:error] -%>
       <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
     <% end -%>
-
     <%= yield %>
     <div class="clear"></div>
-  
-  </div><!-- pagewidth -->
-  
-  
+  </div>
   <div id="status" style="display: none;">
     <%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span>
   </div>
@@ -82,12 +53,14 @@
     <h2>We listen!</h2>
     <p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
   </div>
-  <!--[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>-->
   <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
 </div>
-<div id="dialog-confirm" style="display:none" title="Are you sure?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-confirm-message"></span></p></div>
+
+<div id="dialog-confirm" style="display:none" title="Are you sure?">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+    <span id="dialog-confirm-message"></span>
+  </p>
+</div>
 
 </body>
-  
-
 </html>

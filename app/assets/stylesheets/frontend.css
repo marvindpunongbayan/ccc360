@@ -18,12 +18,12 @@ img {
 h3 { margin: 0; }
 #outer { background: #ffffff; }
 #header {
-  background: url('/images/frontend/header.png') no-repeat 50% 50%;
+  background: url('images/frontend/header.png') no-repeat 50% 50%;
   width: 688px;
   height: 91px;
 }
 #body {
-  background: url('/images/frontend/busbg.jpg') no-repeat 50% 50%;
+  background: url('images/frontend/busbg.jpg') no-repeat 50% 50%;
   width: 688px;
   height: auto;
   border-top: 1px solid #ffffff;
@@ -61,8 +61,8 @@ ul.contacts li {
   padding-left: 0px;
   text-indent: 30px;
 }
-ul.contacts li.mail { background: url("/images/frontend/mail.png") no-repeat 0 50%; }
-ul.contacts li.phone { background: url("/images/frontend/phone.png") no-repeat 0 50%; }
+ul.contacts li.mail { background: url("images/frontend/mail.png") no-repeat 0 50%; }
+ul.contacts li.phone { background: url("images/frontend/phone.png") no-repeat 0 50%; }
 #footer {
   font-size: 11px;
   padding: 10px 10px;
