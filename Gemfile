@@ -11,6 +11,9 @@ gem 'airbrake'
 # required for common_engine
 gem 'acts_as_state_machine'
 
+# require for common_engine, rails3 branch
+gem 'aasm'
+
 gem 'paperclip'
 gem 'dalli'
 gem 'liquid'
