@@ -1,5 +1,5 @@
 <td class="expand">
-  <%= link_to image_tag("expand.png"), review_url(review), :remote => true, :class => "expand_button" %>
+  <%= link_to image_tag("expand.png"), review_path(review), :remote => true, :class => "expand_button" %>
   <%= link_to_function image_tag("expanded.png"), %|
   $("tr#review_#{review.id}_reviewers.reviewer_content").addClass("reviewer_content_hide");
   $("tr#review_#{review.id}").removeClass("expanded");
@@ -9,8 +9,8 @@
 </td>
 <td class="gender"><%= gender_icon(review.subject) %></td>
 <td class="name"><%= person_link_if_authed(review.subject) %></td>
-<td class="reviewname"><%= link_to(review.name, review_url(review.id), :class => "viewreviewlink") %></td>
-<td class="summary"><%= link_to("Summary", edit_review_summary_url(review.id), :class => "") %></td>
+<td class="reviewname"><%= link_to(review.name, review_path(review.id), :class => "viewreviewlink") %></td>
+<td class="summary"><%= link_to("Summary", edit_review_summary_path(review.id), :class => "") %></td>
 <td class="duedate"><span class="<%= "alert" if review.late? %>"><%= I18n.l review.due %></span></td>
 <td class="status"><%= "#{review.rsubmitted} of #{review.rtotal}" %></td>
-<td class="deletereview"><%- if review.can_delete?(current_person) -%><%= link_to("", review_url(review.id), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove this review and all reviewer(s).  Are you sure?") %><%- end -%></td>
+<td class="deletereview"><%- if review.can_delete?(current_person) -%><%= link_to("", review_path(review.id), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove this review and all reviewer(s).  Are you sure?") %><%- end -%></td>
