@@ -98,7 +98,7 @@ class ReviewsController < AnswerSheetsController
   end
 
   def remind_reviewers
-    base_url
+    base_path
     @review = Review.find params[:id]
     # send email out again
     msgs = []
