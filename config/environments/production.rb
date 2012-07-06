@@ -56,4 +56,7 @@ Ccc360::Application.configure do
       :domain => 'ccci.org'
     }
   #end
+
+  # so that redirect_to will have, "https://pr.uscm.org/xxxxxx"
+  config.action_controller.default_url_options = { :protocol => "https" } 
 end
