@@ -46,7 +46,7 @@ $(function() {
 						dataType: 'script', 
 						type: 'POST'
 						});
-		$('#user_search_results').html('<img src="/images/spinner.gif" />');
+		$('#user_search_results').html('<img src="spinner.gif" />');
 		return false;
 	});
 })

@@ -92,7 +92,7 @@ $(function() {
 			name = $(this).html();
 			dom = 'leader_details' + id;
 			if ($('#' + dom)[0] == null) {
-				$('body').append('<div id="' + dom + '" title="' + name + '"><img alt="Spinner" class="spinner" id="spinner_' + id + '" src="/images/spinner.gif" style="" /></div>');
+				$('body').append('<div id="' + dom + '" title="' + name + '"><img alt="Spinner" class="spinner" id="spinner_' + id + '" src="spinner.gif" style="" /></div>');
 				$.ajax({dataType: 'script',
 								type:'GET', 
 								url: '/admin/people/' + id
@@ -145,7 +145,7 @@ $(function() {
 	});
 	
 	$('#update_person_form').live('ajax:loading', function() {
-		$('#person_' + id + '_form').html('<img src="/images/spinner.gif" />')
+		$('#person_' + id + '_form').html('<img src="spinner.gif" />')
 	});
 	// END Leader Info
 	
@@ -210,7 +210,7 @@ $(function() {
 						dataType: 'script', 
 						type: 'POST'
 						});
-		$('#leader_search_results').html('<img src="/images/spinner.gif" />');
+		$('#leader_search_results').html('<img src="spinner.gif" />');
 		return false;
 	});
 	// END Edit Leader
