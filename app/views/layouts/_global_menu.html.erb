@@ -4,17 +4,19 @@
     <ul id="menu">
       <li><%= link_to_menu "Home", home_url %></li>
       <li><%= ajax = (controller_name == "reviews" && params[:action] == "index"); link_to "Start New Review", ajax ? new_review_url : reviews_url(:start => true), :remote => ajax %></li>
-      <%- if can_see_people? -%>
-      <li><%= link_to_menu "People", people_url %></li>
-      <%- end -%>
+      <% if can_see_people? %>
+        <li><%= link_to_menu "People", people_url %></li>
+      <% end %>
       <li><%= link_to_menu "Administer Review(s)", reviews_url, :class => "my withicon" %></li>
     </ul>
     
-    <div id="help"><%= link_to("Help", "http://wiki.uscm.org/display/CMHR/Panorama+Help", :title => "Help in the Wiki", :target => "_blank") %></div>
+    <div id="help">
+      <%= link_to("Help", "http://wiki.uscm.org/display/CMHR/Panorama+Help", :title => "Help in the Wiki", :target => "_blank") %>
+    </div>
     <ul id="menuright">
-      <%- if admin? -%>
-      <li><%= link_to_menu "Administer Review Forms", admin_question_sheets_url %></li>
-      <%- end -%>
+      <% if admin? %>
+        <li><%= link_to_menu "Administer Review Forms", admin_question_sheets_url %></li>
+      <% end %>
       <li><%= link_to("Logout", "/logout") %></li>
     </ul>
     <div class="clear"></div>

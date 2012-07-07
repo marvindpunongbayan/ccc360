@@ -6,22 +6,6 @@
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
 
-  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js' %>
-  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' %>
-
-  <%- if @questionnaire -%>
-    <%- if @answer_sheet_type -%> 
-    <script type="text/javascript" charset="utf-8">
-      var answer_sheet_type = '<%= @answer_sheet_type %>';
-    </script>
-    <%- end -%>
-    <%- unless params[:view] == 'print' %>
-      <%= questionnaire_engine_includes(:area => (@qe_admin ? :admin : :public)) %>
-    <%- else -%>
-      <%= stylesheet_link_tag('qe_print.css') %>
-    <%- end %>
-  <%- end -%> 
-
   <%= csrf_meta_tag %>
 
   <script type="text/javascript" charset="utf-8">
@@ -33,21 +17,20 @@
 
 </head>
 
-
 <body>
 
 <%= render "layouts/global_menu" %>
 
 <div id="primary">
   <div class="pagewidth">
-    <% if !view_has_own_flash && flash[:error] -%>
+    <% if !view_has_own_flash && flash[:error] %>
       <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
-    <% end -%>
+    <% end %>
     <%= yield %>
     <div class="clear"></div>
   </div>
   <div id="status" style="display: none;">
-    <%= image_tag('questionnaire_engine/status.gif', :id => "status-img" ) %> <span id="status-msg">Please Wait...</span>
+    <%= image_tag("qe/status.gif", :id => "status-img") %> <span id="status-msg">Please Wait...</span>
   </div>
   <div id="feedback">
     <h2>We listen!</h2>

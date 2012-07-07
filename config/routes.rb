@@ -1,4 +1,7 @@
+require 'qe/engine'
+
 Ccc360::Application.routes.draw do
+  
   resources :people do
     collection do
       get :search
@@ -7,7 +10,9 @@ Ccc360::Application.routes.draw do
       get :impersonate
     end
   end
+  
   resources :personal_forms
+  
   resources :reviews do
     collection do
       post :new_submit_form
@@ -32,9 +37,27 @@ Ccc360::Application.routes.draw do
       end
     end
   end
+  
+# ------------------------------------------------------------------------------
+  # questionnaire engine stuff
+
+  mount Qe::Engine, :at => '/'
+
+  namespace :admin do
+    resources :question_sheets do
+      member do
+        post :toggle_personal
+      end
+    end
+  end
+# ------------------------------------------------------------------------------
+  
   resources :question_sheet_pr_infos
+  
   resources :reminders
+  
   #match "/reviews/:review_id/reviewers/:id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review_reviewer"
+  
   match "/reviews/:review_id/collate", :to => "reviewers#show", :collate => true, :as => "collate_review"
   match "/reviews/:review_id/summary/edit", :to => "summary_forms#edit", :as => "edit_review_summary"
   match "/reviews/:review_id/summary", :to => "summary_forms#show", :as => "review_summary"
@@ -48,11 +71,4 @@ Ccc360::Application.routes.draw do
 
   root :to => "dashboard#index"
 
-  namespace :admin do
-    resources :question_sheets do
-      member do
-        post :toggle_personal
-      end
-    end
-  end
 end
