@@ -47,17 +47,18 @@ Ccc360::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  # #if Rails.root.to_s =~ /integration/
-  #   #config.action_controller.consider_all_requests_local = true
-  #   ActionMailer::Base.smtp_settings = {
-  #     :address => 'smtp1.ccci.org',
-  #     #:port => 2525,
-  #     :domain => 'ccci.org'
-  #   }
-  # #end
+  #if Rails.root.to_s =~ /integration/
+    #config.action_controller.consider_all_requests_local = true
+    ActionMailer::Base.smtp_settings = {
+      :address => 'smtp1.ccci.org',
+      #:port => 2525,
+      :domain => 'ccci.org'
+    }
+  #end
 
-  config.action_mailer.default_url_options= { :host => 'sp.campuscrusadeforchrist.com' }
+  # # SSL configurations
+  # config.action_mailer.default_url_options= { :host => 'sp.campuscrusadeforchrist.com' }
   
-  # so that redirect_to will have, "https://pr.uscm.org/xxxxxx"
-  config.action_controller.default_url_options = { :protocol => "https" } 
+  # # so that redirect_to will have, "https://pr.uscm.org/xxxxxx"
+  # config.action_controller.default_url_options = { :protocol => "https" } 
 end
