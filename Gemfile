@@ -19,7 +19,8 @@ gem 'rack-contrib'
 gem 'capistrano'
 gem 'newrelic_rpm'
 
-gem 'questionnaire'
+# gem 'questionnaire'
+gem 'questionnaire', :git => 'https://github.com/thelabtech/questionnaire', :branch => 'master'
 
 group :assets do
 	gem 'sass-rails'
