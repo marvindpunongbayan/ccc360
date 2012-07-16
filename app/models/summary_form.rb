@@ -1,6 +1,7 @@
 class SummaryForm < AnswerSheet
-  belongs_to :review
   set_table_name "pr_summary_forms"
+
+  belongs_to :review
 
   def question_sheets
     [ review.question_sheet.summary_form ]

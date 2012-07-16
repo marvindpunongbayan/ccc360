@@ -1,4 +1,5 @@
-require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/answer_sheets_controller.rb"
+# require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/answer_sheets_controller.rb"
+
 class AnswerSheetsController < ApplicationController
   layout :set_layout
 

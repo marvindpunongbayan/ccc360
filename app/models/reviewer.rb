@@ -1,6 +1,7 @@
 class Reviewer < AnswerSheet
-  before_create :generate_access_key
   set_table_name "pr_reviewers"
+  
+  before_create :generate_access_key
   belongs_to :review
   belongs_to :person
   validates_uniqueness_of :person_id, :scope => [ :review_id ], :on => :create

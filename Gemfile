@@ -20,7 +20,7 @@ gem 'capistrano'
 gem 'newrelic_rpm'
 
 # gem 'questionnaire'
-gem 'questionnaire', :git => 'https://github.com/thelabtech/questionnaire', :branch => 'master'
+gem 'questionnaire', :git => 'https://github.com/thelabtech/questionnaire', :branch => 'app'
 
 group :assets do
 	gem 'sass-rails'

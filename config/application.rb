@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'qe'
 
 # Rails 3.0 code
 # # If you have a Gemfile, require the gems listed there, including any gems

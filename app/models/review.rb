@@ -1,11 +1,12 @@
 class Review < ActiveRecord::Base
+  set_table_name "pr_reviews"
+  
   belongs_to :subject, :class_name => "Person"
   belongs_to :initiator, :class_name => "Person"
   belongs_to :question_sheet
   has_many :reviewings, :class_name => "Reviewer", :dependent => :destroy
   has_many :reviewers, :through => :reviewings, :class_name => "Person", :source => :person
   has_one :summary_form
-  set_table_name "pr_reviews"
 
   validates_presence_of :name
   validates_presence_of :due
