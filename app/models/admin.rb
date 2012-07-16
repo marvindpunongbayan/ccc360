@@ -1,3 +1,3 @@
 class Admin < ActiveRecord::Base
-  set_table_name "pr_admins"
+  self.table_name = "pr_admins"
 end
