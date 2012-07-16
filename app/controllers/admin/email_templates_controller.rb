@@ -1,4 +1,4 @@
-require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/admin/email_templates_controller.rb"
+# require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/admin/email_templates_controller.rb"
 
 class Admin::EmailTemplates < ApplicationController
   before_filter :ensure_permission
