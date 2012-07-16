@@ -202,7 +202,6 @@ DEPENDENCIES
   questionnaire!
   rack-contrib
   rails (~> 3.2.6)
-  rspec
   rspec-rails
   sass-rails
   state_machine

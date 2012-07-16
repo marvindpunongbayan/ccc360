@@ -1,5 +1,7 @@
-class Reviewer < AnswerSheet
-  set_table_name "pr_reviewers"
+require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
+
+class Reviewer < Qe::AnswerSheet
+  self.table_name = "pr_reviewers"
   
   before_create :generate_access_key
   belongs_to :review

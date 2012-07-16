@@ -1,4 +1,5 @@
 # require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/answer_sheets_controller.rb"
+require_dependency Qe::Engine.root.join('app', 'controllers', 'qe', 'answer_sheets_controller').to_s
 
 class AnswerSheetsController < ApplicationController
   layout :set_layout
@@ -8,7 +9,7 @@ class AnswerSheetsController < ApplicationController
     @answer_sheet.submit!
     case params[:answer_sheet_type]
     when "PersonalForm"
-      flash[:notice] = "Your answers have been saved."
+      flash[:notice] = "Your answers have been saved."  
       render :update do |page|
         page.redirect_to home_url
       end

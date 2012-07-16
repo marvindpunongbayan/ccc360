@@ -1,5 +1,7 @@
-class SummaryForm < AnswerSheet
-  set_table_name "pr_summary_forms"
+require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
+
+class SummaryForm < Qe::AnswerSheet
+  self.table_name = "pr_summary_forms"
 
   belongs_to :review
 

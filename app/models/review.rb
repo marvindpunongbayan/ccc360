@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  set_table_name "pr_reviews"
+  self.table_name = "pr_reviews"
   
   belongs_to :subject, :class_name => "Person"
   belongs_to :initiator, :class_name => "Person"

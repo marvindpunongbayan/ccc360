@@ -46,12 +46,4 @@
 </div>
 
 </body>
-
-<% Forem.constants.select do |constant_name| %>
-  <%# constant = eval constant_name %>
-  <%# if not constant.nil? and constant.is_a? Class and constant.superclass == ActiveRecord::Base %>
-    <%= constant_name %>
-  <%# end %>
-<% end %>
-
 </html>

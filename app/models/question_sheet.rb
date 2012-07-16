@@ -1,4 +1,5 @@
 # require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/models/question_sheet.rb"
+require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'question_sheet').to_s
 
 class QuestionSheet < ActiveRecord::Base
   self.table_name = "pr_question_sheets"

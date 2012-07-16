@@ -1,4 +1,6 @@
-class PersonalForm < AnswerSheet
+require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
+
+class PersonalForm < Qe::AnswerSheet
   set_table_name "pr_personal_forms"
 
   belongs_to :person
