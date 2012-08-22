@@ -25,7 +25,7 @@ gem 'liquid'
 gem 'aws-s3'
 
 # cru gems
-gem 'questionnaire', :git => 'https://github.com/thelabtech/questionnaire', :branch => 'app'
+gem 'questionnaire_engine', :git => 'git://github.com/westonplatter/questionnaire_engine.git', :branch => 'engine'
 # gem 'common_engine' # switching over to gem version of common_engine
 
 group :assets do
@@ -35,9 +35,11 @@ group :assets do
 end
 
 group :test, :development do
-	gem 'rspec-rails'
 	gem 'factory_girl'
-	gem 'guard-rspec'
-	gem 'launchy'
-	gem 'capybara'
+	gem 'rspec-rails'
+		gem 'guard-rspec'
+		gem 'launchy'
+		gem 'capybara'
 end
+
+gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
