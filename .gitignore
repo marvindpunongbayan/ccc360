@@ -13,3 +13,5 @@ config/amazon_s3.yml
 .project
 .rvmrc
 vendor/ruby
+
+public/assets/*
