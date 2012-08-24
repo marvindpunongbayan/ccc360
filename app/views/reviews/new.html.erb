@@ -16,11 +16,13 @@
           <li><%= link_to("Search Person", '#search') %></li>
         </ul>
         <div class="tablcontent" id="team">
-        <% current_person.team_members.each do |tm| -%>
+        <% current_person.team_members.each do |tm| %>
           <% tm.person.tap do |person| %> 
-            <div class="r_row"><%= link_to "#{gender_icon(person)} #{person.full_name}".html_safe, new_submit_person_reviews_url(:person_id => person.id), :method => :post %></div>
+            <div class="r_row">
+              <%= link_to "#{gender_icon(person)} #{person.full_name}".html_safe, new_submit_person_reviews_url(:person_id => person.id), :method => :post %>
+            </div>
           <% end %>
-        <%- end -%>
+        <% end %>
         </div>
         <div class="tablcontent" id="search">
           list search here

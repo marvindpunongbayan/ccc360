@@ -9,9 +9,9 @@
   <div id="content">
     <h1>People</h1>
       
-  	<% if flash[:error] -%>
+  	<% if flash[:error] %>
   		<div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
-  	<% end -%>
+  	<% end %>
   
     <h3>Search for people</h3>
   
@@ -21,9 +21,9 @@
     
     <hr />
   	
-    <%- if team_leader? -%>
-    <h3 id="team_header">Members of the team you are leading according to the Infobase<%- if @leading_ministries_names.present? %> (<%= @leading_ministries_names.join(", ") %>)<%- end -%><%- if current_person.try(:person_access).try(:any_access_set) %> and your level of access<%- end -%></h3>
-    <%- end -%>
+    <% if team_leader? %>
+    <h3 id="team_header">Members of the team you are leading according to the Infobase<% if @leading_ministries_names.present? %> (<%= @leading_ministries_names.join(", ") %>)<% end %><% if current_person.try(:person_access).try(:any_access_set) %> and your level of access<% end %></h3>
+    <% end %>
     <h3 id="search_header" style="display:none">Search results for "INSERT SEARCH CRTIERIA HERE"</h3>
 
     <table cellspacing="0" class="list" id="searchresults"> 
@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @team_members -%>
+        <%= render @team_members %>
       </tbody>
     </table>
   </div>

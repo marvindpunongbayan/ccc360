@@ -12,7 +12,7 @@
   </tr>
 </thead>
 <tbody>
-  <%- for review in reviews -%>
+  <% for review in reviews %>
   <tr id="review_<%=review.id%>" class="review_title">
     <%= render "review_tds", :review => review %>
   </tr>
@@ -20,5 +20,5 @@
     <td colspan="8" class="rowwrap">
     </td>
   </tr>
-  <%- end -%>
+  <% end %>
 </table>

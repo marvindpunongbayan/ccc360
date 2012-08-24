@@ -6,7 +6,7 @@
           Reviewers
         </th>
       </tr>
-      <%- for reviewing in @review.reviewings; review = reviewing.review; reviewer = reviewing.person -%>
+      <% for reviewing in @review.reviewings; review = reviewing.review; reviewer = reviewing.person %>
       <tr class="review_<%=@review.id%> reviewer" id="reviewer_<%=reviewing.id%>">
         <td class="checkbox"><%= check_box_tag "reviewers[#{reviewing.id}]" %></td>
         <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
@@ -18,14 +18,14 @@
         <td class="status"><%= reviewing.percent_complete %>%</td>
         <td class="deletereview"><%= link_to("", review_reviewer_url(@review, reviewing), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove #{reviewer.full_name} as a reviewer and delete her review.  Are you sure?") %></td>
       </tr>
-      <%- end -%>
-      <%- unless @review.past? -%>
+      <% end %>
+      <% unless @review.past? %>
         <tr><td colspan="8" class="review_buttons last_row">
           <%= link_to_function "<span>Remind Selected Reviewers</span>".html_safe, "$('#people_#{@review.id}').submit();", :class => "remind_r tablebutt" %>
           <% link_to new_review_reviewer_url(@review), :class => "add_r tablebutt", :remote => true do %><span>Add Reviewers</span><% end %>
           <% link_to edit_details_review_url(@review), :class => "edit_details_r tablebutt", :remote => true do %><span>Edit Details</span><% end %>
         </td></tr>
-      <%- end -%>
+      <% end %>
     </table>
-  <%- end -%>
+  <% end %>
 </div>

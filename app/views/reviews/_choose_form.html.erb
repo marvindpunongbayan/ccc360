@@ -4,8 +4,8 @@
 <div class="action_title">Select your form:
   <div class="help2"><%= link_to("Preview Available Reviews", "http://wiki.uscm.org/display/CMHR/Panorama+Help", :title => "Help in the Wiki", :target => "_blank") %></div></div>
 <div class="tablcontent" id="selectform"> 
-  <%- for qs in @review_question_sheets -%>
+  <% for qs in @review_question_sheets %>
     <div class="r_row" id="qs_<%=qs.id%>_row"><%= link_to_function image_tag("icons/clipboard-list.png") + " " + qs.label, "new_review_select_choice('qs_', #{qs.id})" %></div>
-  <%- end -%>
+  <% end %>
 </div>
   

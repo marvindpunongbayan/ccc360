@@ -1,7 +1,7 @@
 <div id="controls">
-  <%- unless params[:view] == "print" -%>
+  <% unless params[:view] == "print" %>
   <%= link_to "Print", print_url("&view=print"), :target => "_blank", :class => "print_button" %>
-  <%- end -%>
+  <% end %>
 
   <div id="panel">
     <div class="panel">
@@ -12,12 +12,12 @@
 
 <div id="preview" class="answer-page">
 
-<%- @answer_sheets ||= [ @answer_sheet ] %>
-<%- @answer_sheet_pages = @answer_sheets.collect(&:pages).flatten -%>
-<%- for @answer_sheet in @answer_sheets -%>
-<%- @elements = QuestionSet.new(@answer_sheet.question_sheet.elements, @answer_sheet).elements.group_by{ 
-  |e| (@answer_sheet_pages & e.pages).first } -%>
+<% @answer_sheets ||= [ @answer_sheet ] %>
+<% @answer_sheet_pages = @answer_sheets.collect(&:pages).flatten %>
+<% for @answer_sheet in @answer_sheets %>
+<% @elements = QuestionSet.new(@answer_sheet.question_sheet.elements, @answer_sheet).elements.group_by{ 
+  |e| (@answer_sheet_pages & e.pages).first } %>
   <%= render :partial => 'answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>
-<%- end -%>
+<% end %>
 
 </div>

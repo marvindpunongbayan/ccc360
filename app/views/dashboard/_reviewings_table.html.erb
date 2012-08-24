@@ -9,7 +9,7 @@
               </tr>
             </thead>
             <tbody>
-              <%- for reviewing in reviewings; review = reviewing.review; next unless review.subject.present? -%>
+              <% for reviewing in reviewings; review = reviewing.review; next unless review.subject.present? %>
               <tr>
                 <td class="gender"><%= gender_icon(review.subject) %>
                 <td class="name"><%= person_link_if_authed(review.subject) %></th>
@@ -17,13 +17,13 @@
                 <td class="duedate"><span class="<%= "alert" if reviewing.late? %>"><%= I18n.l review.due %></span></th>
                 <td class="status"><%= reviewing.percent_complete %>%</th>
               </tr>
-                <%- if reviewing.submitted_at && reviewing.percent_complete < 100 %>
+                <% if reviewing.submitted_at && reviewing.percent_complete < 100 %>
               <tr>
                 <td>&nbsp;<td>
                 <td colspan="4">
                   This completed review is less than 100% complete.  This usually means questions were added to the review form after you completed it.  <%= link_to "Click here to move the review back to 'Reviews I need to fill out' tab so that you can enter answers to the new questions and resubmit.", uncomplete_review_reviewer_url(review.id, reviewing.id), :method => :post %>
                 </td>
-                <%- end -%>
-              <%- end -%>
+                <% end %>
+              <% end %>
             </tbody>
           </table>

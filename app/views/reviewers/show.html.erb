@@ -1,4 +1,4 @@
-<h2><%= @review.subject.full_name %> <%= @review.name %><%- unless @collating -%> - by <%= @reviewer.person.full_name %><% end %></h2>
+<h2><%= @review.subject.full_name %> <%= @review.name %><% unless @collating %> - by <%= @reviewer.person.full_name %><% end %></h2>
 <h3>administered by <%= @review.initiator.full_name %></h3>
 <p>Purpose: <%= @review.purpose %></p>
 

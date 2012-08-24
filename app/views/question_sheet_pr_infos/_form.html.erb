@@ -1,10 +1,10 @@
-<%- if @question_sheet_pr_info.errors.any? %>
-<div class="errors">
-<% @question_sheet_pr_info.errors.full_messages.each do |msg| %>
-    <div><%= msg %></div>
+<% if @question_sheet_pr_info.errors.any? %>
+	<div class="errors">
+		<% @question_sheet_pr_info.errors.full_messages.each do |msg| %>
+		  <div><%= msg %></div>
+		<% end %>
+	</div>
 <% end %>
-</div>
-<%- end -%>
 
 <div class="field">
   <%= f.label(:form_type) do 'Form Type: ' end %>

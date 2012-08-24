@@ -11,11 +11,11 @@ Fields with the <%= image_tag('required.png') %> are required.
 <% end %>
 <% @person.current_address.errors.full_messages.each do |msg| %>
   <div>
-  <%- if msg.is_a?(Hash) && person = msg[:email_exists] -%>
+  <% if msg.is_a?(Hash) && person = msg[:email_exists] %>
     <%= link_to "Person #{person_gender_email(person)} already exists in the system.  Click here to add them as a reviewer.".html_safe, review_reviewers_url(@review.id, "reviewer[person_id]" => person.id, :close_person_dialog => true), :method => :post, :remote => true %>
-  <%- else -%>
+  <% else %>
     <%= msg %>
-  <%- end -%>
+  <% end %>
   </div>
 <% end %>
 </div>
@@ -38,7 +38,7 @@ Fields with the <%= image_tag('required.png') %> are required.
     <%= f.fields_for @person.current_address do |af| %>
       <%= af.label(:email) do 'Email: ' end %>
       <%= af.text_field(:email) %>
-    <%- end -%>
+    <% end %>
   </div>
 </div>
 
@@ -53,6 +53,6 @@ Fields with the <%= image_tag('required.png') %> are required.
     <%= f.fields_for @person.current_address do |af| %>
       <%= af.label(:homePhone) do 'Phone: ' end %>
       <%= af.text_field(:homePhone) %>
-    <%- end -%>
+    <% end %>
   </div>
 </div>

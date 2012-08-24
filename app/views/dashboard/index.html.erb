@@ -4,11 +4,11 @@
       <li><a href="">Home</a></li>
     </ul>
   </div>  
-  
   <h1><%= current_person.full_name %></h1>
-
-  <div id="flash_notice" class="flash" style="<%= 'display:none' unless flash[:notice] %>"><%= flash[:notice] %></div>
-  <div id="flash_error" class="flash" style="<%= 'display:none' unless flash[:error] %>"><%= flash[:error] %></div>
+  <div id="flash_notice" class="flash" style="<%= 'display:none' unless flash[:notice] %>"><%= flash[:notice] %>
+  </div>
+  <div id="flash_error" class="flash" style="<%= 'display:none' unless flash[:error] %>"><%= flash[:error] %>
+  </div>
 
   <div class="projectedit" id="dashboard">
     <div class="left">
@@ -17,55 +17,43 @@
           <li><%= link_to("Reviews I need to fill out", '#toreview') %></li>
           <li><%= link_to("Submitted review requests", '#pastreview') %></li>
         </ul>
-    
         <div class="tabcontent" id="toreview">
-          <%- unless @team_reviewings.empty? %>
+          <% unless @team_reviewings.empty? %>
             <div class="action_title">
               Below are requests for reviews that you need to complete. Click on the Review Title to complete the review.
             </div>
-          <%- end -%>
-          
-          
-          <%- unless @team_reviewings.empty? %>
+          <% end %>
+          <% unless @team_reviewings.empty? %>
             <%= render "reviewings_table", :reviewings => @team_reviewings, :readonly => false %>
-          <%- end -%>
-
-          <%- unless @nonteam_reviewings.empty? %>
+          <% end %>
+          <% unless @nonteam_reviewings.empty? %>
             <h2 class="border">Other</h2>
             <%= render "reviewings_table", :reviewings => @nonteam_reviewings, :readonly => false %>
-          <%- end -%>
-
-          <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
+          <% end %>
+          <% if @nonteam_reviewings.empty? && @team_reviewings.empty? %>
             <div class="action_title">
               You have no reviews to fill out.<BR/>
               You might want to <%= link_to "start a review", reviews_url(:start => true) %> or look at some of <%= link_to "your reviews", reviews_url %>.
             </div>
-          <%- end -%>
+          <% end %>
         </div>
-        
         <div class="tabcontent" id="pastreview">
-          <%- unless @past_nonteam_reviewings.empty? %>
-          <h2 class="border">Other</h2>
-          <%= render "reviewings_table", :reviewings => @past_nonteam_reviewings, :readonly => true %>
-          <%- end -%>
-
-          <%- unless @past_team_reviewings.empty? %>
-          <h2 class="border">My Team</h2>
-          <%= render "reviewings_table", :reviewings => @past_team_reviewings, :readonly => true %>
-          <%- end -%>
-
-          <%- if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
+          <% unless @past_nonteam_reviewings.empty? %>
+            <h2 class ="border">Other</h2>
+            <%= render "reviewings_table", :reviewings => @past_nonteam_reviewings, :readonly => true %>
+          <% end %>
+          <% unless @past_team_reviewings.empty? %>
+            <h2 class="border">My Team</h2>
+            <%= render "reviewings_table", :reviewings => @past_team_reviewings, :readonly => true %>
+          <% end %>
+          <% if @past_nonteam_reviewings.empty? && @past_team_reviewings.empty? %>
             <div class="action_title">
               You don't have any submitted reviews that you filled out.
             </div>
-          <%- end -%>
+          <% end %>
         </div>
       </div>
-        
-      
     </div>
-     
     <%= render "people/sidebar", :person => current_person %>
   </div>
-  
 </div>
