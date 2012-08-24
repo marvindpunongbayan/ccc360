@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/westonplatter/questionnaire_engine.git
-  revision: b87eed4e316b1caa07bb7800cd117d8f14b75b08
+  revision: 81b09652bdff22c7a9864769f0822091b4b09641
   branch: engine
   specs:
     questionnaire_engine (0.0.2)
