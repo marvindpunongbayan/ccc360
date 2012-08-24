@@ -1,5 +1,3 @@
-require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
-
 class SummaryForm < Qe::AnswerSheet
   self.table_name = "pr_summary_forms"
 

@@ -1,6 +1,8 @@
-require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
+# require_dependency Qe::Engine.root.join('app', 'models', 'qe', 'answer_sheet').to_s
 
-class Reviewer < Qe::AnswerSheet
+class Reviewer < ActiveRecord::Base
+  include Qe::Concerns::Models::AnswerSheet
+
   self.table_name = "pr_reviewers"
   
   before_create :generate_access_key

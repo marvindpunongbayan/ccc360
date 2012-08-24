@@ -27,12 +27,12 @@
           
           
           <%- unless @team_reviewings.empty? %>
-          <%= render "reviewings_table", :reviewings => @team_reviewings, :readonly => false %>
+            <%= render "reviewings_table", :reviewings => @team_reviewings, :readonly => false %>
           <%- end -%>
 
           <%- unless @nonteam_reviewings.empty? %>
-          <h2 class="border">Other</h2>
-          <%= render "reviewings_table", :reviewings => @nonteam_reviewings, :readonly => false %>
+            <h2 class="border">Other</h2>
+            <%= render "reviewings_table", :reviewings => @nonteam_reviewings, :readonly => false %>
           <%- end -%>
 
           <%- if @nonteam_reviewings.empty? && @team_reviewings.empty? %>

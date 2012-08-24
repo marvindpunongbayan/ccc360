@@ -8,7 +8,8 @@ class DashboardController < ApplicationController
     @team_reviewings = []
     @past_nonteam_reviewings = []
     @past_team_reviewings = []
-    for reviewing in reviewings
+    
+    reviewings.each do |reviewing|
       review = reviewing.review
       next if review.nil?
       if team_members.include?(review.subject)
