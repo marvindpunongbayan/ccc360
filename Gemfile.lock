@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/westonplatter/questionnaire_engine.git
-  revision: 81b09652bdff22c7a9864769f0822091b4b09641
+  revision: c7b5ad009926a39e7e75fc5c0be713cfd97eb342
   branch: engine
   specs:
     questionnaire_engine (0.0.2)
@@ -102,7 +102,7 @@ GEM
       thor (>= 0.14.6)
     guard-rspec (1.2.1)
       guard (>= 1.1)
-    highline (1.6.13)
+    highline (1.6.14)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)

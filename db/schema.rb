@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823212943) do
+ActiveRecord::Schema.define(:version => 20120824161602) do
 
   create_table "academic_departments", :force => true do |t|
     t.string "name"
@@ -100,6 +100,58 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.string   "app"
   end
 
+  create_table "articles", :force => true do |t|
+    t.string   "author",          :default => "Tom Windish"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "updated_at"
+    t.datetime "created_at"
+    t.datetime "real_updated_at"
+  end
+
+  create_table "artists", :force => true do |t|
+    t.string   "name"
+    t.string   "label"
+    t.text     "about"
+    t.text     "bio"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+    t.string   "slug",                    :limit => 100
+    t.boolean  "active",                                 :default => false
+    t.string   "artist_key"
+    t.boolean  "live"
+    t.boolean  "dj"
+    t.boolean  "speaker"
+    t.boolean  "licensing",                              :default => false
+    t.string   "responsible_agent_name"
+    t.string   "responsible_agent_email"
+    t.string   "youtube_search_phrase"
+  end
+
+  add_index "artists", ["slug"], :name => "index_artists_on_slug"
+
+  create_table "artists_territories", :id => false, :force => true do |t|
+    t.integer "territory_id"
+    t.integer "artist_id"
+  end
+
+  create_table "assets", :force => true do |t|
+    t.string  "name"
+    t.string  "type"
+    t.integer "parent_id"
+    t.string  "content_type"
+    t.string  "filename"
+    t.string  "thumbnail"
+    t.integer "size"
+    t.integer "width"
+    t.integer "height"
+    t.integer "position"
+    t.boolean "active",       :default => true
+    t.integer "artist_id"
+  end
+
+  add_index "assets", ["artist_id"], :name => "index_assets_on_artist_id"
+
   create_table "auth_requests", :force => true do |t|
     t.string   "code"
     t.string   "client_id"
@@ -128,6 +180,18 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
   end
 
   add_index "authentications", ["uid", "provider"], :name => "uid_provider", :unique => true
+
+  create_table "avails", :force => true do |t|
+    t.integer "import_id"
+    t.string  "artist_name"
+    t.integer "artist_id"
+    t.string  "time_period"
+    t.string  "situation"
+  end
+
+  add_index "avails", ["artist_id"], :name => "index_avails_on_artist_id"
+  add_index "avails", ["artist_name"], :name => "index_avails_on_artist_name"
+  add_index "avails", ["import_id"], :name => "index_avails_on_import_id"
 
   create_table "clients", :force => true do |t|
     t.string   "code"
@@ -972,7 +1036,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "updated_at"
   end
 
-  add_index "email_addresses", ["email"], :name => "email", :unique => true
+  add_index "email_addresses", ["email"], :name => "email"
   add_index "email_addresses", ["person_id"], :name => "person_id"
 
   create_table "engine_schema_info", :id => false, :force => true do |t|
@@ -1557,6 +1621,17 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
 
   add_index "hr_si_users", ["fk_ssmUserID"], :name => "IX_hr_si_Users_fk_ssmUserID"
 
+  create_table "imports", :force => true do |t|
+    t.string   "type"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "size"
+    t.datetime "created_at"
+    t.datetime "processed_at"
+    t.integer  "parent_id"
+    t.boolean  "active",       :default => true
+  end
+
   create_table "infobase_bookmarks", :force => true do |t|
     t.integer "user_id"
     t.string  "name",    :limit => 64
@@ -1572,6 +1647,30 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "inquiries", :force => true do |t|
+    t.string   "requested_artist"
+    t.string   "date_of_event"
+    t.string   "venue_name"
+    t.text     "venue_address"
+    t.string   "venue_capacity"
+    t.string   "artist_budget"
+    t.string   "promoter_name"
+    t.string   "promoter_phone"
+    t.string   "promoter_address"
+    t.string   "promoter_email"
+    t.string   "promoter_website"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "lat_long_by_zip_code", :force => true do |t|
@@ -1605,6 +1704,25 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.string    "InfoEFCA",             :limit => 1,   :default => "F"
     t.string    "InfoGCM",              :limit => 1,   :default => "F"
     t.string    "InfoWesley",           :limit => 1,   :default => "F"
+  end
+
+  create_table "links", :force => true do |t|
+    t.string  "name"
+    t.string  "url"
+    t.integer "artist_id"
+    t.integer "position"
+    t.boolean "active",    :default => true
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+    t.boolean  "active",      :default => false
+    t.integer  "artist_id"
+    t.string   "type"
+    t.integer  "position"
   end
 
   create_table "mail_delayed_jobs", :force => true do |t|
@@ -1715,6 +1833,15 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.integer "toggle_id"
   end
 
+  create_table "mh_dashboard_posts", :force => true do |t|
+    t.string   "title",      :default => ""
+    t.text     "context"
+    t.string   "video",      :default => ""
+    t.boolean  "visible",    :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "mh_education_histories", :force => true do |t|
     t.integer  "person_id"
     t.string   "type"
@@ -1766,6 +1893,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.boolean  "web_only",                                :default => false
     t.string   "trigger_words"
     t.string   "notify_via"
+    t.boolean  "hidden",                                  :default => false, :null => false
   end
 
   add_index "mh_elements", ["conditional_id"], :name => "index_ma_elements_on_conditional_id"
@@ -1878,6 +2006,14 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "updated_at"
   end
 
+  create_table "mh_new_people", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "organization_id"
+    t.boolean  "notified",        :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
   create_table "mh_person_transfers", :force => true do |t|
     t.integer  "person_id"
     t.integer  "old_organization_id"
@@ -1887,6 +2023,15 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "transferred_by_id"
+  end
+
+  create_table "mh_question_rules", :force => true do |t|
+    t.integer  "survey_element_id"
+    t.integer  "rule_id"
+    t.string   "trigger_keywords"
+    t.string   "extra_parameters"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "mh_question_sheets", :force => true do |t|
@@ -1915,6 +2060,16 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "updated_at"
   end
 
+  create_table "mh_rules", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "action_method"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "limit_per_survey", :default => 0
+    t.string   "rule_code"
+  end
+
   create_table "mh_survey_elements", :force => true do |t|
     t.integer  "survey_id"
     t.integer  "element_id"
@@ -1926,15 +2081,26 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
   end
 
   create_table "mh_surveys", :force => true do |t|
-    t.string   "title",               :limit => 100, :default => "",       :null => false
+    t.string   "title",                 :limit => 100, :default => "",       :null => false
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "post_survey_message"
-    t.string   "terminology",                        :default => "Survey"
-    t.integer  "login_option",                       :default => 0
+    t.string   "terminology",                          :default => "Survey"
+    t.integer  "login_option",                         :default => 0
     t.boolean  "is_frozen"
     t.text     "login_paragraph"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "css_file_file_name"
+    t.string   "css_file_content_type"
+    t.integer  "css_file_file_size"
+    t.datetime "css_file_updated_at"
+    t.text     "css"
+    t.string   "background_color"
+    t.string   "text_color"
   end
 
   add_index "mh_surveys", ["organization_id"], :name => "index_mh_surveys_on_organization_id"
@@ -2214,6 +2380,8 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.integer  "fb_uid",                        :limit => 8
     t.datetime "date_attributes_updated"
     t.decimal  "balance_daily",                                       :precision => 10, :scale => 2
+    t.text     "organization_tree_cache"
+    t.text     "org_ids_cache"
   end
 
   add_index "ministry_person", ["accountNo"], :name => "accountNo_ministry_Person"
@@ -2222,6 +2390,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
   add_index "ministry_person", ["firstName"], :name => "firstname_ministry_Person"
   add_index "ministry_person", ["fk_ssmUserId"], :name => "fk_ssmUserId"
   add_index "ministry_person", ["lastName"], :name => "lastname_ministry_Person"
+  add_index "ministry_person", ["org_ids_cache"], :name => "index_ministry_person_on_org_ids_cache", :length => {"org_ids_cache"=>255}
   add_index "ministry_person", ["region"], :name => "region_ministry_Person"
 
   create_table "ministry_regionalstat", :primary_key => "RegionalStatID", :force => true do |t|
@@ -3141,6 +3310,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.integer  "organization_id"
     t.string   "followup_status"
     t.integer  "added_by_id"
+    t.datetime "archive_date"
   end
 
   add_index "organizational_roles", ["organization_id", "role_id", "followup_status"], :name => "role_org_status"
@@ -3164,6 +3334,13 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
   add_index "organizations", ["ancestry"], :name => "index_organizations_on_ancestry"
   add_index "organizations", ["importable_type", "importable_id"], :name => "index_organizations_on_importable_type_and_importable_id", :unique => true
   add_index "organizations", ["name"], :name => "index_organizations_on_name"
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+  end
 
   create_table "person_accesses", :force => true do |t|
     t.boolean  "national_access"
@@ -3202,6 +3379,19 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
 
   add_index "phone_numbers", ["carrier_id"], :name => "index_phone_numbers_on_carrier_id"
   add_index "phone_numbers", ["person_id", "number"], :name => "index_phone_numbers_on_person_id_and_number"
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "artist_id"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+    t.boolean  "active",       :default => false
+  end
 
   create_table "plugin_schema_info", :id => false, :force => true do |t|
     t.string  "plugin_name"
@@ -3538,6 +3728,10 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
 
   add_index "saved_contact_searches", ["user_id"], :name => "index_saved_contact_searches_on_user_id"
 
+  create_table "schema_info", :id => false, :force => true do |t|
+    t.integer "version"
+  end
+
   create_table "school_years", :force => true do |t|
     t.string   "name"
     t.string   "level"
@@ -3558,6 +3752,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.string   "twilio_sid"
     t.string   "twilio_uri"
     t.string   "separator"
+    t.integer  "question_id"
   end
 
   add_index "sent_sms", ["twilio_sid"], :name => "index_sent_sms_on_twilio_sid", :unique => true
@@ -3756,6 +3951,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "last_sign_in_at"
     t.string   "locale"
     t.integer  "checked_guid",              :limit => 1,   :default => 0,     :null => false
+    t.text     "settings"
   end
 
   add_index "simplesecuritymanager_user", ["email"], :name => "index_simplesecuritymanager_user_on_email", :unique => true
@@ -4047,7 +4243,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.string   "initial_response",               :limit => 145
     t.text     "post_survey_message_deprecated"
     t.string   "event_type"
-    t.string   "gateway",                                       :default => "", :null => false
+    t.string   "gateway",                                       :default => "twilio", :null => false
     t.integer  "survey_id"
   end
 
@@ -4062,6 +4258,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.boolean  "interactive",    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ended",          :default => false, :null => false
   end
 
   add_index "sms_sessions", ["phone_number", "updated_at"], :name => "session"
@@ -4914,12 +5111,12 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.string   "project_contact_role",               :limit => 40
     t.string   "project_contact_phone",              :limit => 20
     t.string   "project_contact_email",              :limit => 100
-    t.integer  "max_student_men_applicants",                         :default => 70,    :null => false
-    t.integer  "max_student_women_applicants",                       :default => 70,    :null => false
+    t.integer  "max_student_men_applicants",                         :default => 70,           :null => false
+    t.integer  "max_student_women_applicants",                       :default => 70,           :null => false
     t.integer  "max_accepted_men"
     t.integer  "max_accepted_women"
-    t.integer  "ideal_staff_men",                                    :default => 0,     :null => false
-    t.integer  "ideal_staff_women",                                  :default => 0,     :null => false
+    t.integer  "ideal_staff_men",                                    :default => 0,            :null => false
+    t.integer  "ideal_staff_women",                                  :default => 0,            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by_id"
@@ -4928,7 +5125,7 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.integer  "current_students_women",                             :default => 0
     t.integer  "current_applicants_men",                             :default => 0
     t.integer  "current_applicants_women",                           :default => 0
-    t.integer  "year",                                                                  :null => false
+    t.integer  "year",                                                                         :null => false
     t.integer  "coordinator_id"
     t.integer  "old_id"
     t.string   "project_status"
@@ -4970,6 +5167,8 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.date     "student_staff_start_date"
     t.date     "student_staff_end_date"
     t.boolean  "background_checks_required",                         :default => false
+    t.date     "open_application_date",                              :default => '2012-11-01'
+    t.date     "archive_project_date",                               :default => '2012-08-31'
   end
 
   add_index "sp_projects", ["name"], :name => "sp_projects_name_index", :unique => true
@@ -5088,6 +5287,14 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
     t.datetime "updated_at"
   end
 
+  create_table "spotlights", :force => true do |t|
+    t.integer  "artist_id"
+    t.text     "summary"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+    t.boolean  "active",      :default => false
+  end
+
   create_table "staffsite_staffsitepref", :primary_key => "StaffSitePrefID", :force => true do |t|
     t.string "name",                :limit => 64
     t.string "displayName"
@@ -5143,6 +5350,66 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
 
   add_index "teams", ["organization_id"], :name => "index_teams_on_organization_id"
 
+  create_table "territories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position",   :default => 0
+  end
+
+  create_table "tour_dates", :force => true do |t|
+    t.integer  "import_id"
+    t.string   "artist_name"
+    t.integer  "artist_id"
+    t.string   "venue_name"
+    t.string   "venue_link"
+    t.datetime "date"
+    t.string   "city"
+    t.string   "state"
+    t.string   "with"
+  end
+
+  add_index "tour_dates", ["artist_id"], :name => "index_tour_dates_on_artist_id"
+  add_index "tour_dates", ["artist_name"], :name => "index_tour_dates_on_artist_name"
+  add_index "tour_dates", ["date"], :name => "index_tour_dates_on_date"
+  add_index "tour_dates", ["import_id"], :name => "index_tour_dates_on_import_id"
+
+  create_table "track_images", :force => true do |t|
+    t.integer "track_id"
+    t.integer "parent_id"
+    t.string  "content_type"
+    t.string  "filename"
+    t.string  "thumbnail"
+    t.integer "size"
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.string   "album"
+    t.integer  "artist_id"
+    t.datetime "created_at"
+    t.datetime "modified_at"
+    t.integer  "position"
+    t.boolean  "active",       :default => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.boolean  "omnipotent",                              :default => false
+  end
+
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false
     t.integer  "item_id",    :null => false
@@ -5153,5 +5420,14 @@ ActiveRecord::Schema.define(:version => 20120823212943) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "videos", :force => true do |t|
+    t.string  "name"
+    t.text    "description"
+    t.text    "html"
+    t.integer "artist_id"
+    t.integer "position"
+    t.boolean "active",      :default => false
+  end
 
 end

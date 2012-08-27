@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  helper Qe::Engine.helpers
+
   def self.application_name
     'pr'
   end
