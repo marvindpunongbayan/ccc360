@@ -1,4 +1,5 @@
 class RemindersController < ApplicationController
+  
   def new
     @reminder = Reminder.new :person_id => current_person
   end
@@ -14,7 +15,6 @@ class RemindersController < ApplicationController
     else
       render :action => :new
     end
-
   end
 
   def edit

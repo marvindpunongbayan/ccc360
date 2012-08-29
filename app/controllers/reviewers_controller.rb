@@ -1,4 +1,6 @@
-class ReviewersController < AnswerSheetsController
+class ReviewersController < ApplicationController
+  include Qe::Concerns::Controllers::AnswerSheetsController
+
   skip_before_filter :check_valid_user, :only => [ :edit_from_code, :edit ]
   before_filter :check_valid_user_local, :only => [ :edit ]
   before_filter :get_review, :except => [ :edit_from_code ]
@@ -100,51 +102,51 @@ class ReviewersController < AnswerSheetsController
 
   protected
 
-    def check_valid_user_local
-      unless session[:person_id].present?
-        return check_valid_user
+  def set_answer_sheet_type
+    params[:answer_sheet_type] = 'Reviewer'
+  end
+
+  def check_valid_user_local
+    unless session[:person_id].present?
+      return check_valid_user
+    end
+    return true
+  end
+
+  def get_review
+    @review = Review.unscoped.find params[:review_id]
+    if @review.fake_deleted
+      render :text => "This review has been deleted.", :layout => true
+    end
+  end
+
+  def get_reviewer
+    @reviewer = Reviewer.find params[:id]
+  end
+
+  def setup_collate
+    if params[:collate]
+      get_review
+      unless @review.reviewings.present?
+        error_and_try_back("Sorry, there are no reviewers yet.  Try again after some reviewers are added.")
+        return
       end
-      return true
+      params[:id] = @review.reviewings.first.id
     end
+  end
 
-    def get_review
-      @review = Review.unscoped.find params[:review_id]
-      if @review.fake_deleted
-        render :text => "This review has been deleted.", :layout => true
-      end
+  def check_permission
+    unless has_permission
+      error_and_try_back("Sorry, you don't have permission to view this review.")
     end
+  end
 
-    def get_reviewer
-      @reviewer = Reviewer.find params[:id]
-    end
-
-    def set_answer_sheet_type
-      params[:answer_sheet_type] = 'Reviewer'
-    end
-
-    def setup_collate
-      if params[:collate]
-        get_review
-        unless @review.reviewings.present?
-          error_and_try_back("Sorry, there are no reviewers yet.  Try again after some reviewers are added.")
-          return
-        end
-        params[:id] = @review.reviewings.first.id
-      end
-    end
-
-    def check_permission
-      unless has_permission
-        error_and_try_back("Sorry, you don't have permission to view this review.")
-      end
-    end
-
-    def has_permission
-      return true if @reviewer.person == current_person && params[:collate] != true
-      return false if @review.subject == current_person
-      return true if @review.initiator == current_person
-      return true if is_leading_person?(@review.subject)
-      return true if people_in_access_level.include?(@review.subject)
-      return admin?
-    end
+  def has_permission
+    return true if @reviewer.person == current_person && params[:collate] != true
+    return false if @review.subject == current_person
+    return true if @review.initiator == current_person
+    return true if is_leading_person?(@review.subject)
+    return true if people_in_access_level.include?(@review.subject)
+    return admin?
+  end
 end

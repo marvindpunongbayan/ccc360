@@ -1,5 +1,5 @@
 # require_dependency Rails.root.join('vendor','plugins','questionnaire_engine','app','controllers','answer_pages_controller').to_s
-require_dependency Qe::Engine.root.join('app', 'presenters', 'qe', 'answer_pages_presenter').to_s
+# require_dependency Qe::Engine.root.join('app', 'presenters', 'qe', 'answer_pages_presenter').to_s
 
 class AnswerPagesController < ApplicationController
   protected

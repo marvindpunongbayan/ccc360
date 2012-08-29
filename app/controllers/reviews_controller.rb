@@ -1,4 +1,6 @@
-class ReviewsController < AnswerSheetsController
+class ReviewsController < ApplicationController
+  include Qe::Concerns::Controllers::AnswerSheetsController
+
   prepend_before_filter :set_answer_sheet_type
   layout :set_layout
 
@@ -154,7 +156,8 @@ class ReviewsController < AnswerSheetsController
   end
 
   protected
-    def set_answer_sheet_type
-      params[:answer_sheet_type] = 'Review'
-    end
+
+  def set_answer_sheet_type
+    params[:answer_sheet_type] = 'Review'
+  end
 end
