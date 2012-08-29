@@ -1,4 +1,4 @@
-function setup_search_autocomplete {
+function setup_search_autocomplete () {
         $("#reviewer_search_name").autocomplete({
                 source: function(request, response) {
                         // var term = request.term;
