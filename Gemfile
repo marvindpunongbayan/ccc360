@@ -35,6 +35,8 @@ group :assets do
 	gem 'sass-rails'
 	gem 'coffee-rails'
 	gem 'uglifier'
+	gem 'execjs'
+  gem 'therubyrhino'
 end
 
 group :test, :development do
