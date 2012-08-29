@@ -2,48 +2,42 @@
 <html>
 <head>
   <title>Panorama</title>
-
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
-
-  <%= csrf_meta_tag %>
-
+  <%= csrf_meta_tag %>  
   <script type="text/javascript" charset="utf-8">
     <%= raw Rack::TimeZone::Javascript %>
     setTimezoneCookie()
   </script>
-
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-
 </head>
 
 <body>
-
-<%= render "layouts/global_menu" %>
-
-<div id="primary">
-  <div class="pagewidth">
-    <% if !view_has_own_flash && flash[:error] %>
-      <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
-    <% end %>
-    <%= yield %>
-    <div class="clear"></div>
+  <%= render "layouts/global_menu" %>
+  
+  <div id="primary">
+    <div class="pagewidth">
+      <% if !view_has_own_flash && flash[:error] %>
+        <div style="background: #ffe5df; border: solid 1px #efbeb3; padding: 9px; margin: 0 0 18px;"><%= flash[:error] %></div>
+      <% end %>
+      <%= yield %>
+      <div class="clear"></div>
+    </div>
+    <div id="status" style="display: none;">
+      <%= image_tag("status.gif", :id => "status-img") %> <span id="status-msg">Please Wait...</span>
+    </div>
+    <div id="feedback">
+      <h2>We listen!</h2>
+      <p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
+    </div>
+    <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
   </div>
-  <div id="status" style="display: none;">
-    <%= image_tag("qe/status.gif", :id => "status-img") %> <span id="status-msg">Please Wait...</span>
-  </div>
-  <div id="feedback">
-    <h2>We listen!</h2>
-    <p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
-  </div>
-  <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
-</div>
 
-<div id="dialog-confirm" style="display:none" title="Are you sure?">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
-    <span id="dialog-confirm-message"></span>
-  </p>
-</div>
-
+  <div id="dialog-confirm" style="display:none" title="Are you sure?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+      <span id="dialog-confirm-message"></span>
+    </p>
+  </div>
+  
 </body>
 </html>
