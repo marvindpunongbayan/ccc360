@@ -25,7 +25,10 @@ gem 'liquid'
 gem 'aws-s3'
 
 # cru gems
-gem 'questionnaire_engine', :git => 'git://github.com/westonplatter/questionnaire_engine.git', :branch => 'engine'
+gem 'questionnaire_engine', 
+	:git => 'git://github.com/twinge/questionnaire_engine.git', 
+	:branch => 'engine'
+	
 # gem 'common_engine' # switching over to gem version of common_engine
 
 group :assets do
