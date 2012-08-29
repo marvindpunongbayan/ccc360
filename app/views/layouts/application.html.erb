@@ -3,14 +3,15 @@
 <head>
   <title>Panorama</title>
   
+  <%# need to explicitly include these 2 libraries %>
+  <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "effects" %>
+  
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
 
-  
-  <%# needed for the qe ckeditor %>
-  
-
   <%= csrf_meta_tag %>  
+  
   <script type="text/javascript" charset="utf-8">
     <%= raw Rack::TimeZone::Javascript %>
     setTimezoneCookie()
