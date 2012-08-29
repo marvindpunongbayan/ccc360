@@ -1,9 +1,11 @@
 # require_dependency "#{Rails.root}/vendor/plugins/questionnaire_engine/app/controllers/answer_sheets_controller.rb"
-require_dependency Qe::Engine.root.join('app', 'controllers', 'qe', 'answer_sheets_controller').to_s
+# require_dependency Qe::Engine.root.join('app', 'controllers', 'qe', 'answer_sheets_controller').to_s
 
 class AnswerSheetsController < ApplicationController
-  layout :set_layout
+  include Qe::Concerns::Controllers::AnswerSheetsController
 
+  layout :set_layout
+  
   def submit
     return false unless validate_sheet
     @answer_sheet.submit!
