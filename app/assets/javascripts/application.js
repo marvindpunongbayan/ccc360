@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require qe/application
+//= require prototype
 //= require effects
 //= require_self
 //= require_tree .
