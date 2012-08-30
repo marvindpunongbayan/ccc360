@@ -172,23 +172,21 @@ ul#nav-controls li a:hover {
   width:107px;  
 }
 
-.list-elements #qg a {  background-image: url(qe/icons/table.png); }
-.list-elements #qgt a { background-image: url(qe/icons/table.png); }
-.list-elements #sl a {  background-image: url(qe/icons/textfield.png);}
-.list-elements #ml a {  background-image: url(qe/icons/textfield.png);}
-.list-elements #co a {  background-image: url(qe/icons/radio.png);}
-.list-elements #cm a {  background-image: url(qe/icons/checkbox.png);}
-.list-elements #dt a {  background-image: url(qe/icons/calendar_view_day.png);}
-.list-elements #fu a {  background-image: url(qe/icons/disk.png);}
-.list-elements #pa a {  background-image: url(qe/icons/text_align_left.png);}
-.list-elements #sp a {  background-image: url(qe/icons/text_horizontalrule.png);}
-.list-elements #sk a {  background-image: url(qe/icons/book_open.png);}
-.list-elements #pp a {  background-image: url(qe/icons/asterisk_yellow.png);}
-.list-elements #sc a {  background-image: url(qe/icons/map_magnify.png);}
-.list-elements #at a {  background-image: url(qe/icons/paper-clip.png);}
-.list-elements #ref a{  background-image: url(qe/icons/book-open-list.png);}
-
-
+.list-elements #qg  a{ background-image: url(qe/icons/table.png); }
+.list-elements #qgt a{ background-image: url(qe/icons/table.png); }
+.list-elements #sl  a{ background-image: url(qe/icons/textfield.png);}
+.list-elements #ml  a{ background-image: url(qe/icons/textfield.png);}
+.list-elements #co  a{ background-image: url(qe/icons/radio.png);}
+.list-elements #cm  a{ background-image: url(qe/icons/checkbox.png);}
+.list-elements #dt  a{ background-image: url(qe/icons/calendar_view_day.png);}
+.list-elements #fu  a{ background-image: url(qe/icons/disk.png);}
+.list-elements #pa  a{ background-image: url(qe/icons/text_align_left.png);}
+.list-elements #sp  a{ background-image: url(qe/icons/text_horizontalrule.png);}
+.list-elements #sk  a{ background-image: url(qe/icons/book_open.png);}
+.list-elements #pp  a{ background-image: url(qe/icons/asterisk_yellow.png);}
+.list-elements #sc  a{ background-image: url(qe/icons/map_magnify.png);}
+.list-elements #at  a{ background-image: url(qe/icons/paper-clip.png);}
+.list-elements #ref a{ background-image: url(qe/icons/book-open-list.png);}
 
 #preview {
   width: 689px;
@@ -213,19 +211,18 @@ li.element:hover {
   background: #EBFCEB;
 }
 
-li.element.active,
-li.element.active:hover {
+li.element.active, li.element.active:hover {
   background: #FFFED2;
 }
 
 li.element .q {
   padding: 10px;
   min-height: 21px;
+  .element {
+   margin-left: 35px; }
 }
 
-li.element .q .element {
-  margin-left: 35px;
-}
+
 
 li.element .q_form {
   display: none;
@@ -245,11 +242,10 @@ label {
   font-size: 14px;
   line-height: 21px;
   display: block;
+  .desc { margin-bottom: 10px; }
 }
 
-label.desc {
-  margin-bottom: 10px;
-}
+
 
 ul.questions ul.questions label.desc {
   margin-bottom: 0;
@@ -266,9 +262,7 @@ ul.questions li {
 }
 
 .field_check input[type=checkbox],
-.field_check input[type=radio] {
-  float: left;
-}
+.field_check input[type=radio] { float: left; }
 
 .choice_field.error label {
 	color: red;
@@ -308,25 +302,26 @@ div.p_content ol li {
 .buttons {
   padding: 10px 0;
   border-top: 1px solid gray;
+
+  button {
+    -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px 4px;
+    border-radius:4px 4px 4px 4px;
+    background:none repeat scroll 0 0 #0B486B;
+    border:1px solid #0B486B;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:bold;
+    padding:5px 10px;
+    font-family: Arial;
+    cursor: pointer;
+  }
+  &:hover { -moz-box-shadow: 0px 0px 5px #999; }
 }
 
-.buttons button {
-  -moz-border-radius:4px 4px 4px 4px;
-  -webkit-border-radius:4px 4px 4px 4px;
-  border-radius:4px 4px 4px 4px;
-  background:none repeat scroll 0 0 #0B486B;
-  border:1px solid #0B486B;
-  color:#FFFFFF;
-  font-size:14px;
-  font-weight:bold;
-  padding:5px 10px;
-  font-family: Arial;
-  cursor: pointer;
-}
 
-.buttons button:hover {
-  -moz-box-shadow: 0px 0px 5px #999;
-}
+
+
 
 
 

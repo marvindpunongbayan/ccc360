@@ -1,3 +1,81 @@
+h1, h2, h3, h4, h5, h6 { font-family: "Gill Sans MT", Arial, Verdana, Helvetica; }
+h1 {
+  font-size: 26px;
+  margin: 0.5em 0 1.15em 0; }
+h2.border { border-bottom: 3px solid #0b486b; }
+h3 { 
+  font-size: 20px; 
+  .critical {
+    border-color: orange -moz-use-text-color;
+    border-style: solid none;
+    border-width: 1px medium;
+    color: orange;
+    margin-top: 25px;
+    padding: 10px 0; }
+  .inlinetip {
+    font-family: Arial, Verdana;
+    font-size: 11px;
+    font-weight: normal;
+    display: inline; 
+    img { vertical-align: middle; }
+    .tip {
+      display: inline;
+      background: #fff9dc;
+      padding: 2px 5px;
+      font-weight: normal; }
+  }
+}
+
+
+#primary {
+  padding: 0 25px 0 35px;
+  padding-bottom: 50px;
+  font-family: Arial, Verdana, Helvetica;
+  
+  h1 { font-size: 26px; margin: 0.5em 0 1.15em 0; font-weight:bold; }
+  // h3 
+  // { 
+  //   font-size: 13px; 
+  //   font-weight: bold;
+  //   color: #000000;
+    
+  //   .critical 
+  //   {
+  //     border-color: orange -moz-use-text-color;
+  //     border-style: solid none;
+  //     border-width: 1px medium;
+  //     color: orange;
+  //     margin-top: 25px;
+  //     padding: 10px 0;
+  //   }
+    
+  //   .inlinetip 
+  //   {
+  //     font-family: Arial, Verdana;
+  //     font-size: 11px;
+  //     font-weight: normal;
+  //     display: inline; 
+  //     img { vertical-align: middle; }
+  //     .tip {
+  //       display: inline;
+  //       background: #fff9dc;
+  //       padding: 2px 5px;
+  //       font-weight: normal; 
+  //     }
+  //   }
+  // }
+
+  .pagewidth {
+    margin-top: 1.5em;
+    background: #ffffff;
+    border: 1px solid #4d4d4d;
+    border-top: 4px solid #0b486b;
+    min-height: 270px;
+    padding: 10px;
+  }
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -10,8 +88,8 @@ a {
   text-decoration: none;
   color: #0b486b;
   outline: none;
+  &:active { outline: none; }
 }
-a:active { outline: none; }
 :focus { -moz-outline-style: none; }
 img {
   border: none;
@@ -46,21 +124,7 @@ html[xmlns] .clearfix { display: block; }
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-h1, h2, h3, h4, h5, h6 { font-family: "Gill Sans MT", Arial, Verdana, Helvetica; }
-h1 {
-  font-size: 26px;
-  margin: 0.5em 0 1.15em 0;
-}
-h3 { font-size: 14px; }
-h3.critical {
-  border-color: orange -moz-use-text-color;
-  border-style: solid none;
-  border-width: 1px medium;
-  color: orange;
-  margin-top: 25px;
-  padding: 10px 0;
-}
-h2.border { border-bottom: 3px solid #0b486b; }
+
 #global {
   background: #ffffff;
   border-top: 1px solid #ffffff;
@@ -166,18 +230,7 @@ div#help a {
   width: 32px;
 }
 div#help a:hover { background-color: none; }
-#primary {
-  padding: 0 25px 0 35px;
-  padding-bottom: 50px;
-}
-#primary .pagewidth {
-  margin-top: 1.5em;
-  background: #ffffff;
-  border: 1px solid #4d4d4d;
-  border-top: 4px solid #0b486b;
-  min-height: 270px;
-  padding: 10px;
-}
+
 .dashboardlist .buttons {
   margin-left: -44px;
   margin-top: -19px;
@@ -396,19 +449,7 @@ label .inlinetip .tip {
   padding: 2px 5px;
   font-weight: normal;
 }
-h3 .inlinetip {
-  font-family: Arial, Verdana;
-  font-size: 11px;
-  font-weight: normal;
-  display: inline;
-}
-h3 .inlinetip img { vertical-align: middle; }
-h3 .inlinetip .tip {
-  display: inline;
-  background: #fff9dc;
-  padding: 2px 5px;
-  font-weight: normal;
-}
+
 div.module h3 {
   background: #efefef;
   padding: 6px 10px;
@@ -661,7 +702,7 @@ a.close {
   margin: 0;
   list-style: none;
   padding: 0;
-  font-size: 11px;
+  font-size: 14px;
 }
 #breadcrumb ul li {
   float: left;
@@ -704,15 +745,14 @@ a.close {
   background: #ffffff;
   display: inline-block;
   padding: 3px 4px;
-  font-size: 14px;
-}
-.pagination em {
   background: #cff09e;
   color: #000000;
-  font-weight: bold;
   padding: 3px 7px;
+  font-weight: bold;
+  font-size: 14px;
   font-style: normal;
 }
+
 .pagination a:hover { background: #efefef; }
 #contextmenu { margin-bottom: 30px; }
 #contextmenu ul.right {
