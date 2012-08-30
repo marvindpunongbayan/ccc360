@@ -1208,6 +1208,7 @@ span.reviewername.female { background-image: url("icons/user-female.png"); }
 }
 #qe_wrapper .pagewidth { padding: 10px 15px; }
 #qe_wrapper #global .pagewidth { padding: 0; }
+
 #feedback {
   position: fixed;
   bottom: 0;
@@ -1224,30 +1225,34 @@ span.reviewername.female { background-image: url("icons/user-female.png"); }
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
   cursor: default;
-}
-#feedback:hover {
-  width: auto;
-  height: auto;
-}
-#feedback h2 {
+
+  &:hover {
+    width: auto;
+    height: auto; }
+  
+  h2 {
   color: #ffffff;
   padding: 5px 10px 5px 30px;
   margin: 0;
   font-size: 13px;
-  background: url('smile.png') 10px 50% no-repeat;
+  background: url('smile.png') 10px 50% no-repeat; 
+  font-weight: bold; }
+  
+  p {
+    margin: 0;
+    padding: 0px 10px 10px 10px;
+    width: 220px;
+    color: #dddddd; 
+    font-size: 12px; }
+
+  a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer; }
 }
-#feedback p {
-  margin: 0;
-  padding: 0px 10px 10px 10px;
-  width: 220px;
-  color: #dddddd;
-}
-#feedback a {
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
-}
+
+
 .questions textarea.text { width: 100%; }
 .questions input.text { width: auto; }
 table.grid { width: 100%; }
