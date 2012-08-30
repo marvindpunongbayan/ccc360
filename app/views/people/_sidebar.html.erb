@@ -1,64 +1,53 @@
-    <div class="right sidebar">
-      <% reminders_only ||= false %>
-      <% unless reminders_only %>
-      <div class="module">
-        <h3><span>My Review Summary</span></h3>
-        <ul class="lesspad">
-          <% for review in person.subjected_reviews[0,1] %>
-            <% if review.show_summary_form? %>
-              <% name = "#{l(review.created_at.to_date)}: #{review.name}" %>
-              <li><%= can_view_summary?(review.subject, review.summary_form) ? link_to(name, review_summary_url(review.id)) : name %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-      
-      <div class="module">
-        <h3><span>My Development</span></h3>
-        <ul class="lesspad">
-          <% for q in @question_sheets.reverse %>
-          <li><%= link_to(q.label, edit_personal_form_url(q, :person_id => (person.id unless person == current_person), :q => true)) %></li>
-          <% end %>
-        </ul>
-      </div>
-      
-      <div class="module">
-        <h3>
-          <span>MPD</span>
-          <span class="controls"></span>
-        </h3>
-        <table class="stafflist">
-          <tbody id="_list">
-            <!--
-            <tr>
-              <td class="icon"><%= image_tag('qe/chart') %></td>
-              <td class="name"><%= link_to("Previous Month's Support") %></td>
-              <td class="goal">$4000.00</td>
-            </tr>
-            <tr>
-              <td class="icon"><%= image_tag('qe/icons/chart') %></td>
-              <td class="name"><%= link_to('Monthly Goal') %></td>
-              <td class="goal">$8512.11</td>
-            </tr>
-            -->
-            <tr>
-              <td class="icon"><%= image_tag('icons/chart.png') %></td>
-              <td class="name">Account Balance</td>
-              <td class="goal"><%= number_to_currency person.account_balance %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="right sidebar">
+  <% reminders_only ||= false %>
+  <% unless reminders_only %>
+  
+  <div class="module">
+    <h3><span>My Review Summary</span></h3>
+    <ul class="lesspad">
+      <% for review in person.subjected_reviews[0,1] %>
+        <% if review.show_summary_form? %>
+          <% name = "#{l(review.created_at.to_date)}: #{review.name}" %>
+          <li><%= can_view_summary?(review.subject, review.summary_form) ? link_to(name, review_summary_url(review.id)) : name %></li>
+        <% end %>
       <% end %>
-      
-      <div class="module">
-        <h3>
-          <span>Reminders/Notes</span>
-          <span class="controls"><%= link_to_function('Add', 'new_reminder_dialog()', :class => 'add edit-leader', 'data-name' => "Add a reminder/note", 'data-id' => "1", 'data-leader' => "2") %></span>
-        </h3>
-        <%= render "reminders/reminders_table", :person => person %>
-      </div>
-      
-    </div>
-    <div class="clear"></div>
-    <div id="reminders_dialog" style="display:none"></div>
+    </ul>
+  </div>
+  
+  <div class="module">
+    <h3><span>My Development</span></h3>
+    <ul class="lesspad">
+      <% for q in @question_sheets.reverse %>
+        <li><%= link_to(q.label, edit_personal_form_url(q, :person_id => (person.id unless person == current_person), :q => true)) %></li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="module">
+    <h3>
+      <span>MPD</span>
+      <span class="controls"></span>
+    </h3>
+    <table class="stafflist">
+      <tbody id="_list">
+        <tr>
+          <td class="icon"><%= image_tag('icons/chart.png') %></td>
+          <td class="name">Account Balance</td>
+          <td class="goal"><%= number_to_currency person.account_balance %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+  
+  <div class="module">
+    <h3>
+      <span>Reminders/Notes</span>
+      <span class="controls"><%= link_to_function('Add', 'new_reminder_dialog()', :class => 'add edit-leader', 'data-name' => "Add a reminder/note", 'data-id' => "1", 'data-leader' => "2") %></span>
+    </h3>
+    <%= render "reminders/reminders_table", :person => person %>
+  </div>
+  
+</div>
+<div class="clear"></div>
+<div id="reminders_dialog" style="display:none"></div>

@@ -102,7 +102,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
 }
 #global #menu li.search { float: right; }
 #global #menu li.search a {
-  background-image: url('buttonbg_search.png');
+  background-image: url('/images/buttonbg_search.png');
   padding-left: 31px;
 }
 #global #menuright {
@@ -142,7 +142,7 @@ h2.border { border-bottom: 3px solid #0b486b; }
 }
 #global #menuright li.search { float: right; }
 #global #menuright li.search a {
-  background-image: url('buttonbg_search.png');
+  background-image: url('/images/buttonbg_search.png');
   padding-left: 31px;
 }
 #global #menu { width: 550px; }
@@ -157,7 +157,7 @@ div#help {
   padding: 0;
 }
 div#help a {
-  background: url("help.png") no-repeat scroll 0 0 transparent;
+  background: url("/images/help.png") no-repeat scroll 0 0 transparent;
   display: block;
   height: 32px;
   margin: 0;
@@ -246,7 +246,7 @@ p.legend img { vertical-align: top; }
   overflow: auto;
   border: 1px solid #999999;
   width: 500px;
-  background: url(checkbox_bg.jpg) repeat-x 100% 100%;
+  background: url(/images/checkbox_bg.jpg) repeat-x 100% 100%;
 }
 .projectedit .checkboxes div { padding: 4px 0; }
 .projectedit .checkboxes div.selected {
@@ -279,7 +279,7 @@ input[type=text] {
 input[type=text].search { width: 100px; }
 input.small, input.date { width: 50px; }
 input.hasDatepicker[type=text] {
-  background: url(icons/calendar.png) no-repeat 98% 50%;
+  background: url(/images/icons/calendar.png) no-repeat 98% 50%;
   width: 100px;
 }
 div.field { margin-bottom: 0.75em; }
@@ -294,7 +294,7 @@ div.multifield .field {
 }
 div.required label {
   padding-left: 15px;
-  background: url("required.png") no-repeat scroll 0 33% transparent;
+  background: url("/images/required.png") no-repeat scroll 0 33% transparent;
 }
 div.quote textarea { height: 50px; }
 div.quote textarea:focus { height: auto; }
@@ -322,7 +322,7 @@ a.addanother img {
   vertical-align: bottom;
 }
 div.picture {
-  background: url("holder.png") no-repeat 50% 50%;
+  background: url("/images/holder.png") no-repeat 50% 50%;
   border: 1px solid silver;
   width: 100px;
   height: 100px;
@@ -331,7 +331,7 @@ div.picture {
 }
 .ui-widget input.smallinputfile { font-size: 12px; }
 button {
-  background: url(buttonbg.png) repeat-x;
+  background: url(/images/buttonbg.png) repeat-x;
   border: 1px solid silver;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -345,7 +345,7 @@ button {
 button.withicon span { padding-left: 31px; }
 button.save span {
   padding: 9px 6px 9px 6px;
-  background: url(buttonbg.png) no-repeat 0px 50%;
+  background: url(/images/buttonbg.png) no-repeat 0px 50%;
   display: block;
 }
 .checkvertical .checkboxwrapper { display: block; }
@@ -467,7 +467,7 @@ div.applicantdata table td.icon {
   width: 15%;
 }
 .add {
-  background: url(icons/plus-button.png) no-repeat 0 50%;
+  background: url(/images/icons/plus-button.png) no-repeat 0 50%;
   padding-left: 20px;
 }
 .module h3 span { float: left; }
@@ -539,10 +539,10 @@ a.inline {
   vertical-align: bottom;
   height: 15px;
 }
-a.edit { background-image: url('icons/pencil-smaller.png'); }
-a.delete { background-image: url('icons/slash.png'); }
+a.edit { background-image: url('/images/icons/pencil-smaller.png'); }
+a.delete { background-image: url('/images/icons/slash.png'); }
 a.stats {
-  background-image: url('icons/chart-pie.png');
+  background-image: url('/images/icons/chart-pie.png');
   width: 16px;
   height: 16px;
 }
@@ -663,7 +663,7 @@ a.close {
 }
 #breadcrumb ul li {
   float: left;
-  background: url('breadcrumbarrow.png') no-repeat 100% 50%;
+  background: url('/images/breadcrumbarrow.png') no-repeat 100% 50%;
   padding-right: 10px;
   margin-right: 5px;
 }
@@ -738,19 +738,19 @@ a.close {
   background-repeat: no-repeat;
   background-position: 10px 50%;
 }
-#contextmenu ul.right li a.person { background-image: url('icons/user.png'); }
-#contextmenu ul.right li a.add { background-image: url('icons/plus-button.png'); }
-#contextmenu ul.right li a.email { background-image: url('icons/mail-open-document.png'); }
-#contextmenu ul.right li a.excel { background-image: url('icons/document-excel.png'); }
+#contextmenu ul.right li a.person { background-image: url('/images/icons/user.png'); }
+#contextmenu ul.right li a.add { background-image: url('/images/icons/plus-button.png'); }
+#contextmenu ul.right li a.email { background-image: url('/images/icons/mail-open-document.png'); }
+#contextmenu ul.right li a.excel { background-image: url('/images/icons/document-excel.png'); }
 #contextmenu ul.right li a.down {
-  background-image: url('icons/down.png');
+  background-image: url('/images/icons/down.png');
   background-position: 0 50%;
   border: 1px solid silver;
   position: relative;
   z-index: 100;
 }
-#contextmenu ul.right li a.my { background-image: url('icons/blog--pencil.png'); }
-#contextmenu ul.right li a.start { background-image: url('icons/360.png'); }
+#contextmenu ul.right li a.my { background-image: url('/images/icons/blog--pencil.png'); }
+#contextmenu ul.right li a.start { background-image: url('/images/icons/360.png'); }
 #contextmenu ul.left {
   float: right;
   margin: 0;
@@ -776,19 +776,19 @@ a.close {
   background-repeat: no-repeat;
   background-position: 10px 50%;
 }
-#contextmenu ul.left li a.person { background-image: url('icons/user.png'); }
-#contextmenu ul.left li a.add { background-image: url('icons/plus-button.png'); }
-#contextmenu ul.left li a.email { background-image: url('icons/mail-open-document.png'); }
-#contextmenu ul.left li a.excel { background-image: url('icons/document-excel.png'); }
+#contextmenu ul.left li a.person { background-image: url('/images/icons/user.png'); }
+#contextmenu ul.left li a.add { background-image: url('/images/icons/plus-button.png'); }
+#contextmenu ul.left li a.email { background-image: url('/images/icons/mail-open-document.png'); }
+#contextmenu ul.left li a.excel { background-image: url('/images/icons/document-excel.png'); }
 #contextmenu ul.left li a.down {
-  background-image: url('icons/down.png');
+  background-image: url('/images/icons/down.png');
   background-position: 0 50%;
   border: 1px solid silver;
   position: relative;
   z-index: 100;
 }
-#contextmenu ul.left li a.my { background-image: url('icons/blog--pencil.png'); }
-#contextmenu ul.left li a.start { background-image: url('icons/360.png'); }
+#contextmenu ul.left li a.my { background-image: url('/images/icons/blog--pencil.png'); }
+#contextmenu ul.left li a.start { background-image: url('/images/icons/360.png'); }
 #contextmenu .poptions {
   width: 560px;
   min-height: 200px;
@@ -816,11 +816,11 @@ a.close {
 }
 #contextmenu .poptions ul li a.selected {
   color: #ffffff;
-  background: url(icons/check.png) no-repeat 5px 50% #0b486b;
+  background: url(/images/icons/check.png) no-repeat 5px 50% #0b486b;
 }
 #contextmenu .poptions ul li a.hover {
   color: #ffffff;
-  background: url(icons/check.png) no-repeat 5px 50% #0b486b;
+  background: url(/images/icons/check.png) no-repeat 5px 50% #0b486b;
 }
 #contextmenu .poptions hr {
   margin: 0 0 5px 0;
@@ -832,7 +832,7 @@ a.close {
   float: right;
   color: red;
   line-height: 35px;
-  background: url(icons/exclamation-red.png) no-repeat 0% 50%;
+  background: url(/images/icons/exclamation-red.png) no-repeat 0% 50%;
   padding-left: 20px;
 }
 .flash {
@@ -854,11 +854,11 @@ a.close {
 }
 #flash_notice {
   border-color: #83ce00;
-  background: url("icons/flag-green.png") no-repeat scroll 15px 50% #d3f4a2;
+  background: url("/images/icons/flag-green.png") no-repeat scroll 15px 50% #d3f4a2;
 }
 #flash_error, #errorExplanation {
   border-color: #db4f4f;
-  background: url("icons/exclamation-red.png") no-repeat scroll 15px 50% #ffa4a4;
+  background: url("/images/icons/exclamation-red.png") no-repeat scroll 15px 50% #ffa4a4;
 }
 #errorExplanation h2 {
   font-size: 16px;
@@ -980,7 +980,7 @@ table.people tr.reviewer_content table.list_of_reviewers td.checkbox { width: 27
 table.people tr.reviewer_content table.list_of_reviewers td.review_buttons { padding: 8px 5px; }
 table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.tablebutt {
   -moz-border-radius: 4px 4px 4px 4px;
-  background: url("buttonbg.png") repeat scroll 0 0 transparent;
+  background: url("/images/buttonbg.png") repeat scroll 0 0 transparent;
   border: 1px solid silver;
   float: left;
   font-size: 11px;
@@ -992,10 +992,10 @@ table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.tab
   background: no-repeat 0 50%;
   padding-left: 20px;
 }
-table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.invite_r span { background-image: url("icons/mail.png"); }
-table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.remind_r span { background-image: url("icons/mail.png"); }
-table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.add_r span { background-image: url("icons/plus-button.png"); }
-table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.edit_details_r span { background-image: url("icons/pencil.png"); }
+table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.invite_r span { background-image: url("/images/icons/mail.png"); }
+table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.remind_r span { background-image: url("/images/icons/mail.png"); }
+table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.add_r span { background-image: url("/images/icons/plus-button.png"); }
+table.people tr.reviewer_content table.list_of_reviewers td.review_buttons a.edit_details_r span { background-image: url("/images/icons/pencil.png"); }
 table.people td.last_row { border-bottom: none; }
 #dashboard table.people .gender { width: 7.5%; }
 div.list_of_reviewerswrap { padding: 0 4px; }
@@ -1011,7 +1011,7 @@ tr.expanded.review_title td {
 tr.expanded.review_title td.expand { border-left: 2px solid #cccccc; }
 tr.expanded.review_title td.deletereview { border-right: 2px solid #cccccc; }
 a.inlinemail {
-  background: url("icons/mail.png") no-repeat scroll 0 50% transparent;
+  background: url("/images/icons/mail.png") no-repeat scroll 0 50% transparent;
   display: inline-block;
   height: 16px;
   line-height: 16px;
@@ -1019,11 +1019,11 @@ a.inlinemail {
   width: 16px;
 }
 a.viewreviewlink {
-  background: url("icons/magnifier.png") no-repeat scroll 0 50% transparent;
+  background: url("/images/icons/magnifier.png") no-repeat scroll 0 50% transparent;
   padding-left: 20px;
 }
 a.deletereviewlink {
-  background: url("icons/minus-small-circle.png") no-repeat scroll 0 50% transparent;
+  background: url("/images/icons/minus-small-circle.png") no-repeat scroll 0 50% transparent;
   padding-left: 20px;
   width: 16px;
   height: 16px;
@@ -1094,24 +1094,24 @@ table.list td.title { width: auto; }
   font-weight: bold;
 }
 .ui-widget-content .ui-icon-person-female {
-  background: url("icons/user-female.png") no-repeat 0 5px;
+  background: url("/images/icons/user-female.png") no-repeat 0 5px;
   height: 30px;
 }
 .ui-widget-content .ui-icon-person-male {
-  background: url("icons/user.png") no-repeat 0 5px;
+  background: url("/images/icons/user.png") no-repeat 0 5px;
   height: 30px;
 }
 .ui-widget-content a { color: #0b486b; }
 .ui-widget-content a:hover { text-decoration: underline; }
 a.edit_person_link {
-  background: url("icons/pencil-smaller.png") no-repeat scroll 0 50% transparent;
+  background: url("/images/icons/pencil-smaller.png") no-repeat scroll 0 50% transparent;
   display: block;
   font-size: 12px;
   margin-top: 20px;
   padding-left: 23px;
 }
 a.AddNewPerson {
-  background: url("plus.png") no-repeat scroll 0 50% #e9f7ff;
+  background: url("/images/plus.png") no-repeat scroll 0 50% #e9f7ff;
   display: block;
   font-family: Arial;
   font-weight: normal;
@@ -1153,7 +1153,7 @@ a.AddNewPerson {
   text-align: right;
 }
 .backbutton a {
-  background: url("icons/arrow-curve-180.png") no-repeat 0 50%;
+  background: url("/images/icons/arrow-curve-180.png") no-repeat 0 50%;
   padding-left: 20px;
 }
 #new_reviewer_dialog span.ui-icon-alert { display: none; }
@@ -1198,8 +1198,8 @@ span.reviewername {
   color: #0b486b;
   font-weight: bold;
 }
-span.reviewername.male { background-image: url("icons/user-male.png"); }
-span.reviewername.female { background-image: url("icons/user-female.png"); }
+span.reviewername.male { background-image: url("/images/icons/user-male.png"); }
+span.reviewername.female { background-image: url("/images/icons/user-female.png"); }
 #dialog-message #search { margin-bottom: 8px; }
 .action_title {
   font-weight: bold;
@@ -1208,7 +1208,6 @@ span.reviewername.female { background-image: url("icons/user-female.png"); }
 }
 #qe_wrapper .pagewidth { padding: 10px 15px; }
 #qe_wrapper #global .pagewidth { padding: 0; }
-
 #feedback {
   position: fixed;
   bottom: 0;
@@ -1225,34 +1224,30 @@ span.reviewername.female { background-image: url("icons/user-female.png"); }
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
   cursor: default;
-
-  &:hover {
-    width: auto;
-    height: auto; }
-  
-  h2 {
+}
+#feedback:hover {
+  width: auto;
+  height: auto;
+}
+#feedback h2 {
   color: #ffffff;
   padding: 5px 10px 5px 30px;
   margin: 0;
   font-size: 13px;
-  background: url('smile.png') 10px 50% no-repeat; 
-  font-weight: bold; }
-  
-  p {
-    margin: 0;
-    padding: 0px 10px 10px 10px;
-    width: 220px;
-    color: #dddddd; 
-    font-size: 12px; }
-
-  a {
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: underline;
-    cursor: pointer; }
+  background: url('/images/smile.png') 10px 50% no-repeat;
 }
-
-
+#feedback p {
+  margin: 0;
+  padding: 0px 10px 10px 10px;
+  width: 220px;
+  color: #dddddd;
+}
+#feedback a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .questions textarea.text { width: 100%; }
 .questions input.text { width: auto; }
 table.grid { width: 100%; }
