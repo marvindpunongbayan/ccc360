@@ -1,4 +1,7 @@
 /*
 *= require_self
-*= require_tree .
+*= require 360front
+*= require jquery-ui-1.8.2.custom
+*= require admin
+*= require qe/screen
 */
