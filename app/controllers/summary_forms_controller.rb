@@ -1,5 +1,6 @@
-class SummaryFormsController < Qe::AnswerSheetsController
-  
+class SummaryFormsController < ApplicationController
+  include Qe::Concerns::Controllers::AnswerSheetsController
+
   skip_before_filter :get_answer_sheet, :only => [ :edit ]
   prepend_before_filter :setup_show
   layout :set_layout
@@ -8,7 +9,8 @@ class SummaryFormsController < Qe::AnswerSheetsController
     @questionnaire = true
     @review = Review.find(params[:review_id])
     @summary_form = @review.find_or_create_summary_form
-    unless @summary_form && @summary_form.review.question_sheet.summary_form
+
+    unless @summary_form && @summary_form.try(:review).try(:question_sheet).try(:summary_form)
       error_and_try_back("Sorry, no summary form has been chosen for this review.")
       return 
     end
