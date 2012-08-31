@@ -12,6 +12,7 @@
 // 
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.tabs
 //= require qe/application
 //= require_self
 //= require_tree .

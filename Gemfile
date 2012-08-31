@@ -16,6 +16,7 @@ gem 'airbrake'
 
 # website functionality
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'acts_as_list'
 gem 'aasm'
 gem 'state_machine'
@@ -29,7 +30,7 @@ gem 'questionnaire_engine',
 	:git => 'git://github.com/twinge/questionnaire_engine.git', 
 	:branch => 'engine'
 	
-# gem 'common_engine' # switching over to gem version of common_engine
+# gem 'common_engine' # coming to a terminal near you ;) 
 
 group :assets do
 	gem 'sass-rails'

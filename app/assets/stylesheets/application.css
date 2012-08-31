@@ -1,7 +1,7 @@
 /*
 *= require_self
+*= require jquery.ui.tabs
 *= require 360front
-*= require jquery-ui-1.8.2.custom
 *= require admin
 *= require qe/screen
 */
