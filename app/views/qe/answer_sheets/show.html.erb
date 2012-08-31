@@ -11,13 +11,11 @@
 </div>
 
 <div id="preview" class="answer-page">
-
-<% @answer_sheets ||= [ @answer_sheet ] %>
-<% @answer_sheet_pages = @answer_sheets.collect(&:pages).flatten %>
-<% for @answer_sheet in @answer_sheets %>
-<% @elements = Qe::QuestionSet.new(@answer_sheet.question_sheet.elements, @answer_sheet).elements.group_by{ 
-  |e| (@answer_sheet_pages & e.pages).first } %>
-  <%= render :partial => 'qe/answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>
-<% end %>
-
+  <% @answer_sheets ||= [ @answer_sheet ] %>
+  <% @answer_sheet_pages = @answer_sheets.collect(&:pages).flatten %>
+  <% @answer_sheets.each do |answer_sheet| %>
+    <% @elements = Qe::QuestionSet.new(answer_sheet.question_sheet.elements, answer_sheet).elements.group_by{ 
+      |e| (@answer_sheet_pages & e.pages).first } %>
+      <%= render :partial => 'qe/answer_sheets/answer_sheet', :locals => {:answer_sheet => @answer_sheet, :elements => @elements } %>  
+  <% end %>
 </div>
