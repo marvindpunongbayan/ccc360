@@ -1,3 +1,7 @@
+class Qe::Element < ActiveRecord::Base
+  self.inheritance_column = 'fake'
+end
+
 class ApplyQeNamespaceToPrElements < ActiveRecord::Migration
   def up
 		Qe::Element.all.each do |e|
@@ -6,10 +10,7 @@ class ApplyQeNamespaceToPrElements < ActiveRecord::Migration
 			# question_grid => qe/question_grid
 			kind_new = 'Qe::' + e.kind
 			style_new = 'qe/' + e.style
-			namespaced = { kind: kind_new, style: style_new }
-			e.attributes = e.attributes.merge(namespaced)
-
-			e.save(:validate => false) # false skips model validations
+      Qe::Element.connection.update("UPDATE #{Qe::Element.table_name} set kind = '#{kind_new}', style = '#{style_new}' where id = #{e.id}")
 		end
   end
 
@@ -18,10 +19,9 @@ class ApplyQeNamespaceToPrElements < ActiveRecord::Migration
   	Qe::Element.all.each do |e|
   		kind_old = e.kind.split(/Qe::/).second
 			style_old = e.style.split(/qe\//).second
-			non_ns = { kind: kind_old, style: style_old }
-			e.attributes = e.attributes.merge(non_ns)
-  		
-  		e.save(:validate => false)
+      Qe::Element.connection.update("UPDATE #{Qe::Element.table_name} set kind = '#{kind_old}', style = '#{style_old}' where id = #{e.id}")
   	end
   end
 end
+
+

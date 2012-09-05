@@ -1,5 +1,6 @@
-class QuestionSheet < Qe::QuestionSheet
-  self.table_name = "pr_question_sheets"
+class Qe::QuestionSheet < ActiveRecord::Base
+	include Qe::Concerns::Models::QuestionSheet
+  #self.table_name = "pr_question_sheets"
   
   has_one :question_sheet_pr_info, :dependent => :destroy
   has_many :reviews
