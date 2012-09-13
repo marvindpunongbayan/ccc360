@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
   helper_method :pr_user
 
   def set_personal_question_sheets
-    @question_sheets = QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
+    @question_sheets = Qe::QuestionSheet.find_all_by_archived(false, :joins => :question_sheet_pr_info,
          :conditions => [ "form_type = 'personal'" ])
   end
 
