@@ -43,8 +43,10 @@
             -->
             <tr>
               <td class="icon"><%= image_tag('icons/chart.png') %></td>
-              <td class="name">Account Balance</td>
-              <td class="goal"><%= number_to_currency person.account_balance %></td>
+              <% if person.balance_daily %>
+                <td class="name">Account Balance</td>
+                <td class="goal"><%= number_to_currency person.balance_daily %></td>
+              <% end %>
             </tr>
           </tbody>
         </table>

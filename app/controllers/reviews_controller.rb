@@ -63,7 +63,7 @@ class ReviewsController < AnswerSheetsController
 
   def show
     unless request.xhr?
-      redirect_to collate_review_path(params[:id])
+      redirect_to collate_review_url(params[:id])
     else
       @review = Review.find params[:id]
     end
