@@ -1,7 +1,7 @@
       <tr class="searchrow">
         <!--<td class="checkbox"><input type="checkbox" /></td>-->
         <td class="gender"><%= gender_icon(person) %></td>
-        <td class="title"><%= link_to person.full_name, person_url(person) %></td>
+        <td class="title"><%= link_to person.informal_full_name, person_url(person) %></td>
         <td class="actions email"><%= link_to(person.email,"mailto:#{person.email}") %></td>
         <td class="reviewcount"><%= person.subjected_reviews.length %></td>
         <td class="viewreview"><%= link_to("View", person_url(person), :class => "viewreviewlink") %></td>

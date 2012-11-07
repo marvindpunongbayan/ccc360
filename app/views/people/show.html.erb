@@ -3,12 +3,12 @@
   <div id="breadcrumb">
     <ul>
       <li><a href=""><%= link_to("People", people_path) %></li>
-      <li><a href=""><%= @person.full_name %></a></li>
+      <li><a href=""><%= @person.informal_full_name %></a></li>
     </ul>
   </div>  
   
   <h1>
-    <%= @person.full_name %>
+    <%= @person.informal_full_name %>
     <%- if admin? -%>
     <div id="flags">
       <div id="adminflag">

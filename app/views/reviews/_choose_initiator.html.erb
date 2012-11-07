@@ -7,7 +7,7 @@
   <div>Who is administering this review?</div>
   <br/>
   <input type="radio" name="whoreview" id="ireview" checked="true">
-  <%= link_to_function current_person.full_name, %|new_review_select_choice("initiator_", #{current_person.id}); $("#ireview")[0].checked = true| %>
+  <%= link_to_function current_person.informal_full_name, %|new_review_select_choice("initiator_", #{current_person.id}); $("#ireview")[0].checked = true| %>
 </div>
 
 <div class="action_title">

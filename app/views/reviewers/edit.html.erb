@@ -3,7 +3,7 @@
 </style>
 
 <div id="padwrap">
-  <h2><%= @review.subject.full_name %> <%= @review.name %><div class="reviewername">by <%= @reviewer.person.full_name %></div></h2>
+  <h2><%= @review.subject.informal_full_name %> <%= @review.name %><div class="reviewername">by <%= @reviewer.person.informal_full_name %></div></h2>
   
   <%= render :template => 'answer_sheets/edit' %>
   <div class="clear"></div>
