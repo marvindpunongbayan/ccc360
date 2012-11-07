@@ -14,10 +14,11 @@ gem 'acts_as_state_machine'
 # require for common_engine, rails3 branch
 gem 'aasm'
 
-gem 'paperclip', '~>2.0'
+gem 'paperclip'
 gem 'dalli'
 gem 'liquid'
 gem 'aws-s3'
+gem 'aws-sdk'
 gem 'rack-contrib' 
 gem 'capistrano'
 gem 'newrelic_rpm'
