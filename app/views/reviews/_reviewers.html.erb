@@ -9,14 +9,14 @@
       <% for reviewing in @review.reviewings; review = reviewing.review; reviewer = reviewing.person %>
       <tr class="review_<%=@review.id%> reviewer" id="reviewer_<%=reviewing.id%>">
         <td class="checkbox"><%= check_box_tag "reviewers[#{reviewing.id}]" %></td>
-        <td class="name"><%= reviewer.full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
+        <td class="name"><%= reviewer.informal_full_name %> <%= link_to("", "mailto:#{reviewer.email}", :class => "inlinemail") %></td>
         <td class="stafflevel"></td>
         <td class="stafftitle"></td>
         <td class="relationship"></td>
         <td class="duedate"></td>
         <td class="viewreview"><%= link_to("View", review_reviewer_path(@review, reviewing), :class => "viewreviewlink") %></td>
         <td class="status"><%= reviewing.percent_complete %>%</td>
-        <td class="deletereview"><%= link_to("", review_reviewer_path(@review, reviewing), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove #{reviewer.full_name} as a reviewer and delete her review.  Are you sure?") %></td>
+        <td class="deletereview"><%= link_to("", review_reviewer_path(@review, reviewing), :class => "deletereviewlink", :method => :delete, :remote => true, :confirm => "This will remove #{reviewer.informal_full_name} as a reviewer and delete her review.  Are you sure?") %></td>
       </tr>
       <% end %>
       <% unless @review.past? %>

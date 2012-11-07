@@ -47,6 +47,6 @@ class Reviewer < AnswerSheet
   end
 
   def collat_title
-    person.full_name
+    person.informal_full_name
   end
 end

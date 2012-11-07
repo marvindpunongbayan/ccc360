@@ -14,16 +14,16 @@ module ApplicationHelper
   def gender_icon(person)
     return "" if person.nil?
     if person.gender && person.is_male?
-      image_tag('icons/user-male.png', :alt => (alt = "#{person.full_name} is a male"), :title => alt)
+      image_tag('icons/user-male.png', :alt => (alt = "#{person.informal_full_name} is a male"), :title => alt)
     elsif person.gender && person.is_female?
-      image_tag('icons/user-female.png', :alt => (alt = "#{person.full_name} is a female"), :title => alt)
+      image_tag('icons/user-female.png', :alt => (alt = "#{person.informal_full_name} is a female"), :title => alt)
     else
-      image_tag('icons/user-silhouette.png', :alt => (alt = "#{person.full_name}"), :title => alt)
+      image_tag('icons/user-silhouette.png', :alt => (alt = "#{person.informal_full_name}"), :title => alt)
     end
   end
 
   def person_gender_email(person)
-    "#{gender_icon(person)} #{person.full_name} (#{person.email})".html_safe
+    "#{gender_icon(person)} #{person.informal_full_name} (#{person.email})".html_safe
   end
 
   def calendar_date_select_tag(name, value = nil, options = {})
@@ -42,9 +42,9 @@ module ApplicationHelper
   def person_link_if_authed(person)
     return "" unless person.present?
     if can_see_person?(person)
-      link_to(person.full_name, person_url(person.id))
+      link_to(person.informal_full_name, person_url(person.id))
     else
-      person.full_name
+      person.informal_full_name
     end
   end
 

@@ -8,8 +8,8 @@ class InvitesMailer < ActionMailer::Base
       template_params = { 
         "review_name" => review.name,
         "review_url" => reviewer.url($base_url),
-        "subject_name" => review.subject.full_name,
-        "initiator_name" => review.initiator.full_name,
+        "subject_name" => review.subject.informal_full_name,
+        "initiator_name" => review.initiator.informal_full_name,
         "subject_pronoun" => review.subject.is_male? ? "his" : "her",
         "due_date" => I18n.l(review.due)
       }
@@ -20,10 +20,10 @@ class InvitesMailer < ActionMailer::Base
       if reviewer.person.email.blank?
         if review.initiator.email.blank?
           ## Both emails failed
-          raise "The email address is missing for #{reviewer.person.full_name}; no email has been sent."
+          raise "The email address is missing for #{reviewer.person.informal_full_name}; no email has been sent."
         else
           #let sender know about missing email
-          body_with_err = "A message was unable to be delivered to #{reviewer.person.full_name} because the email address is missing. \n\r"
+          body_with_err = "A message was unable to be delivered to #{reviewer.person.informal_full_name} because the email address is missing. \n\r"
           mail(:from => review.initiator.email, 
                :to => review.initiator.email, 
                :subject => subject,
@@ -44,7 +44,7 @@ class InvitesMailer < ActionMailer::Base
       raise "Email Template #{template_name} could not be found"
     else
       template_params = { 
-        "name" => reminder.person.full_name,
+        "name" => reminder.person.informal_full_name,
         "label" => reminder.label,
         "notes" => reminder.note,
         "reminder_date" => I18n.l(reminder.reminder_date)
@@ -52,7 +52,7 @@ class InvitesMailer < ActionMailer::Base
       subject = Liquid::Template.parse(email_template.subject).render(template_params)
       body = Liquid::Template.parse(email_template.content).render(template_params)
       if reminder.person.email.blank?
-        raise "The email address is missing for #{reminder.person.full_name}; no email has been sent."
+        raise "The email address is missing for #{reminder.person.informal_full_name}; no email has been sent."
       else
         mail(:from => "no-reply@pr.uscm.org", 
              :to => reminder.person.email, 

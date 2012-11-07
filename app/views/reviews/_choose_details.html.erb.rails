@@ -1,4 +1,4 @@
-Review requested for <%= gender_icon(@review.subject) %> <%= @review.subject.full_name %> by <%= gender_icon(@review.initiator) %> <%= @review.initiator.full_name %>.<br/>
+Review requested for <%= gender_icon(@review.subject) %> <%= @review.subject.informal_full_name %> by <%= gender_icon(@review.initiator) %> <%= @review.initiator.informal_full_name %>.<br/>
 <br/>
 <%= form_for @review do |f| %>
   <%= render 'form', :f => f %>

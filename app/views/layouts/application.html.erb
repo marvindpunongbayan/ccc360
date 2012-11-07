@@ -56,7 +56,7 @@
   <div id="feedback">
     <h2>We listen!</h2><p>Have some feedback on how we can improve Panorama? Send us an email: <%= mail_to('help@campuscrusadeforchrist.com') %></p>
   </div>
-  <!--[Debug] Current user: <%= current_person.try(:full_name) %> id <%= current_person.try(:id) %>-->
+  <!--[Debug] Current user: <%= current_person.try(:informal_full_name) %> id <%= current_person.try(:id) %>-->
   <div id="footertag" class="pagewidth">Panorama works best when using <%= link_to "Firefox", "http://www.mozilla.com", :target => "blank" %>.</div>
 </div>
 <div id="dialog-confirm" style="display:none" title="Are you sure?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><span id="dialog-confirm-message"></span></p></div>

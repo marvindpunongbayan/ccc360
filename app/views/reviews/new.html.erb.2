@@ -18,7 +18,7 @@
 
         <div class="tablcontent" id="team">
           <%- for person in current_person.team_members(true) -%>
-          <div class="r_row"><%= link_to "#{gender_icon(person)} #{person.full_name}".html_safe, new_submit_person_reviews_path(:person_id => person.id), :method => :post %></div>
+          <div class="r_row"><%= link_to "#{gender_icon(person)} #{person.informal_full_name}".html_safe, new_submit_person_reviews_path(:person_id => person.id), :method => :post %></div>
           <%- end -%>
         </div>
         <div class="tablcontent" id="search">

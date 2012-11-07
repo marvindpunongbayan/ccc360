@@ -105,7 +105,7 @@ class ReviewsController < AnswerSheetsController
     (params[:reviewers] || []).each do |id, v|
       if v == "1"
         r = @review.reviewings.find id
-        msgs << "#{r.person.full_name} (#{r.person.email})"
+        msgs << "#{r.person.informal_full_name} (#{r.person.email})"
         InvitesMailer.reviewer_invite(r, "Manual Reminder").deliver
       end
     end
