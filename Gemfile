@@ -21,7 +21,7 @@ gem 'aws-s3'
 gem 'aws-sdk'
 gem 'rack-contrib' 
 gem 'capistrano'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '>= 3.5.3.25'
 
 group :development, :test do
   gem 'therubyracer'
