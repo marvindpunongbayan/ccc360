@@ -24,5 +24,5 @@ gem 'capistrano'
 gem 'newrelic_rpm', '>= 3.5.3.25'
 
 group :development, :test do
-  gem 'therubyracer'
+  gem 'therubyracer', '~>0.10.0.0'
 end
