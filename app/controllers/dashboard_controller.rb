@@ -36,7 +36,7 @@ class DashboardController < ApplicationController
       redirect_to home_url
     else
       session.clear
-      redirect_to "https://signin.ccci.org/sso/logout/logout.jsp"
+      redirect_to "https://signin.relaysso.org/cas/logout?service="+CGI::escape(url_for :controller => 'dashboard')
     end
   end
 
